@@ -68,6 +68,8 @@ const form = document.querySelector('.command-line');
 const input = document.getElementById('commandInput');
 const output = document.getElementById('output');
 const helperButtons = document.querySelectorAll('[data-command]');
+const helperToggle = document.querySelector('.helper-toggle');
+const helperSuite = document.getElementById('helperSuite');
 
 const responses = {
     help: {
@@ -160,6 +162,18 @@ helperButtons.forEach(button => {
         input.focus();
     });
 });
+
+if (helperToggle && helperSuite) {
+    helperToggle.addEventListener('click', () => {
+        const isHidden = helperSuite.hasAttribute('hidden');
+        if (isHidden) {
+            helperSuite.removeAttribute('hidden');
+        } else {
+            helperSuite.setAttribute('hidden', '');
+        }
+        helperToggle.setAttribute('aria-expanded', String(isHidden));
+    });
+}
 
 // Provide quick keyboard suggestion
 input.addEventListener('keydown', (event) => {

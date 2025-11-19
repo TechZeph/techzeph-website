@@ -15,23 +15,36 @@
     <main class="viewport">
         <section class="terminal" aria-label="Matrix terminal">
             <header class="terminal__header">
-                <div>
-                    <p class="eyebrow">techzeph systems</p>
-                    <h1>Elliot</h1>
-                    <p class="tagline">Cyber security + web design student building immersive interfaces.</p>
+                <div class="terminal__chrome" role="presentation">
+                    <span class="chrome-dot dot-close"></span>
+                    <span class="chrome-dot dot-min"></span>
+                    <span class="chrome-dot dot-max"></span>
+                    <p class="terminal__path">elliot@omarchy:~</p>
                 </div>
-                <div class="status">
-                    <span class="status__led" aria-hidden="true"></span>
-                    <span class="status__label">online</span>
+                <div class="terminal__identity">
+                    <p class="eyebrow">techzeph // arch</p>
+                    <h1>Elliot</h1>
+                    <p class="tagline">Cyber security + web design student experimenting with omarchy-inspired tooling.</p>
                 </div>
             </header>
 
-            <nav class="helper-bar" aria-label="Quick commands">
-                <button type="button" class="helper" data-command="about">About</button>
-                <button type="button" class="helper" data-command="projects">Projects</button>
-                <button type="button" class="helper" data-command="contact">Contact</button>
-                <button type="button" class="helper" data-command="resume">Resume</button>
-            </nav>
+            <button class="helper-toggle" type="button" aria-expanded="false" aria-controls="helperSuite">
+                I don't know how to use a terminal
+            </button>
+
+            <div id="helperSuite" class="helper-suite" hidden>
+                <nav class="helper-bar" aria-label="Quick commands">
+                    <button type="button" class="helper" data-command="about">About</button>
+                    <button type="button" class="helper" data-command="projects">Projects</button>
+                    <button type="button" class="helper" data-command="contact">Contact</button>
+                    <button type="button" class="helper" data-command="resume">Resume</button>
+                </nav>
+                <aside class="helper-panel" aria-live="polite">
+                    <p class="helper-panel__title">Need a hint?</p>
+                    <p>Use the buttons above to auto-run commands. The terminal accepts <span class="command">help</span>, <span class="command">about</span>, <span class="command">projects</span>, <span class="command">contact</span>, <span class="command">resume</span>.</p>
+                    <p>Close this helper to return to the classic Arch vibe.</p>
+                </aside>
+            </div>
 
             <section class="panel" aria-live="polite" aria-atomic="false">
                 <header class="panel__tabs" role="tablist" aria-label="Terminal panes">
@@ -41,14 +54,14 @@
                 <div id="output" class="console" role="log">
                     <article>
                         <p class="command-line-text">> init</p>
-                        <p>Welcome to the neon terminal. Type <span class="command">help</span> or use the quick controls.</p>
+                        <p>Welcome to the omarchy terminal. Type <span class="command">help</span> or open the helper toggle if you're new.</p>
                     </article>
                 </div>
             </section>
 
             <form class="command-line" aria-label="Command input" autocomplete="off">
                 <label class="sr-only" for="commandInput">Terminal command</label>
-                <span class="prompt">&gt;</span>
+                <span class="prompt">elliot@omarchy:~$</span>
                 <input id="commandInput" name="command" type="text" spellcheck="false" autocapitalize="none" autocomplete="off" placeholder="Type a command e.g. 'about'">
                 <span class="ghost-hint" aria-hidden="true">Press Enter to run</span>
             </form>
