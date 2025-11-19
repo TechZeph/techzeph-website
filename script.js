@@ -1,58 +1,170 @@
-// Matrix effect
 const canvas = document.getElementById('matrix');
 const ctx = canvas.getContext('2d');
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-const fontSize = 16;
-const columns = canvas.width / fontSize;
-const drops = [];
-
-for (let x = 0; x < columns; x++) drops[x] = 1;
-
-function drawMatrix() {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.fillStyle = "#0F0";
-    ctx.font = fontSize + "px monospace";
-
-    for (let i = 0; i < drops.length; i++) {
-        const text = letters.charAt(Math.floor(Math.random() * letters.length));
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-            drops[i] = 0;
-        }
-        drops[i]++;
-    }
-}
-
-setInterval(drawMatrix, 50);
-
-// Terminal functionality
-const input = document.getElementById('commandInput');
-const output = document.getElementById('output');
-
-const commands = {
-    help: "Available commands: help, about, projects, contact",
-    about: "This will take you to the About page (not implemented yet).",
-    projects: "This will take you to the Projects page (not implemented yet).",
-    contact: "This will take you to the Contact page (not implemented yet)."
+const glyphs = 'アイウエオカキクケコサシスセソabcdeFGHIJ1234567890';
+const matrix = {
+    columns: [],
+    fontSize: 16,
+    hueShift: 0,
 };
 
-input.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
-        const value = input.value.trim().toLowerCase();
-        const response = commands[value] || `Command not recognized: ${value}`;
-        
-        const p = document.createElement('p');
-        p.innerHTML = `> ${value}<br>${response}`;
-        output.appendChild(p);
+const resizeCanvas = () => {
+    const { innerWidth, innerHeight, devicePixelRatio } = window;
+    canvas.width = innerWidth * devicePixelRatio;
+    canvas.height = innerHeight * devicePixelRatio;
+    canvas.style.width = `${innerWidth}px`;
+    canvas.style.height = `${innerHeight}px`;
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+    matrix.columns = Array.from(
+        { length: Math.floor(innerWidth / matrix.fontSize) },
+        (_, index) => ({
+            x: index * matrix.fontSize,
+            y: Math.random() * innerHeight,
+            speed: matrix.fontSize * (0.8 + Math.random() * 1.5),
+        })
+    );
+};
 
+const getColorStops = () => {
+    const styles = getComputedStyle(document.documentElement);
+    return [
+        styles.getPropertyValue('--accent-primary').trim(),
+        styles.getPropertyValue('--accent-secondary').trim(),
+        styles.getPropertyValue('--accent-tertiary').trim()
+    ];
+};
+
+const drawMatrix = () => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    ctx.fillStyle = 'rgba(3, 6, 11, 0.08)';
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.font = `${matrix.fontSize}px 'Space Mono', monospace`;
+    const colors = getColorStops();
+
+    matrix.columns.forEach(column => {
+        const char = glyphs[Math.floor(Math.random() * glyphs.length)];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        ctx.fillStyle = color;
+        ctx.fillText(char, column.x, column.y);
+
+        column.y += column.speed * 0.05;
+
+        if (column.y > height + matrix.fontSize) {
+            column.y = -10 - Math.random() * 100;
+        }
+    });
+
+    requestAnimationFrame(drawMatrix);
+};
+
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+requestAnimationFrame(drawMatrix);
+
+const form = document.querySelector('.command-line');
+const input = document.getElementById('commandInput');
+const output = document.getElementById('output');
+const helperButtons = document.querySelectorAll('[data-command]');
+
+const responses = {
+    help: {
+        title: 'help',
+        body: `
+            <p>Available commands: <span class="command">about</span>, <span class="command">projects</span>, <span class="command">contact</span>, <span class="command">resume</span>.</p>
+            <p>Use helper buttons above or type commands manually. More commands arriving soon.</p>
+        `
+    },
+    about: {
+        title: 'about',
+        body: `
+            <p>Hi, I'm Elliot Harrison—a Leeds-based creative developer blending performant frontends with cinematic visuals.</p>
+            <ul>
+                <li>Specialties: WebGL, Three.js, interactive storytelling.</li>
+                <li>Focus: accessibility, responsive design, neon-inspired art direction.</li>
+            </ul>
+        `
+    },
+    projects: {
+        title: 'projects',
+        body: `
+            <p>Select work:</p>
+            <ul>
+                <li><span class="command">Spectral Grid</span> — interactive data sonification tool.</li>
+                <li><span class="command">Lumen Atlas</span> — AR experience for museum visitors.</li>
+                <li><span class="command">Harmonic UI</span> — design system with live code playground.</li>
+            </ul>
+        `
+    },
+    contact: {
+        title: 'contact',
+        body: `
+            <p>Let's collaborate:</p>
+            <ul>
+                <li>Email: <a href="mailto:hello@techzeph.co.uk">hello@techzeph.co.uk</a></li>
+                <li>LinkedIn: <a href="#">linkedin.com/in/elliotharrison</a></li>
+                <li>Availability: Accepting freelance + contract work Q1 2026.</li>
+            </ul>
+        `
+    },
+    resume: {
+        title: 'resume',
+        body: `
+            <p>Download my latest CV <a href="#" target="_blank" rel="noopener">here</a>. Includes project highlights, stack breakdown, and speaking engagements.</p>
+        `
+    }
+};
+
+const renderEntry = (command, content) => {
+    const article = document.createElement('article');
+
+    const heading = document.createElement('p');
+    heading.className = 'command-line-text';
+    heading.textContent = `> ${command}`;
+
+    const body = document.createElement('div');
+    body.innerHTML = content.body;
+
+    article.appendChild(heading);
+    article.appendChild(body);
+    output.appendChild(article);
+    output.scrollTo({ top: output.scrollHeight, behavior: 'smooth' });
+};
+
+const handleCommand = (rawCommand) => {
+    const command = rawCommand.trim().toLowerCase();
+    if (!command.length) return;
+
+    if (!responses[command]) {
+        renderEntry(command, {
+            body: `<p>Command not recognized. Type <span class="command">help</span> for options.</p>`
+        });
+        return;
+    }
+
+    renderEntry(command, responses[command]);
+};
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    handleCommand(input.value);
+    input.value = '';
+});
+
+helperButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const cmd = button.getAttribute('data-command');
+        handleCommand(cmd);
         input.value = '';
-        output.scrollTop = output.scrollHeight;
+        input.focus();
+    });
+});
+
+// Provide quick keyboard suggestion
+input.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+        input.blur();
     }
 });
