@@ -70,6 +70,7 @@ const output = document.getElementById('output');
 const helperButtons = document.querySelectorAll('[data-command]');
 const helperToggle = document.querySelector('.helper-toggle');
 const helperSuite = document.getElementById('helperSuite');
+const promptPrefix = 'user@techzeph.co.uk:~$';
 
 const responses = {
     help: {
@@ -121,7 +122,7 @@ const renderEntry = (command, content) => {
 
     const heading = document.createElement('p');
     heading.className = 'command-line-text';
-    heading.textContent = `> ${command}`;
+    heading.textContent = `${promptPrefix} ${command}`;
 
     const body = document.createElement('div');
     body.innerHTML = content.body;
@@ -150,6 +151,7 @@ form.addEventListener('submit', (event) => {
     event.preventDefault();
     handleCommand(input.value);
     input.value = '';
+    input.focus();
 });
 
 helperButtons.forEach(button => {

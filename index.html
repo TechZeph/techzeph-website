@@ -46,25 +46,24 @@
                 </aside>
             </div>
 
-            <section class="panel" aria-live="polite" aria-atomic="false">
+            <div class="terminal__window" aria-live="polite" aria-atomic="false">
                 <header class="panel__tabs" role="tablist" aria-label="Terminal panes">
                     <button class="panel__tab is-active" role="tab" aria-selected="true">console</button>
                     <button class="panel__tab" role="tab" aria-selected="false" disabled>logs</button>
                 </header>
                 <div id="output" class="console" role="log">
                     <article>
-                        <p class="command-line-text">> init</p>
+                        <p class="command-line-text">user@techzeph.co.uk:~$ init</p>
                         <p>Welcome to the TechZeph terminal. Type <span class="command">help</span> or open the helper toggle if you're new.</p>
                     </article>
                 </div>
-            </section>
-
-            <form class="command-line" aria-label="Command input" autocomplete="off">
-                <label class="sr-only" for="commandInput">Terminal command</label>
-                <span class="prompt">user@techzeph.co.uk:~$</span>
-                <input id="commandInput" name="command" type="text" spellcheck="false" autocapitalize="none" autocomplete="off" placeholder="Type a command e.g. 'about'">
-                <span class="ghost-hint" aria-hidden="true">Press Enter to run</span>
-            </form>
+                <form class="command-line" aria-label="Command input" autocomplete="off">
+                    <label class="sr-only" for="commandInput">Terminal command</label>
+                    <span class="prompt">user@techzeph.co.uk:~$</span>
+                    <input id="commandInput" name="command" type="text" spellcheck="false" autocapitalize="none" autocomplete="off" placeholder="Type a command e.g. 'about'">
+                    <span class="ghost-hint" aria-hidden="true">Enter</span>
+                </form>
+            </div>
 
             <footer class="terminal__footer">
                 <div class="links">
