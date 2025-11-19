@@ -72,11 +72,16 @@ export default function registerCommands(term, utils) {
 
   // CV command
   term.registerCommand('cv', (args, context) => {
-    context.term.print('Downloading CV...');
-    if (utils && utils.downloadFile) {
-      utils.downloadFile('assets/cv.pdf', 'Elliot_CV.pdf');
+    const confirmed = window.confirm('Are you sure you want to download a random file from the internet?');
+    if (confirmed) {
+      context.term.print('Downloading CV...');
+      if (utils && utils.downloadFile) {
+        utils.downloadFile('assets/cv.pdf', 'Elliot_CV.pdf');
+      } else {
+        context.term.print('CV file not found. Please add assets/cv.pdf');
+      }
     } else {
-      context.term.print('CV file not found. Please add assets/cv.pdf');
+      context.term.print('Download cancelled.');
     }
   }, {
     description: 'Download CV/resume',
