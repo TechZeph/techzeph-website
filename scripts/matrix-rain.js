@@ -36,15 +36,15 @@ export function start(canvasElement) {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.scale(devicePixelRatio, devicePixelRatio);
     
-    // Recalculate columns with more randomness
+    // Recalculate columns for rainfall effect (top to bottom, less random)
     const columnCount = Math.floor(innerWidth / fontSize);
     columns = Array.from({ length: columnCount }, (_, i) => ({
       x: i * fontSize,
-      y: Math.random() * innerHeight * 2 - innerHeight, // Start at random positions, some off-screen
-      speed: fontSize * (0.3 + Math.random() * 0.75), // More varied speeds
-      gap: Math.random() * 30 + 10, // Random gap between glyphs
+      y: -Math.random() * 100 - 50, // Start near top (slightly staggered)
+      speed: fontSize * (0.3 + Math.random() * 0.5), // More consistent speeds
+      gap: Math.random() * 15 + 8, // Smaller, more consistent gaps
       lastY: -1000, // Track last glyph position
-      skipChance: Math.random() * 0.7, // Random chance to skip drawing this frame
+      skipChance: Math.random() * 0.2, // Much lower skip chance for consistent streams
     }));
     frameCount = 0; // Reset frame counter on resize
   };
@@ -64,7 +64,7 @@ export function start(canvasElement) {
     ctx.font = `${fontSize}px monospace`;
     
     columns.forEach(column => {
-      // Random chance to skip this column this frame (creates dotted effect)
+      // Low random chance to skip (for slight variation, not heavy randomness)
       if (Math.random() < column.skipChance) {
         return;
       }
@@ -72,7 +72,7 @@ export function start(canvasElement) {
       // Update position
       column.y += column.speed * 0.015; // Slower speed for reduced cycling rate
       
-      // Only draw glyph if enough gap has passed (creates dotted, non-continuous lines)
+      // Draw glyph more frequently for continuous rainfall streams
       const distanceSinceLast = column.y - column.lastY;
       if (distanceSinceLast >= column.gap || column.lastY < 0) {
         const char = glyphs[Math.floor(Math.random() * glyphs.length)];
@@ -80,12 +80,12 @@ export function start(canvasElement) {
         column.lastY = column.y;
       }
       
-      // Reset when off-screen with random delay
+      // Reset when off-screen - return to top for continuous rainfall
       if (column.y > height + fontSize * 2) {
-        column.y = -Math.random() * 200 - 50; // Random start position
+        column.y = -Math.random() * 50 - 20; // Start near top (less random)
         column.lastY = -1000; // Reset gap tracking
-        column.gap = Math.random() * 40 + 15; // New random gap
-        column.speed = fontSize * (0.3 + Math.random() * 2.0); // New random speed
+        column.gap = Math.random() * 15 + 8; // Maintain consistent gap
+        column.speed = fontSize * (0.3 + Math.random() * 0.5); // Maintain consistent speed
       }
     });
     
