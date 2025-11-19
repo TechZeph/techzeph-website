@@ -1,0 +1,132 @@
+/**
+ * Terminal Styles
+ * Purpose: Terminal panel appearance, output/input styling, glass effects, mobile behavior
+ * Last updated: 2025-01-27
+ */
+
+/* Terminal Panel */
+.terminal {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55));
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--elev);
+  position: relative;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(0, 255, 65, 0.06);
+  backdrop-filter: blur(8px);
+}
+
+/* Subtle scanlines effect */
+.terminal::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background-image: var(--scanline);
+  mix-blend-mode: overlay;
+  opacity: 0.14;
+}
+
+/* Output Area (Log) */
+.terminal-output {
+  flex: 1 1 auto;
+  overflow: auto;
+  padding-right: 8px;
+  padding-bottom: 10px;
+  margin-bottom: 8px;
+  font-variant-ligatures: none;
+  white-space: pre-wrap;
+}
+
+/* Scrollbar Styling */
+.terminal-output::-webkit-scrollbar {
+  width: 8px;
+}
+
+.terminal-output::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.terminal-output::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 65, 0.3);
+  border-radius: 4px;
+}
+
+.terminal-output::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 65, 0.5);
+}
+
+/* Single Line */
+.line {
+  padding: 2px 0;
+  letter-spacing: 0.02em;
+}
+
+/* Command Line (user input) */
+.line.command-line {
+  color: var(--muted-green);
+  opacity: 0.9;
+}
+
+/* Prompt + Input Row */
+.terminal-input-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border-top: 1px dashed rgba(0, 255, 65, 0.03);
+  padding-top: 10px;
+}
+
+/* Prompt */
+.prompt {
+  color: var(--muted-green);
+  font-weight: 600;
+  user-select: none;
+}
+
+/* Input Field */
+#terminal-input {
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: var(--matrix-green);
+  font-family: var(--mono);
+  font-size: inherit;
+  width: 100%;
+  min-width: 0;
+  caret-color: var(--matrix-green);
+}
+
+#terminal-input::placeholder {
+  color: rgba(60, 217, 106, 0.4);
+}
+
+/* Focus States */
+.terminal:focus-within {
+  box-shadow: var(--focus-glow);
+}
+
+#terminal-input:focus {
+  outline: none;
+}
+
+/* Mobile-specific terminal behavior */
+@media (max-width: 480px) {
+  .terminal {
+    padding: 12px;
+    min-height: 60vh;
+  }
+
+  .terminal-input-row {
+    position: sticky;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(12px);
+    padding: 8px 0;
+    margin-top: auto;
+  }
+}
+

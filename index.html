@@ -3,37 +3,31 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Matrix Terminal UI</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>TechZeph · Terminal Portfolio</title>
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/layout.css" />
+  <link rel="stylesheet" href="styles/terminal.css" />
 </head>
 <body>
-  <main class="terminal-root" role="application" aria-label="Matrix terminal">
-    <div class="terminal-vignette"></div>
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
 
-    <header class="term-header" aria-hidden="false">
-      <div class="brand">matrix•ui</div>
-      <div class="meta">mobile & desktop — monospace</div>
-    </header>
+  <header class="nav">
+    <button data-cmd="home">Home</button>
+    <button data-cmd="projects">Projects</button>
+    <button data-cmd="github">GitHub</button>
+    <button data-cmd="cv">Download CV</button>
+  </header>
 
-    <section id="term" class="terminal" tabindex="0" aria-live="polite">
-      <div class="term-output" id="term-output" aria-hidden="false">
-        <div class="line">Welcome — type <kbd>help</kbd> and press Enter.</div>
-        <!-- dynamic lines will be appended here -->
-      </div>
-
-      <form id="term-form" class="term-input-row" autocomplete="off" role="search">
-        <label for="cmd" class="sr-only">Terminal input</label>
+  <main id="terminal-app" role="application" aria-label="Terminal UI">
+    <section id="terminal" class="terminal" tabindex="0" aria-live="polite">
+      <div id="terminal-output" class="terminal-output" role="log"></div>
+      <form id="terminal-form" class="terminal-input-row" autocomplete="off">
         <span class="prompt">&gt;</span>
-        <input id="cmd" name="cmd" class="cmd" inputmode="text" spellcheck="false"
-               placeholder="Type a command..." aria-label="Command input" />
+        <input id="terminal-input" name="cmd" type="text" spellcheck="false" autocapitalize="none" aria-label="Terminal command input" />
       </form>
     </section>
-
-    <div class="term-footer" aria-hidden="true">
-      <small>Matrix theme • Responsive • Accessible</small>
-    </div>
   </main>
 
-  <script src="script.js" defer></script>
+  <script type="module" src="scripts/app.init.js"></script>
 </body>
 </html>

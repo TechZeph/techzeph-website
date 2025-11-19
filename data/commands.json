@@ -1,0 +1,31 @@
+{
+  "help": {
+    "description": "List all available commands",
+    "category": "system"
+  },
+  "about": {
+    "description": "Display information about the portfolio owner",
+    "category": "info"
+  },
+  "projects": {
+    "description": "List portfolio projects",
+    "category": "info"
+  },
+  "github": {
+    "description": "Open GitHub profile in new tab",
+    "category": "external"
+  },
+  "cv": {
+    "description": "Download CV/resume",
+    "category": "external"
+  },
+  "clear": {
+    "description": "Clear terminal output",
+    "category": "system"
+  },
+  "home": {
+    "description": "Return to home/welcome screen",
+    "category": "system"
+  }
+}
+
