@@ -36,16 +36,22 @@ export function start(canvasElement) {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.scale(devicePixelRatio, devicePixelRatio);
     
-    // Recalculate columns for rainfall effect (top to bottom, less random)
+    // Recalculate columns for rainfall effect (top to bottom, coherent design)
     const columnCount = Math.floor(innerWidth / fontSize);
-    columns = Array.from({ length: columnCount }, (_, i) => ({
-      x: i * fontSize,
-      y: -Math.random() * 100 - 50, // Start near top (slightly staggered)
-      speed: fontSize * (0.3 + Math.random() * 0.5), // More consistent speeds
-      gap: Math.random() * 15 + 8, // Smaller, more consistent gaps
-      lastY: -1000, // Track last glyph position
-      skipChance: Math.random() * 0.2, // Much lower skip chance for consistent streams
-    }));
+    columns = Array.from({ length: columnCount }, (_, i) => {
+      // Each column gets a fixed speed that varies smoothly across columns
+      // Creates coherent rainfall with different rates per column
+      const speedFactor = 0.35 + (Math.random() * 0.3); // Speed between 0.35-0.65
+      
+      return {
+        x: i * fontSize,
+        y: -Math.random() * 100 - 50, // Start near top (slightly staggered)
+        speed: fontSize * speedFactor, // Fixed speed per column (never changes)
+        gap: 12 + Math.random() * 8, // Consistent gap per column (12-20)
+        lastY: -1000, // Track last glyph position
+        skipChance: 0.1 + Math.random() * 0.1, // Low, consistent skip chance (0.1-0.2)
+      };
+    });
     frameCount = 0; // Reset frame counter on resize
   };
 
@@ -84,8 +90,7 @@ export function start(canvasElement) {
       if (column.y > height + fontSize * 2) {
         column.y = -Math.random() * 50 - 20; // Start near top (less random)
         column.lastY = -1000; // Reset gap tracking
-        column.gap = Math.random() * 15 + 8; // Maintain consistent gap
-        column.speed = fontSize * (0.3 + Math.random() * 0.5); // Maintain consistent speed
+        // Keep gap and speed consistent - don't randomize on reset
       }
     });
     
