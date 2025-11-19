@@ -80,10 +80,10 @@ const responses = {
     about: {
         title: 'about',
         body: `
-            <p>Hi, I'm Elliot Harrison—a Leeds-based creative developer blending performant frontends with cinematic visuals.</p>
+            <p>Hi, I'm Elliot—an education student in the UK studying cyber security and web design.</p>
             <ul>
-                <li>Specialties: WebGL, Three.js, interactive storytelling.</li>
-                <li>Focus: accessibility, responsive design, neon-inspired art direction.</li>
+                <li>Currently exploring immersive UI, matrix aesthetics, and safe-by-design storytelling.</li>
+                <li>Skills in progress: modern front-end stacks, security fundamentals, creative coding.</li>
             </ul>
         `
     },
@@ -101,18 +101,17 @@ const responses = {
     contact: {
         title: 'contact',
         body: `
-            <p>Let's collaborate:</p>
+            <p>You can reach me via email:</p>
             <ul>
                 <li>Email: <a href="mailto:hello@techzeph.co.uk">hello@techzeph.co.uk</a></li>
-                <li>LinkedIn: <a href="#">linkedin.com/in/elliotharrison</a></li>
-                <li>Availability: Accepting freelance + contract work Q1 2026.</li>
+                <li>Preferred topics: study collaborations, cyber security discussions, web design experiments.</li>
             </ul>
         `
     },
     resume: {
         title: 'resume',
         body: `
-            <p>Download my latest CV <a href="#" target="_blank" rel="noopener">here</a>. Includes project highlights, stack breakdown, and speaking engagements.</p>
+            <p>Download my latest CV <a href="#" target="_blank" rel="noopener">here</a>. It covers coursework highlights, security labs, and ongoing web experiments.</p>
         `
     }
 };
