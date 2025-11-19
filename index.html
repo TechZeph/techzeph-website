@@ -1,81 +1,39 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechZeph · Portfolio Project</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Matrix Terminal UI</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <canvas id="matrix" aria-hidden="true"></canvas>
+  <main class="terminal-root" role="application" aria-label="Matrix terminal">
+    <div class="terminal-vignette"></div>
 
-    <main class="viewport">
-        <section class="terminal" aria-label="Matrix terminal">
-            <header class="terminal__header">
-                <div class="terminal__chrome" role="presentation">
-                    <span class="chrome-dot dot-close"></span>
-                    <span class="chrome-dot dot-min"></span>
-                    <span class="chrome-dot dot-max"></span>
-                    <p class="terminal__path">user@techzeph.co.uk:~$</p>
-                </div>
-                <div class="terminal__identity">
-                    <p class="eyebrow">techzeph // arch</p>
-                    <h1>Elliot</h1>
-                    <p class="tagline">Cyber security + Web design student experimenting with website design.</p>
-                </div>
-            </header>
+    <header class="term-header" aria-hidden="false">
+      <div class="brand">matrix•ui</div>
+      <div class="meta">mobile & desktop — monospace</div>
+    </header>
 
-            <button class="helper-toggle" type="button" aria-expanded="false" aria-controls="helperSuite">
-                I don't know how to use a terminal
-            </button>
+    <section id="term" class="terminal" tabindex="0" aria-live="polite">
+      <div class="term-output" id="term-output" aria-hidden="false">
+        <div class="line">Welcome — type <kbd>help</kbd> and press Enter.</div>
+        <!-- dynamic lines will be appended here -->
+      </div>
 
-            <div id="helperSuite" class="helper-suite" hidden>
-                <nav class="helper-bar" aria-label="Quick commands">
-                    <button type="button" class="helper" data-command="about">About</button>
-                    <button type="button" class="helper" data-command="projects">Projects</button>
-                    <button type="button" class="helper" data-command="contact">Contact</button>
-                    <button type="button" class="helper" data-command="resume">Resume</button>
-                </nav>
-                <aside class="helper-panel" aria-live="polite">
-                    <p class="helper-panel__title">Need a hint?</p>
-                    <p>Use the buttons above to auto-run commands. The terminal accepts <span class="command">help</span>, <span class="command">about</span>, <span class="command">projects</span>, <span class="command">contact</span>, <span class="command">resume</span>.</p>
-                    <p>Close this helper to return to the classic Arch vibe.</p>
-                </aside>
-            </div>
+      <form id="term-form" class="term-input-row" autocomplete="off" role="search">
+        <label for="cmd" class="sr-only">Terminal input</label>
+        <span class="prompt">&gt;</span>
+        <input id="cmd" name="cmd" class="cmd" inputmode="text" spellcheck="false"
+               placeholder="Type a command..." aria-label="Command input" />
+      </form>
+    </section>
 
-            <div class="terminal__window" aria-live="polite" aria-atomic="false">
-                <header class="panel__tabs" role="tablist" aria-label="Terminal panes">
-                    <button class="panel__tab is-active" role="tab" aria-selected="true">console</button>
-                    <button class="panel__tab" role="tab" aria-selected="false" disabled>logs</button>
-                </header>
-                <div id="output" class="console" role="log">
-                    <article>
-                        <p class="command-line-text">user@techzeph.co.uk:~$ init</p>
-                        <p>Welcome to the TechZeph terminal. Type <span class="command">help</span> or open the helper toggle if you're new.</p>
-                    </article>
-                </div>
-                <form class="command-line" aria-label="Command input" autocomplete="off">
-                    <label class="sr-only" for="commandInput">Terminal command</label>
-                    <span class="prompt">user@techzeph.co.uk:~$</span>
-                    <input id="commandInput" name="command" type="text" spellcheck="false" autocapitalize="none" autocomplete="off" placeholder="Type a command e.g. 'about'">
-                    <span class="ghost-hint" aria-hidden="true">Enter</span>
-                </form>
-            </div>
+    <div class="term-footer" aria-hidden="true">
+      <small>Matrix theme • Responsive • Accessible</small>
+    </div>
+  </main>
 
-            <footer class="terminal__footer">
-                <div class="links">
-                    <a href="#" aria-label="GitHub profile">GitHub</a>
-                    <a href="#" aria-label="Email Elliot">Email</a>
-                </div>
-                <!-- Update location / study focus copy here -->
-                <p class="location">Based in the UK · Cyber security & web design student</p>
-            </footer>
-        </section>
-    </main>
-
-    <script src="script.js" defer></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
