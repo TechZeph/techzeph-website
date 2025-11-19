@@ -30,7 +30,8 @@ html {
                 var(--bg-deep);
     color: var(--text-primary);
     font-size: 16px;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 body {
@@ -47,7 +48,7 @@ canvas#matrix {
     position: relative;
     z-index: 1;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     display: grid;
     place-content: center;
     padding: 2rem;
@@ -301,10 +302,11 @@ h1 {
     }
 
     .viewport {
+        min-height: 100vh;
+        height: auto;
         align-items: flex-start;
         padding-top: 3rem;
         padding-bottom: 3rem;
-        overflow-y: auto;
     }
 
     .helper {
