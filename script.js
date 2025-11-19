@@ -82,10 +82,10 @@ const responses = {
     about: {
         title: 'about',
         body: `
-            <p>Hi, I'm Elliot—an education student in the UK studying cyber security and web design.</p>
+            <p>Hi, I'm Elliot, an education student in the UK studying cyber security and web design.</p>
             <ul>
-                <li>Currently exploring immersive UI, matrix aesthetics, and safe-by-design storytelling.</li>
-                <li>Skills in progress: modern front-end stacks, security fundamentals, creative coding.</li>
+                <li>Currently exploring UI design.</li>
+                <li>Skills in progress: Security fundamentals, Creative coding, Web design.</li>
             </ul>
         `
     },
@@ -94,9 +94,7 @@ const responses = {
         body: `
             <p>Select work:</p>
             <ul>
-                <li><span class="command">Spectral Grid</span> — interactive data sonification tool.</li>
-                <li><span class="command">Lumen Atlas</span> — AR experience for museum visitors.</li>
-                <li><span class="command">Harmonic UI</span> — design system with live code playground.</li>
+
             </ul>
         `
     },
@@ -105,7 +103,7 @@ const responses = {
         body: `
             <p>You can reach me via email:</p>
             <ul>
-                <li>Email: <a href="mailto:hello@techzeph.co.uk">hello@techzeph.co.uk</a></li>
+                <li>Email (Not available yet): <a href="mailto:enter@here.com">enquiry@techzeph.co.uk</a></li>
                 <li>Preferred topics: study collaborations, cyber security discussions, web design experiments.</li>
             </ul>
         `
@@ -113,7 +111,7 @@ const responses = {
     resume: {
         title: 'resume',
         body: `
-            <p>Download my latest CV <a href="#" target="_blank" rel="noopener">here</a>. It covers coursework highlights, security labs, and ongoing web experiments.</p>
+            <p>(Not available yet) Download my latest CV <a href="#" target="_blank" rel="noopener">here</a>. It covers coursework highlights, security labs, and ongoing web experiments.</p>
         `
     }
 };
