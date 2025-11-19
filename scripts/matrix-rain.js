@@ -55,15 +55,16 @@ export function start(canvasElement) {
     frameCount = 0; // Reset frame counter on resize
   };
 
-  const glyphs = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const glyphs = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ELIOTCHZP';
   
   const draw = () => {
     frameCount++;
     const width = window.innerWidth;
     const height = window.innerHeight;
     
-    // Much less ghosting - higher opacity fade (0.15 = less ghosting than 0.05)
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
+    // Fade effect for ~40 second trail duration (higher opacity = faster fade = shorter trails)
+    // At 60fps, 40 seconds = 2400 frames. Using 0.25 opacity for faster fade
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
     ctx.fillRect(0, 0, width, height);
     
     ctx.fillStyle = '#00ff41';
@@ -75,8 +76,8 @@ export function start(canvasElement) {
         return;
       }
       
-      // Update position
-      column.y += column.speed * 0.015; // Slower speed for reduced cycling rate
+      // Update position - faster falling speed
+      column.y += column.speed * 0.03; // Faster speed for quicker rainfall
       
       // Draw glyph more frequently for continuous rainfall streams
       const distanceSinceLast = column.y - column.lastY;

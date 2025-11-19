@@ -10,6 +10,7 @@
   margin: 0 auto;
   position: relative;
   min-height: 70vh;
+  z-index: 1; /* Ensure above canvas background */
 }
 
 /* Navigation Header */
@@ -20,6 +21,8 @@
   justify-content: center;
   margin-bottom: 16px;
   padding: 8px;
+  position: relative;
+  z-index: 1; /* Ensure above canvas background */
 }
 
 .nav button {
