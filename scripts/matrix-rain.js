@@ -41,7 +41,7 @@ export function start(canvasElement) {
     columns = Array.from({ length: columnCount }, (_, i) => ({
       x: i * fontSize,
       y: Math.random() * innerHeight * 2 - innerHeight, // Start at random positions, some off-screen
-      speed: fontSize * (0.3 + Math.random() * 2.0), // More varied speeds
+      speed: fontSize * (0.3 + Math.random() * 0.75), // More varied speeds
       gap: Math.random() * 30 + 10, // Random gap between glyphs
       lastY: -1000, // Track last glyph position
       skipChance: Math.random() * 0.7, // Random chance to skip drawing this frame
@@ -70,7 +70,7 @@ export function start(canvasElement) {
       }
       
       // Update position
-      column.y += column.speed * 0.03; // Slightly slower base speed
+      column.y += column.speed * 0.015; // Slower speed for reduced cycling rate
       
       // Only draw glyph if enough gap has passed (creates dotted, non-continuous lines)
       const distanceSinceLast = column.y - column.lastY;
