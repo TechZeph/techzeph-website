@@ -10,7 +10,7 @@ let columns = [];
 let fontSize = 16;
 let canvas = null;
 let ctx = null;
-let frameCount = 0;
+let lastTimestamp = 0;
 
 /**
  * Initialize and start the matrix rain animation
@@ -36,29 +36,34 @@ export function start(canvasElement) {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.scale(devicePixelRatio, devicePixelRatio);
     
-    // Recalculate columns for rainfall effect (top to bottom, coherent design)
+    // Recalculate columns for rainfall effect (top to bottom, staggered launch)
     const columnCount = Math.floor(innerWidth / fontSize);
     columns = Array.from({ length: columnCount }, (_, i) => {
-      // Each column gets a fixed speed that varies smoothly across columns
-      // Creates coherent rainfall with different rates per column
-      const speedFactor = 0.35 + (Math.random() * 0.3); // Speed between 0.35-0.65
-      
+      const normalizedIndex = i / columnCount || 0;
+      const speedFactor = 1.2 + normalizedIndex * 0.6; // Gradually faster towards the right
+      const staggerDelay = i * 60 + Math.random() * 200; // launch waves left → right
+
       return {
         x: i * fontSize,
-        y: -Math.random() * 100 - 50, // Start near top (slightly staggered)
-        speed: fontSize * speedFactor, // Fixed speed per column (never changes)
-        gap: 12 + Math.random() * 8, // Consistent gap per column (12-20)
-        lastY: -1000, // Track last glyph position
-        skipChance: 0.1 + Math.random() * 0.1, // Low, consistent skip chance (0.1-0.2)
+        y: -Math.random() * 60 - 40,
+        speed: fontSize * speedFactor, // pixels per second (scaled later)
+        gap: 10 + (i % 5) * 2, // repeating pattern for spacing
+        lastY: -1000,
+        delay: staggerDelay, // ms delay before activating
+        active: false,
       };
     });
-    frameCount = 0; // Reset frame counter on resize
+    lastTimestamp = 0; // Reset animation timing on resize
   };
 
   const glyphs = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ELIOTCHZP';
   
-  const draw = () => {
-    frameCount++;
+  const draw = (timestamp = 0) => {
+    if (!lastTimestamp) {
+      lastTimestamp = timestamp;
+    }
+    const delta = timestamp - lastTimestamp || 16;
+    lastTimestamp = timestamp;
     const width = window.innerWidth;
     const height = window.innerHeight;
     
@@ -71,13 +76,18 @@ export function start(canvasElement) {
     ctx.font = `${fontSize}px monospace`;
     
     columns.forEach(column => {
-      // Low random chance to skip (for slight variation, not heavy randomness)
-      if (Math.random() < column.skipChance) {
-        return;
+      if (!column.active) {
+        column.delay -= delta;
+        if (column.delay <= 0) {
+          column.active = true;
+        } else {
+          return;
+        }
       }
-      
-      // Update position - faster falling speed
-      column.y += column.speed * 0.03; // Faster speed for quicker rainfall
+
+      // Update position (convert speed to per-frame using delta time)
+      const speedPerFrame = column.speed * (delta / 1000); // px this frame
+      column.y += speedPerFrame;
       
       // Draw glyph more frequently for continuous rainfall streams
       const distanceSinceLast = column.y - column.lastY;
@@ -87,11 +97,12 @@ export function start(canvasElement) {
         column.lastY = column.y;
       }
       
-      // Reset when off-screen - return to top for continuous rainfall
+      // Reset when off-screen - return to top with staggered relaunch
       if (column.y > height + fontSize * 2) {
-        column.y = -Math.random() * 50 - 20; // Start near top (less random)
+        column.y = -Math.random() * 60 - 20;
         column.lastY = -1000; // Reset gap tracking
-        // Keep gap and speed consistent - don't randomize on reset
+        column.delay = Math.random() * 200; // small pause before next drop
+        column.active = false;
       }
     });
     
