@@ -22,6 +22,7 @@ export class Terminal {
     this.inputEl = inputEl;
     this.commands = new Map();
     this.history = [];
+    this.pendingHandler = null;
     
     // Register initial commands if provided
     if (commandRegistry) {
@@ -78,6 +79,14 @@ export class Terminal {
     // Print the command that was entered
     this.print(`> ${trimmed}`, { className: 'line command-line' });
 
+    // Check for pending handlers (e.g., confirmation prompts)
+    if (this.pendingHandler) {
+      const handler = this.pendingHandler;
+      this.pendingHandler = null;
+      handler(trimmed);
+      return;
+    }
+
     // Parse command and args (simple whitespace split)
     const parts = trimmed.split(/\s+/);
     const commandName = parts[0].toLowerCase();
@@ -104,6 +113,14 @@ export class Terminal {
       this.print(`Error executing command: ${error.message}`);
       console.error('Command execution error:', error);
     }
+  }
+
+  /**
+   * Set a one-time handler for the next user input (used for confirmations)
+   * @param {Function} handler - Function to handle the next input string
+   */
+  setPendingHandler(handler) {
+    this.pendingHandler = handler;
   }
 
   /**

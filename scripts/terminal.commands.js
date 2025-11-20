@@ -72,19 +72,29 @@ export default function registerCommands(term, utils) {
 
   // CV command
   term.registerCommand('cv', (args, context) => {
-    const confirmed = window.confirm('Are you sure you want to download a random file from the internet?');
-    if (confirmed) {
-      context.term.print('Downloading CV...');
-      if (utils && utils.downloadFile) {
-        utils.downloadFile('assets/cv.pdf', 'Elliot_CV.pdf');
-      } else {
-        context.term.print('CV file not found. Please add assets/cv.pdf');
-      }
-    } else {
-      context.term.print('Download cancelled.');
-    }
+    const askConfirmation = () => {
+      context.term.print('Are you sure you want to download a random file from the internet? (yes/no)');
+      context.term.setPendingHandler((response) => {
+        const normalized = response.toLowerCase();
+        if (['yes', 'y'].includes(normalized)) {
+          context.term.print('Downloading CV...');
+          if (utils && utils.downloadFile) {
+            utils.downloadFile('assets/cv.pdf', 'Elliot_CV.pdf');
+          } else {
+            context.term.print('CV file not found. Please add assets/cv.pdf');
+          }
+        } else if (['no', 'n'].includes(normalized)) {
+          context.term.print('Download cancelled.');
+        } else {
+          context.term.print("Please answer with 'yes' or 'no'.");
+          askConfirmation();
+        }
+      });
+    };
+
+    askConfirmation();
   }, {
-    description: 'Download CV/resume',
+    description: 'Download CV',
     category: 'external'
   });
 
