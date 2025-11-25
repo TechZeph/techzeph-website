@@ -1,16 +1,14 @@
 /**
  * Terminal Commands Registry
  * Purpose: Register initial commands (help, about, projects, github, cv)
- * Last updated: 2025-01-27
+ * Updated: 2025-01-27 - Added project listing + progress bar system
  */
 
-/**
- * Register all commands with the terminal instance
- * @param {Terminal} term - Terminal instance
- * @param {Object} utils - Utility functions (safeOpen, downloadFile, etc.)
- */
 export default function registerCommands(term, utils) {
-  // Help command
+
+  /****************************
+   * HELP COMMAND
+   ****************************/
   term.registerCommand('help', (args, context) => {
     const commands = context.term.availableCommands();
     const helpText = [
@@ -25,7 +23,11 @@ export default function registerCommands(term, utils) {
     category: 'system'
   });
 
-  // About command
+
+
+  /****************************
+   * ABOUT COMMAND
+   ****************************/
   term.registerCommand('about', (args, context) => {
     const aboutText = [
       'About Elliot',
@@ -42,38 +44,109 @@ export default function registerCommands(term, utils) {
     category: 'info'
   });
 
-  // Projects command
+
+
+  /****************************
+   * PROJECTS COMMAND — LIST PROJECTS
+   ****************************/
   term.registerCommand('projects', (args, context) => {
-    const projectsText = [
+    const list = [
       'Projects',
       '',
-      'Coming soon...',
+      '1. Media Bias Monitor',
+      '   View: project mbm',
       '',
-      'Check back later for project showcases.'
+      'More projects will be added soon.'
     ].join('\n');
-    context.term.print(projectsText);
+
+    context.term.print(list);
   }, {
     description: 'List portfolio projects',
     category: 'info'
   });
 
-  // GitHub command
+
+
+  /****************************
+   * PROJECT COMMAND — DETAIL VIEW + PROGRESS BAR
+   ****************************/
+  term.registerCommand('project', (args, context) => {
+    const id = args[0];
+
+    if (!id) {
+      context.term.print('Usage: project <id>');
+      context.term.print('Example: project mbm');
+      return;
+    }
+
+    // Project registry (expand freely)
+    const projects = {
+      mbm: {
+        name: 'Media Bias Monitor',
+        progress: 55,
+        description: 'A tool analysing political bias and media framing trends.'
+      }
+    };
+
+    const project = projects[id];
+
+    if (!project) {
+      context.term.print(`Project not found: ${id}`);
+      return;
+    }
+
+    // Build progress bar
+    const barLength = 20;
+    const filled = Math.round((project.progress / 100) * barLength);
+    const empty = barLength - filled;
+
+    const bar =
+      '[' +
+      '█'.repeat(filled) +
+      '-'.repeat(empty) +
+      `] ${project.progress}%`;
+
+    const details = [
+      project.name,
+      '',
+      project.description,
+      '',
+      'Progress:',
+      bar,
+      ''
+    ].join('\n');
+
+    context.term.print(details);
+  }, {
+    description: 'View project details + progress bar',
+    category: 'info'
+  });
+
+
+
+  /****************************
+   * GITHUB COMMAND
+   ****************************/
   term.registerCommand('github', (args, context) => {
     context.term.print('Opening GitHub profile...');
     if (utils && utils.safeOpen) {
-      utils.safeOpen('https://github.com/TechZeph'); // Update with actual GitHub URL
+      utils.safeOpen('https://github.com/TechZeph');
     } else {
-      context.term.print('GitHub URL not configured. Please update terminal.commands.js');
+      context.term.print('GitHub URL not configured.');
     }
   }, {
     description: 'Open GitHub profile in new tab',
     category: 'external'
   });
 
-  // CV command
+
+
+  /****************************
+   * CV COMMAND
+   ****************************/
   term.registerCommand('cv', (args, context) => {
     const askConfirmation = () => {
-      context.term.print('Are you sure you want to download a random file from the internet? (yes/no)');
+      context.term.print('Are you sure you want to download a file? (yes/no)');
       context.term.setPendingHandler((response) => {
         const normalized = response.toLowerCase();
         if (['yes', 'y'].includes(normalized)) {
@@ -98,7 +171,11 @@ export default function registerCommands(term, utils) {
     category: 'external'
   });
 
-  // Clear command
+
+
+  /****************************
+   * CLEAR COMMAND
+   ****************************/
   term.registerCommand('clear', (args, context) => {
     context.term.clear();
     context.term.print('Terminal cleared.');
@@ -107,7 +184,11 @@ export default function registerCommands(term, utils) {
     category: 'system'
   });
 
-  // Home command (alias for clear + welcome)
+
+
+  /****************************
+   * HOME COMMAND
+   ****************************/
   term.registerCommand('home', (args, context) => {
     context.term.clear();
     context.term.print('Welcome to TechZeph Terminal. Type "help" for available commands.');
@@ -116,4 +197,3 @@ export default function registerCommands(term, utils) {
     category: 'system'
   });
 }
-
