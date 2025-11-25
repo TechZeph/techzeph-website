@@ -11,12 +11,26 @@
 <body>
   <canvas id="bg-canvas" aria-hidden="true"></canvas>
 
-  <header class="nav">
-    <button data-cmd="home">Home</button>
-    <button data-cmd="projects">Projects</button>
-    <button data-cmd="github">GitHub</button>
-    <button data-cmd="cv">Download CV</button>
-  </header>
+<!--BUTTONS-->
+<header class="nav">
+  <button data-cmd="home">Home</button>
+
+  <div class="dropdown">
+    <button class="dropdown-btn">Projects</button>
+    <div class="dropdown-content">
+      <a href="https://github.com/TechZeph/media-bias-monitor" target="_blank">
+        Media Bias Monitor (Repo)
+      </a>
+      <a href="/projects/media-bias-monitor/todo.html">
+        Media Bias Monitor – TODO Page
+      </a>
+    </div>
+  </div>
+
+  <button data-cmd="github">GitHub</button>
+  <button data-cmd="cv">Download CV</button>
+</header>
+
 
   <main id="terminal-app" role="application" aria-label="Terminal UI">
     <section id="terminal" class="terminal" tabindex="0" aria-live="polite">
