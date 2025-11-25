@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Wire navigation buttons
-  const navButtons = document.querySelectorAll('.nav button[data-cmd]');
+  const navButtons = document.querySelectorAll('.nav > button[data-cmd]');
   navButtons.forEach(button => {
     button.addEventListener('click', () => {
       const cmd = button.getAttribute('data-cmd');
