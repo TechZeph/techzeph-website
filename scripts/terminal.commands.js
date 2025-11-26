@@ -44,29 +44,6 @@ export default function registerCommands(term, utils) {
     category: 'info'
   });
 
-
-
-  /****************************
-   * PROJECTS COMMAND — LIST PROJECTS
-   ****************************/
-  term.registerCommand('projects', (args, context) => {
-    const list = [
-      'Projects',
-      '',
-      '1. Media Bias Monitor',
-      '   View: project mbm',
-      '',
-      'More projects will be added soon.'
-    ].join('\n');
-
-    context.term.print(list);
-  }, {
-    description: 'List portfolio projects',
-    category: 'info'
-  });
-
-
-
   /****************************
    * PROJECT COMMAND — DETAIL VIEW + PROGRESS BAR
    ****************************/
