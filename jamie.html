@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional tarmac and asphalt services. Driveways, parking lots, and commercial paving solutions. Quality work with reliable service.">
+    <meta name="keywords" content="Tarmac, Asphalt, Driveway Paving, Commercial Paving, Driveway Resurfacing, Tarmac Services">
+    <meta name="author" content="Your Tarmac Business">
+    <title>Platinum Tarmac Services</title>
+    
+    <!-- Favicon Placeholder -->
+    <link rel="icon" href="https://via.placeholder.com/32x32.png?text=T">
+
+    <!-- CSS -->
+    <style>
+        /* COLOR PALETTE */
+        :root {
+            --white: #F5F6F7;
+            --light-grey: #C1C4C8;
+            --dark-grey: #7B7F85;
+            --darkest-grey: #2B2E33;
+            --primary-color: #2B2E33;
+            --secondary-color: #7B7F85;
+            --accent-color: #C1C4C8;
+        }
+
+        /* RESET */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--darkest-grey);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* HEADER */
+        header {
+            background-color: var(--darkest-grey);
+            color: var(--white);
+            padding: 20px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+        }
+
+        nav a {
+            margin-left: 20px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background-color: var(--accent-color);
+            color: var(--darkest-grey);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background-image: url('https://unsplash.it/1200/600?image=1050');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px var(--dark-grey);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            text-shadow: 1px 1px 3px var(--dark-grey);
+        }
+
+        .hero a.button {
+            margin-top: 20px;
+            background-color: var(--accent-color);
+            color: var(--darkest-grey);
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .hero a.button:hover {
+            transform: scale(1.05);
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 60px 10%;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--darkest-grey);
+        }
+
+        section p {
+            color: var(--dark-grey);
+            margin-bottom: 20px;
+        }
+
+        /* ABOUT */
+        .about img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        /* PRICING */
+        .pricing {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .pricing-card {
+            background-color: var(--light-grey);
+            padding: 20px;
+            border-radius: 8px;
+            flex: 1 1 250px;
+            transition: transform 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pricing-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .pricing-card p {
+            margin-bottom: 0;
+        }
+
+        /* BUTTONS */
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .button-group a {
+            background-color: var(--dark-grey);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .button-group a:hover {
+            background-color: var(--accent-color);
+            color: var(--darkest-grey);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--darkest-grey);
+            color: var(--white);
+            text-align: center;
+            padding: 20px 10%;
+        }
+
+        footer a {
+            color: var(--accent-color);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+            }
+
+            nav {
+                margin-top: 10px;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .pricing {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <h1>Platinum Tarmac Services</h1>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#contact">Contact</a>
+            <a href="#reviews">Reviews</a>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h2>Quality Tarmac Services for Your Home & Business</h2>
+        <p>Professional driveway, parking lot, and commercial paving services. Reliable, efficient, and affordable solutions tailored to your needs.</p>
+        <a href="#contact" class="button">Get a Quote</a>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="about">
+        <h2>About Us</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. We provide expert tarmac services for residential and commercial clients.</p>
+        <img src="https://unsplash.it/500/300?image=1043" alt="Tarmac paving work">
+        <div class="button-group" style="margin-top:20px;">
+            <a href="#">About</a>
+            <a href="#">Facebook</a>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing">
+        <h2>Pricing</h2>
+        <div class="pricing">
+            <div class="pricing-card">
+                <h3>Driveway Paving</h3>
+                <p>Starting from £1,500 - £3,000 depending on size and complexity.</p>
+            </div>
+            <div class="pricing-card">
+                <h3>Parking Lot Resurfacing</h3>
+                <p>Prices start at £5,000 for small commercial lots, scalable to larger projects.</p>
+            </div>
+            <div class="pricing-card">
+                <h3>Commercial Tarmac</h3>
+                <p>Custom quotes available. Contact us for a detailed estimate.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Reach out to discuss your paving project or to request a free quote. We respond promptly to all inquiries.</p>
+        <div class="button-group">
+            <a href="mailto:info@platinumtarmac.com">Email Us</a>
+            <a href="tel:+441234567890">Call Us</a>
+            <a href="#">Trustpilot</a>
+            <a href="#">Google Reviews</a>
+        </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews">
+        <h2>Customer Reviews</h2>
+        <p>See why our customers recommend us! Placeholder for Trustpilot and Google Reviews widgets.</p>
+        <div class="button-group">
+            <a href="#">Trustpilot</a>
+            <a href="#">Google Reviews</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Platinum Tarmac Services. All rights reserved.</p>
+        <p><a href="#">Facebook Business Page</a></p>
+    </footer>
+
+    <!-- JAVASCRIPT (Optional for future enhancements) -->
+    <script>
+        // Smooth scroll is handled via CSS scroll-behavior.
+        // Add JS here if you want advanced effects like fade-in on scroll.
+    </script>
+</body>
+</html>
