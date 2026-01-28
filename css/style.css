@@ -16,7 +16,7 @@
 
   /* Derived Colors */
   --glow-green: rgba(0, 255, 0, 0.4);
-  --glass-bg: rgba(0, 39, 6, 0.85);
+  --glass-bg: rgba(0, 39, 6, 0.2);
   --border-glow: rgba(0, 255, 0, 0.5);
 
   /* Typography */

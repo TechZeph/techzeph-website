@@ -21,6 +21,7 @@ class Terminal {
       contact: this.cmdContact.bind(this),
       github: this.cmdGithub.bind(this),
       pricing: this.cmdPricing.bind(this),
+      security: this.cmdSecurity.bind(this),
     };
 
     this.init();
@@ -123,7 +124,8 @@ class Terminal {
       '  about    - Learn about me',
       '  skills   - View my technical skills',
       '  github   - Open my GitHub profile',
-      '  pricing  - View website pricing',
+      '  pricing  - View web design pricing',
+      '  security - View cyber security services',
       '  contact  - Get contact information',
       '  clear    - Clear terminal screen',
       ''
@@ -176,8 +178,8 @@ class Terminal {
   cmdPricing() {
     const pricing = [
       '',
-      'Website Pricing:',
-      '────────────────',
+      'Web Design Pricing:',
+      '───────────────────',
       '★ Starter      - £299  (Single page)',
       '★ Professional - £599  (Up to 5 pages)',
       '★ Enterprise   - £1,299+ (Custom)',
@@ -189,6 +191,24 @@ class Terminal {
 
     // Scroll to pricing section
     document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  cmdSecurity() {
+    const security = [
+      '',
+      'Cyber Security Services:',
+      '────────────────────────',
+      '★ Security Audit   - £499  (one-time)',
+      '★ Pen Testing      - £1,499 (per assessment)',
+      '★ Managed Security - £599  (/month)',
+      '',
+      'Scroll down to see full details.',
+      ''
+    ];
+    security.forEach(line => this.printLine(line));
+
+    // Scroll to security section
+    document.getElementById('security')?.scrollIntoView({ behavior: 'smooth' });
   }
 
   cmdContact() {

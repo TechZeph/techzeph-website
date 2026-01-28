@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Navigation button handlers
   const btnAbout = document.getElementById('btn-about');
   const btnPricing = document.getElementById('btn-pricing');
+  const btnSecurity = document.getElementById('btn-security');
 
   if (btnAbout) {
     btnAbout.addEventListener('click', () => {
@@ -20,6 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnPricing) {
     btnPricing.addEventListener('click', () => {
       document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
+  if (btnSecurity) {
+    btnSecurity.addEventListener('click', () => {
+      document.getElementById('security')?.scrollIntoView({ behavior: 'smooth' });
     });
   }
 
