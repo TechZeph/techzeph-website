@@ -1,0 +1,921 @@
+Template 2
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Midlands Highways Dropped Kerbs provide professional vehicle crossover and dropped kerb installation services across the Midlands. Fully compliant, reliable, and affordable.">
+    <meta name="keywords"
+        content="Dropped Kerbs, Vehicle Crossovers, Driveway Access, Council Approved Kerbs, Midlands Dropped Kerbs">
+    <meta name="author" content="Midlands Highways Dropped Kerbs">
+    <title>Midlands Highways | Dropped Kerb Specialists</title>
+
+    <link rel="icon" href="https://via.placeholder.com/32x32.png?text=MH">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --white: #F5F6F7;
+            --off-white: #E8EAED;
+            --light-grey: #C1C4C8;
+            --mid-grey: #9CA0A6;
+            --dark-grey: #5A5E64;
+            --darkest-grey: #1A1D21;
+            --accent: #3B82F6;
+            --accent-hover: #2563EB;
+            --gradient-dark: linear-gradient(135deg, #1A1D21 0%, #2B2E33 100%);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.18);
+            --shadow-glow: 0 0 40px rgba(59, 130, 246, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--white);
+            color: var(--darkest-grey);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ============================================
+           ANIMATIONS
+           ============================================ */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 0 0 15px rgba(59, 130, 246, 0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* ============================================
+           HEADER
+           ============================================ */
+        header {
+            background: var(--gradient-dark);
+            color: var(--white);
+            padding: 16px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--accent) 0%, #60A5FA 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow-glow);
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        nav {
+            display: flex;
+            gap: 8px;
+        }
+
+        nav a {
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        nav a:hover::before {
+            width: 60%;
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            position: relative;
+            background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
+            color: #FFFFFF;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    rgba(26, 29, 33, 0.7) 0%,
+                    rgba(26, 29, 33, 0.85) 100%);
+            z-index: 1;
+        }
+
+        .hero>* {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-badge::before {
+            content: '✓';
+            background: var(--accent);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+
+        .hero h2 {
+            font-size: clamp(2.2rem, 6vw, 3.5rem);
+            line-height: 1.15;
+            margin-bottom: 20px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            max-width: 900px;
+            animation: fadeInUp 0.8s ease-out 0.1s backwards;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 650px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 32px;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeInUp 0.8s ease-out 0.3s backwards;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, #60A5FA 100%);
+            color: white;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .btn-icon {
+            font-size: 1.2rem;
+        }
+
+        /* ============================================
+           SECTIONS
+           ============================================ */
+        section {
+            padding: 100px 8%;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent) 0%, #60A5FA 100%);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        section h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin-bottom: 16px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--darkest-grey);
+        }
+
+        section>p,
+        .section-header p {
+            color: var(--dark-grey);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* ============================================
+           ABOUT SECTION
+           ============================================ */
+        .about {
+            background: var(--off-white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-content p {
+            margin-bottom: 24px;
+            color: var(--dark-grey);
+        }
+
+        .about-features {
+            display: grid;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--accent) 0%, #60A5FA 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .feature-item span {
+            font-weight: 500;
+            color: var(--darkest-grey);
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, var(--accent) 0%, #60A5FA 100%);
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0.2;
+        }
+
+        /* ============================================
+           PRICING SECTION
+           ============================================ */
+        .pricing-section {
+            background: var(--gradient-dark);
+            color: white;
+        }
+
+        .pricing-section h2 {
+            color: white;
+        }
+
+        .pricing-section .section-header p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 32px;
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), #60A5FA);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pricing-card:hover::before {
+            opacity: 1;
+        }
+
+        .pricing-card.featured {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(96, 165, 250, 0.1) 100%);
+            border-color: var(--accent);
+            transform: scale(1.03);
+        }
+
+        .pricing-card.featured::before {
+            opacity: 1;
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--accent) 0%, #60A5FA 100%);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .pricing-card .price {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #fff 0%, #C1C4C8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pricing-card .price-note {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 24px;
+        }
+
+        .pricing-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        /* ============================================
+           CONTACT SECTION
+           ============================================ */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: 40px auto 0;
+        }
+
+        .contact-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            padding: 32px 24px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s ease;
+            text-align: center;
+            border: 2px solid transparent;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg), 0 0 30px rgba(59, 130, 246, 0.1);
+        }
+
+        .contact-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--accent) 0%, #60A5FA 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover .contact-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .contact-card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--darkest-grey);
+        }
+
+        .contact-card p {
+            font-size: 0.9rem;
+            color: var(--dark-grey);
+        }
+
+        /* ============================================
+           REVIEWS SECTION
+           ============================================ */
+        .reviews {
+            background: var(--off-white);
+        }
+
+        .reviews-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .review-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 20px 30px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .review-logo:hover {
+            background: var(--off-white);
+            transform: scale(1.05);
+        }
+
+        .review-logo span {
+            font-size: 2.5rem;
+        }
+
+        .review-logo p {
+            font-weight: 600;
+            color: var(--darkest-grey);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            background: var(--gradient-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 40px 8%;
+        }
+
+        footer p {
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        footer a {
+            color: var(--accent);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #60A5FA;
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 968px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-image {
+                order: -1;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 16px;
+                padding: 16px 5%;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav a {
+                padding: 8px 14px;
+                font-size: 0.9rem;
+            }
+
+            section {
+                padding: 60px 5%;
+            }
+
+            .hero {
+                min-height: 80vh;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .pricing-card {
+                padding: 30px 24px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <div class="logo-icon">MH</div>
+            <h1>Midlands Highways</h1>
+        </div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#contact">Contact</a>
+            <a href="#reviews">Reviews</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-badge">Council Approved Contractors</div>
+        <h2>Professional Dropped Kerb Installation Across the Midlands</h2>
+        <p>
+            Specialists in vehicle crossovers and dropped kerbs, providing safe, compliant driveway access for
+            residential and commercial properties.
+        </p>
+        <div class="hero-buttons">
+            <a href="#contact" class="btn btn-primary">
+                <span class="btn-icon">📞</span>
+                Request a Quote
+            </a>
+            <a href="#about" class="btn btn-secondary">
+                <span class="btn-icon">ℹ️</span>
+                Learn More
+            </a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="about-grid">
+            <div class="about-content">
+                <span class="section-tag">About Us</span>
+                <h2>Trusted Dropped Kerb Specialists</h2>
+                <p>
+                    We provide professional dropped kerb and vehicle crossover installations in line with local
+                    authority requirements. Our work ensures safe access to driveways while meeting council standards
+                    for durability, drainage, and pedestrian safety.
+                </p>
+                <p>
+                    Whether you are a homeowner, landlord, or business, we deliver reliable workmanship, clear
+                    communication, and fair pricing from start to finish.
+                </p>
+                <div class="about-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">✓</div>
+                        <span>Council Approved & Fully Compliant</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">⚡</div>
+                        <span>Fast Turnaround Times</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💎</div>
+                        <span>Quality Materials & Workmanship</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80"
+                    alt="Professional construction work">
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing-section">
+        <div class="section-header">
+            <span class="section-tag">Pricing</span>
+            <h2>Transparent Pricing</h2>
+            <p>Fair, competitive pricing with no hidden fees. All quotes include groundwork, materials, and labour.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Standard Dropped Kerb</h3>
+                <div class="price">£1,200 – £2,000</div>
+                <p class="price-note">Typical residential installation</p>
+                <p>Pricing varies based on length, groundwork requirements, and location. Includes council liaison.</p>
+            </div>
+            <div class="pricing-card featured">
+                <span class="pricing-badge">Most Popular</span>
+                <h3>Vehicle Crossovers</h3>
+                <div class="price">Custom Quote</div>
+                <p class="price-note">Tailored to your requirements</p>
+                <p>Bespoke quotes provided following site assessment and council requirements. Free no-obligation
+                    surveys.</p>
+            </div>
+            <div class="pricing-card">
+                <h3>Commercial Access</h3>
+                <div class="price">From £2,500+</div>
+                <p class="price-note">Heavy-duty specifications</p>
+                <p>Pricing varies based on traffic load, width requirements, and specification. Contact us for details.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-header">
+            <span class="section-tag">Get In Touch</span>
+            <h2>Contact Us</h2>
+            <p>Ready to discuss your dropped kerb project? Get in touch for a free, no-obligation quote.</p>
+        </div>
+        <div class="contact-grid">
+            <a href="mailto:info@midlandshighways.co.uk" class="contact-card">
+                <div class="contact-icon">✉️</div>
+                <h4>Email Us</h4>
+                <p>info@midlandshighways.co.uk</p>
+            </a>
+            <a href="tel:+441234567890" class="contact-card">
+                <div class="contact-icon">📞</div>
+                <h4>Call Us</h4>
+                <p>01onal 234 567890</p>
+            </a>
+            <a href="#" class="contact-card">
+                <div class="contact-icon">⭐</div>
+                <h4>Trustpilot</h4>
+                <p>Read our reviews</p>
+            </a>
+            <a href="#" class="contact-card">
+                <div class="contact-icon">🔍</div>
+                <h4>Google Reviews</h4>
+                <p>See what customers say</p>
+            </a>
+        </div>
+    </section>
+
+    <section id="reviews" class="reviews">
+        <div class="section-header">
+            <span class="section-tag">Testimonials</span>
+            <h2>Customer Reviews</h2>
+            <p>See what our satisfied customers have to say about our work.</p>
+        </div>
+        <div class="reviews-placeholder">
+            <div class="review-logo">
+                <span>⭐</span>
+                <p>Trustpilot</p>
+            </div>
+            <div class="review-logo">
+                <span>🔍</span>
+                <p>Google Reviews</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Midlands Highways Dropped Kerbs. All rights reserved.</p>
+        <p><a href="#">Facebook</a> · <a href="#">Instagram</a> · <a href="#">LinkedIn</a></p>
+    </footer>
+
+</body>
+
+</html>
