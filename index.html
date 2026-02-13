@@ -1,239 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<html lang="en-GB">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description"
-    content="TechZeph - Web Development & Digital Solutions. Matrix-inspired terminal portfolio showcasing web design services and pricing.">
-  <meta name="keywords" content="web development, web design, portfolio, digital solutions">
-  <title>TechZeph | Terminal Portfolio</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+  <title>Best AI Tools for UK Small Businesses (2026 Guide) | TechZeph</title>
+  <meta name="description" content="TechZeph helps UK small businesses compare practical AI tools by industry, pricing, and suitability.">
+  <link rel="canonical" href="https://techzeph.com/">
+  <style>
+    :root { color-scheme: light; }
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; color: #1a1a1a; }
+    header, main, footer { max-width: 1100px; margin: 0 auto; padding: 1rem; }
+    nav a { margin-right: 1rem; }
+    .hero { background: #f3f7ff; border-radius: 12px; padding: 2rem; margin: 1rem 0; }
+    .cta a { display: inline-block; margin-right: .75rem; margin-top: .5rem; padding: .6rem 1rem; border-radius: 8px; background: #1e4ed8; color: #fff; text-decoration: none; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+    .card { border: 1px solid #dbe3f5; border-radius: 10px; padding: 1rem; background: #fff; }
+    section { margin: 2rem 0; }
+  </style>
 </head>
-
 <body>
-  <!-- Matrix Rain Background -->
-  <canvas id="matrix-bg" aria-hidden="true"></canvas>
+  <header>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/industries/accountants.html">Industries</a>
+      <a href="/tools/ai-chatbots.html">Tools</a>
+      <a href="/guides/index.html">Guides</a>
+      <a href="/about.html">About</a>
+      <a href="/affiliate-disclosure.html">Affiliate Disclosure</a>
+    </nav>
+  </header>
 
-  <div class="site-wrapper">
-    <main class="main-content">
-
-      <!-- Terminal Window -->
-      <div class="terminal-container">
-        <div class="terminal">
-          <!-- Terminal Header -->
-          <div class="terminal-header">
-            <button class="terminal-btn close" aria-label="Close"></button>
-            <button class="terminal-btn minimize" aria-label="Minimize"></button>
-            <button class="terminal-btn maximize" aria-label="Maximize"></button>
-            <span class="terminal-title">guest@techzeph ~ terminal</span>
-          </div>
-
-          <!-- Terminal Body -->
-          <div class="terminal-body">
-            <div id="terminal-output" class="terminal-output">
-              <!-- Output will be rendered here by JS -->
-            </div>
-
-            <div class="terminal-input-row">
-              <span class="prompt">guest@techzeph:~$</span>
-              <input type="text" id="terminal-input" placeholder="Type 'help' for commands..." autocomplete="off"
-                spellcheck="false" aria-label="Terminal command input">
-              <span class="cursor"></span>
-            </div>
-          </div>
-
-          <!-- Navigation Buttons -->
-          <div class="nav-buttons">
-            <button class="nav-btn" id="btn-about" data-section="about">
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
-              </svg>
-              About
-            </button>
-            <a class="nav-btn" href="https://github.com/TechZeph" target="_blank" rel="noopener noreferrer"
-              id="btn-github">
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-              </svg>
-              GitHub
-            </a>
-            <a class="nav-btn" href="assets/cv.pdf" download id="btn-cv">
-              <svg viewBox="0 0 24 24">
-                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
-              </svg>
-              Download CV
-            </a>
-            <button class="nav-btn" id="btn-pricing" data-section="pricing">
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" />
-              </svg>
-              Web Pricing
-            </button>
-            <button class="nav-btn" id="btn-security" data-section="security">
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z" />
-              </svg>
-              Cyber Security
-            </button>
-          </div>
-        </div>
+  <main>
+    <section class="hero">
+      <h1>Best AI Tools for UK Small Businesses (2026 Guide)</h1>
+      <p>TechZeph helps UK small and medium-sized businesses choose practical AI software with confidence. We focus on clear tool comparisons, UK-relevant pricing, and business-fit recommendations. Our mission is simple: help you decide faster with less guesswork.</p>
+      <div class="cta">
+        <a href="#industries">Explore by Industry</a>
+        <a href="/tools/ai-chatbots.html">View Top AI Tools</a>
       </div>
+    </section>
 
-      <!-- About Section -->
-      <section id="about" class="section">
-        <h2 class="section-title">About Me</h2>
-        <div class="section-content">
-          <p>
-            Welcome to my digital space. I'm a passionate web developer and designer
-            with a love for creating clean, efficient, and visually striking digital experiences.
-          </p>
-          <p>
-            With expertise in modern web technologies, I specialize in crafting
-            responsive websites and applications that not only look great but perform
-            exceptionally across all devices.
-          </p>
-          <p>
-            My approach combines technical precision with creative design thinking,
-            ensuring every project delivers both form and function. Whether you need
-            a stunning portfolio, a dynamic web application, or a complete digital
-            transformation, I'm here to bring your vision to life.
-          </p>
-          <p>
-            <strong style="color: #ffffff;">Skills:</strong> HTML, CSS, JavaScript, React, Node.js,
-            Python, UI/UX Design, Responsive Development, Performance Optimization
-          </p>
-        </div>
-      </section>
+    <section id="industries">
+      <h2>AI Tools by Industry</h2>
+      <div class="grid">
+        <a class="card" href="/industries/accountants.html">Accountants</a>
+        <a class="card" href="/industries/estate-agents.html">Estate Agents</a>
+        <a class="card" href="/industries/marketing-agencies.html">Marketing Agencies</a>
+        <a class="card" href="/industries/ecommerce-businesses.html">Ecommerce Businesses</a>
+        <a class="card" href="/industries/consultants.html">Consultants</a>
+        <a class="card" href="/industries/recruiters.html">Recruiters</a>
+        <a class="card" href="/industries/hr-teams.html">HR Teams</a>
+        <a class="card" href="/industries/financial-advisers.html">Financial Advisers</a>
+      </div>
+    </section>
 
-      <!-- Web Design Pricing Section -->
-      <section id="pricing" class="section">
-        <h2 class="section-title">Web Design Pricing</h2>
-        <div class="section-content">
-          <p>Transparent pricing for quality web development services. All packages include responsive design and SEO
-            basics.</p>
-        </div>
+    <section>
+      <h2>Popular Tool Categories</h2>
+      <div class="grid">
+        <a class="card" href="/tools/ai-chatbots.html">AI Chatbots</a>
+        <a class="card" href="/tools/ai-crm-tools.html">AI CRM Tools</a>
+        <div class="card">AI Email Automation</div>
+        <div class="card">AI Bookkeeping</div>
+        <div class="card">AI Lead Generation</div>
+        <div class="card">AI Content Tools</div>
+      </div>
+    </section>
 
-        <div class="pricing-grid">
-          <!-- Starter Package -->
-          <div class="pricing-card">
-            <h3 class="pricing-tier">Starter</h3>
-            <div class="pricing-price">£299 <span>one-time</span></div>
-            <ul class="pricing-features">
-              <li>Single page website</li>
-              <li>Mobile responsive design</li>
-              <li>Contact form integration</li>
-              <li>Basic SEO setup</li>
-              <li>1 round of revisions</li>
-            </ul>
-            <button class="pricing-btn">Get Started</button>
-          </div>
+    <section>
+      <h2>How We Review AI Tools</h2>
+      <ul>
+        <li>Independent comparisons using consistent criteria.</li>
+        <li>UK pricing and billing models are considered.</li>
+        <li>Small business suitability is prioritised over enterprise complexity.</li>
+        <li>We publish a transparent affiliate disclosure policy.</li>
+      </ul>
+    </section>
 
-          <!-- Professional Package -->
-          <div class="pricing-card featured">
-            <h3 class="pricing-tier">Professional</h3>
-            <div class="pricing-price">£599 <span>one-time</span></div>
-            <ul class="pricing-features">
-              <li>Up to 5 pages</li>
-              <li>Custom design</li>
-              <li>CMS integration</li>
-              <li>Advanced SEO</li>
-              <li>Analytics setup</li>
-              <li>3 rounds of revisions</li>
-            </ul>
-            <button class="pricing-btn">Get Started</button>
-          </div>
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      <h3>What are AI tools for small businesses?</h3>
+      <p>AI tools are software products that automate repetitive tasks, improve customer communication, and speed up decision-making for everyday business operations.</p>
+      <h3>Are AI tools worth it for UK SMEs?</h3>
+      <p>For many UK SMEs, AI tools can reduce admin workload and improve response speed, especially when the tool aligns with a clear use case.</p>
+      <h3>Do AI tools comply with UK GDPR?</h3>
+      <p>Some do and some do not. Businesses should check data processing terms, hosting locations, and controls before purchasing.</p>
+      <h3>How much do AI tools cost?</h3>
+      <p>Most tools start around £15–£75 per user per month, with higher tiers for automation, integrations, and advanced reporting.</p>
+    </section>
+  </main>
 
-          <!-- Enterprise Package -->
-          <div class="pricing-card">
-            <h3 class="pricing-tier">Enterprise</h3>
-            <div class="pricing-price">£1,299+ <span>custom quote</span></div>
-            <ul class="pricing-features">
-              <li>Unlimited pages</li>
-              <li>E-commerce functionality</li>
-              <li>Custom features</li>
-              <li>Priority support</li>
-              <li>Performance optimization</li>
-              <li>Unlimited revisions</li>
-            </ul>
-            <button class="pricing-btn">Contact Me</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- Cyber Security Services Section -->
-      <section id="security" class="section">
-        <h2 class="section-title">Cyber Security Services</h2>
-        <div class="section-content">
-          <p>Protect your business with comprehensive cybersecurity solutions. All services include detailed reporting
-            and actionable recommendations.</p>
-        </div>
-
-        <div class="pricing-grid">
-          <!-- Security Audit -->
-          <div class="pricing-card">
-            <h3 class="pricing-tier">Security Audit</h3>
-            <div class="pricing-price">£499 <span>one-time</span></div>
-            <ul class="pricing-features">
-              <li>Website vulnerability scan</li>
-              <li>Security configuration review</li>
-              <li>Password policy assessment</li>
-              <li>SSL/TLS verification</li>
-              <li>Detailed security report</li>
-            </ul>
-            <button class="pricing-btn">Get Started</button>
-          </div>
-
-          <!-- Penetration Testing -->
-          <div class="pricing-card featured">
-            <h3 class="pricing-tier">Pen Testing</h3>
-            <div class="pricing-price">£1,499 <span>per assessment</span></div>
-            <ul class="pricing-features">
-              <li>Full penetration testing</li>
-              <li>OWASP Top 10 assessment</li>
-              <li>API security testing</li>
-              <li>Social engineering tests</li>
-              <li>Executive summary report</li>
-              <li>Remediation guidance</li>
-            </ul>
-            <button class="pricing-btn">Get Started</button>
-          </div>
-
-          <!-- Managed Security -->
-          <div class="pricing-card">
-            <h3 class="pricing-tier">Managed Security</h3>
-            <div class="pricing-price">£599 <span>/month</span></div>
-            <ul class="pricing-features">
-              <li>24/7 security monitoring</li>
-              <li>Threat detection & response</li>
-              <li>Monthly vulnerability scans</li>
-              <li>Incident response support</li>
-              <li>Quarterly security reviews</li>
-              <li>Compliance assistance</li>
-            </ul>
-            <button class="pricing-btn">Contact Me</button>
-          </div>
-        </div>
-      </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <p>&copy; 2026 TechZeph. All systems operational. | <a href="https://github.com/TechZeph">GitHub</a></p>
-    </footer>
-  </div>
-
-  <!-- JavaScript -->
-  <script src="js/matrix.js"></script>
-  <script src="js/terminal.js"></script>
-  <script type="module" src="js/main.js"></script>
+  <footer>
+    <p><strong>TechZeph</strong> – AI Tools for UK Small Businesses.</p>
+  </footer>
 </body>
-
 </html>
