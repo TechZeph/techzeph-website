@@ -21,6 +21,12 @@
     .cta a { display: inline-block; margin-right: .5rem; margin-top: .5rem; padding: .55rem .85rem; border-radius: 8px; text-decoration: none; background: #1e4ed8; color: #fff; }
     figure { margin: .6rem 0; }
     figure img { max-width: 100%; height: auto; border: 1px solid #dbe3f5; border-radius: 8px; }
+    .tool-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+    .slides { display: flex; gap: .6rem; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: .4rem; }
+    .slides img { width: 100%; max-width: 320px; height: 190px; object-fit: cover; border: 1px solid #dbe3f5; border-radius: 10px; scroll-snap-align: start; transition: transform .25s ease; transform-origin: center; background: #fff; }
+    .slides img:hover { transform: scale(1.12); z-index: 2; }
+    .embed-wrap { position: relative; padding-bottom: 56.25%; height: 0; margin-top: .7rem; border: 1px solid #dbe3f5; border-radius: 10px; overflow: hidden; }
+    .embed-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
   </style>
   <script>
     // Affiliate Link Map: update only these four URLs.
@@ -110,26 +116,42 @@
     </section>
 
     <section>
-      <h2>How do these tools look in real usage (official product visuals)?</h2>
-      <div class="grid">
+      <h2>How do these tools look in real usage (official visuals and walkthrough)?</h2>
+      <div class="tool-gallery">
         <div class="card">
-          <h3><a class="tool-link" href="#" data-affiliate="zoho_books" rel="nofollow sponsored">Zoho Books</a> desktop interface</h3>
-          <figure><img src="https://www.zoho.com/books/header-new-icons/windows_desktop.png" alt="Zoho Books desktop interface screenshot from official product assets"></figure>
+          <h3><a class="tool-link" href="#" data-affiliate="zoho_books" rel="nofollow sponsored">Zoho Books</a> slideshow</h3>
+          <div class="slides" aria-label="Zoho Books screenshots">
+            <img src="/assets/accountants/zoho-desktop.png" alt="Zoho Books desktop interface screenshot">
+            <img src="/assets/accountants/zoho-mobile.png" alt="Zoho Books mobile interface screenshot">
+          </div>
         </div>
         <div class="card">
-          <h3><a class="tool-link" href="#" data-affiliate="zoho_books" rel="nofollow sponsored">Zoho Books</a> mobile interface</h3>
-          <figure><img src="https://www.zoho.com/books/header-new-icons/platform-mobile.png" alt="Zoho Books mobile interface screenshot from official product assets"></figure>
+          <h3><a class="tool-link" href="#" data-affiliate="freshbooks" rel="nofollow sponsored">FreshBooks</a> slideshow</h3>
+          <div class="slides" aria-label="FreshBooks screenshots">
+            <img src="/assets/accountants/freshbooks-invoicing.webp" alt="FreshBooks invoicing interface screenshot">
+            <img src="/assets/accountants/freshbooks-reports.webp" alt="FreshBooks reporting interface screenshot">
+            <img src="/assets/accountants/freshbooks-bank.png" alt="FreshBooks bank connection screenshot">
+          </div>
         </div>
         <div class="card">
-          <h3><a class="tool-link" href="#" data-affiliate="freshbooks" rel="nofollow sponsored">FreshBooks</a> bank-connection flow</h3>
-          <figure><img src="https://freshbooks.zendesk.com/hc/article_attachments/37399237812749" alt="FreshBooks bank connection support screenshot"></figure>
+          <h3><a class="tool-link" href="#" data-affiliate="kashflow" rel="nofollow sponsored">KashFlow</a> official brand visuals</h3>
+          <div class="slides" aria-label="KashFlow screenshots">
+            <img src="/assets/accountants/kashflow-logo-dark.png" alt="KashFlow official brand logo from product site">
+            <img src="/assets/accountants/kashflow-icon.png" alt="KashFlow official brand icon from product site">
+          </div>
         </div>
         <div class="card">
-          <h3><a class="tool-link" href="#" data-affiliate="sage_accounting" rel="nofollow sponsored">Sage Accounting</a> bank-feed walkthrough view</h3>
-          <figure><img src="https://i.ytimg.com/vi/SkpSJDI8tWo/hqdefault.jpg" alt="Sage bank feed setup walkthrough thumbnail"></figure>
+          <h3><a class="tool-link" href="#" data-affiliate="sage_accounting" rel="nofollow sponsored">Sage Accounting</a> walkthrough</h3>
+          <div class="slides" aria-label="Sage Accounting screenshots">
+            <img src="/assets/accountants/sage-video-thumb-1.jpg" alt="Sage Accounting walkthrough thumbnail">
+            <img src="/assets/accountants/sage-video-thumb-2.jpg" alt="Sage Accounting walkthrough thumbnail alternate">
+          </div>
+          <div class="embed-wrap">
+            <iframe src="https://www.youtube.com/embed/SkpSJDI8tWo" title="Sage Accounting bank feed walkthrough" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
         </div>
       </div>
-      <p class="small">All visuals are sourced from official vendor channels or help documentation, not AI-generated screenshots.</p>
+      <p class="small">Images are stored locally in <code>assets/accountants/</code> to keep user flow on-site. Hover an image to expand it.</p>
     </section>
 
     <section>
