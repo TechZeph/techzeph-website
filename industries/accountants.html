@@ -21,12 +21,14 @@
     .cta a { display: inline-block; margin-right: .5rem; margin-top: .5rem; padding: .55rem .85rem; border-radius: 8px; text-decoration: none; background: #1e4ed8; color: #fff; }
     figure { margin: .6rem 0; }
     figure img { max-width: 100%; height: auto; border: 1px solid #dbe3f5; border-radius: 8px; }
-    .tool-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
-    .slides { display: flex; gap: .6rem; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: .4rem; }
-    .slides img { width: 100%; max-width: 320px; height: 190px; object-fit: cover; border: 1px solid #dbe3f5; border-radius: 10px; scroll-snap-align: start; transition: transform .25s ease; transform-origin: center; background: #fff; }
-    .slides img:hover { transform: scale(1.12); z-index: 2; }
+    .usage-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .9rem; }
+    .usage-thumb { width: 100%; height: 170px; object-fit: cover; border: 1px solid #dbe3f5; border-radius: 8px; cursor: pointer; background: #fff; }
     .embed-wrap { position: relative; padding-bottom: 56.25%; height: 0; margin-top: .7rem; border: 1px solid #dbe3f5; border-radius: 10px; overflow: hidden; }
     .embed-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .image-modal { position: fixed; inset: 0; background: rgba(0, 0, 0, .82); display: none; align-items: center; justify-content: center; padding: 1rem; z-index: 1000; }
+    .image-modal img { max-width: min(1100px, 96vw); max-height: 88vh; border-radius: 10px; background: #fff; }
+    .image-modal.is-open { display: flex; }
+    .image-modal-close { position: fixed; top: .7rem; right: .9rem; color: #fff; font-size: 2rem; line-height: 1; background: transparent; border: 0; cursor: pointer; }
   </style>
   <script>
     // Affiliate Link Map: update only these four URLs.
@@ -117,41 +119,19 @@
 
     <section>
       <h2>How do these tools look in real usage (official visuals and walkthrough)?</h2>
-      <div class="tool-gallery">
-        <div class="card">
-          <h3><a class="tool-link" href="#" data-affiliate="zoho_books" rel="nofollow sponsored">Zoho Books</a> slideshow</h3>
-          <div class="slides" aria-label="Zoho Books screenshots">
-            <img src="/assets/accountants/zoho-desktop.png" alt="Zoho Books desktop interface screenshot">
-            <img src="/assets/accountants/zoho-mobile.png" alt="Zoho Books mobile interface screenshot">
-          </div>
-        </div>
-        <div class="card">
-          <h3><a class="tool-link" href="#" data-affiliate="freshbooks" rel="nofollow sponsored">FreshBooks</a> slideshow</h3>
-          <div class="slides" aria-label="FreshBooks screenshots">
-            <img src="/assets/accountants/freshbooks-invoicing.webp" alt="FreshBooks invoicing interface screenshot">
-            <img src="/assets/accountants/freshbooks-reports.webp" alt="FreshBooks reporting interface screenshot">
-            <img src="/assets/accountants/freshbooks-bank.png" alt="FreshBooks bank connection screenshot">
-          </div>
-        </div>
-        <div class="card">
-          <h3><a class="tool-link" href="#" data-affiliate="kashflow" rel="nofollow sponsored">KashFlow</a> official brand visuals</h3>
-          <div class="slides" aria-label="KashFlow screenshots">
-            <img src="/assets/accountants/kashflow-logo-dark.png" alt="KashFlow official brand logo from product site">
-            <img src="/assets/accountants/kashflow-icon.png" alt="KashFlow official brand icon from product site">
-          </div>
-        </div>
-        <div class="card">
-          <h3><a class="tool-link" href="#" data-affiliate="sage_accounting" rel="nofollow sponsored">Sage Accounting</a> walkthrough</h3>
-          <div class="slides" aria-label="Sage Accounting screenshots">
-            <img src="/assets/accountants/sage-video-thumb-1.jpg" alt="Sage Accounting walkthrough thumbnail">
-            <img src="/assets/accountants/sage-video-thumb-2.jpg" alt="Sage Accounting walkthrough thumbnail alternate">
-          </div>
-          <div class="embed-wrap">
-            <iframe src="https://www.youtube.com/embed/SkpSJDI8tWo" title="Sage Accounting bank feed walkthrough" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          </div>
-        </div>
+      <p class="small">Click any image to view it larger.</p>
+      <div class="usage-gallery">
+        <img class="usage-thumb" src="/assets/accountants/zoho-desktop.png" alt="Zoho Books desktop interface screenshot" data-expand-image>
+        <img class="usage-thumb" src="/assets/accountants/zoho-mobile.png" alt="Zoho Books mobile interface screenshot" data-expand-image>
+        <img class="usage-thumb" src="/assets/accountants/freshbooks-invoicing.webp" alt="FreshBooks invoicing interface screenshot" data-expand-image>
+        <img class="usage-thumb" src="/assets/accountants/freshbooks-reports.webp" alt="FreshBooks reporting interface screenshot" data-expand-image>
+        <img class="usage-thumb" src="/assets/accountants/freshbooks-bank.png" alt="FreshBooks bank connection screenshot" data-expand-image>
+        <img class="usage-thumb" src="/assets/accountants/sage-video-thumb-1.jpg" alt="Sage Accounting walkthrough thumbnail" data-expand-image>
       </div>
-      <p class="small">Images are stored locally in <code>assets/accountants/</code> to keep user flow on-site. Hover an image to expand it.</p>
+      <div class="embed-wrap">
+        <iframe src="https://www.youtube.com/embed/SkpSJDI8tWo" title="Sage Accounting bank feed walkthrough" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <p class="small">Images are stored locally in <code>assets/accountants/</code> to keep user flow on-site and reduce external redirects.</p>
     </section>
 
     <section>
@@ -337,6 +317,42 @@
   <footer>
     <p><strong>TechZeph</strong> | AI Tools for UK Small Businesses.</p>
   </footer>
+
+  <div class="image-modal" id="image-modal" aria-hidden="true">
+    <button class="image-modal-close" id="image-modal-close" aria-label="Close image viewer">&times;</button>
+    <img id="image-modal-img" src="" alt="">
+  </div>
+
+  <script>
+    (function () {
+      const modal = document.getElementById("image-modal");
+      const modalImg = document.getElementById("image-modal-img");
+      const closeBtn = document.getElementById("image-modal-close");
+      const thumbs = document.querySelectorAll("[data-expand-image]");
+
+      function closeModal() {
+        modal.classList.remove("is-open");
+        modal.setAttribute("aria-hidden", "true");
+      }
+
+      thumbs.forEach(function (thumb) {
+        thumb.addEventListener("click", function () {
+          modalImg.src = thumb.src;
+          modalImg.alt = thumb.alt;
+          modal.classList.add("is-open");
+          modal.setAttribute("aria-hidden", "false");
+        });
+      });
+
+      closeBtn.addEventListener("click", closeModal);
+      modal.addEventListener("click", function (e) {
+        if (e.target === modal) closeModal();
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeModal();
+      });
+    })();
+  </script>
 </body>
 </html>
 
