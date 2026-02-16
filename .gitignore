@@ -1,0 +1,6 @@
+.private/
+*.local.md
+*.local.csv
+*.local.json
+.env
+.env.*
