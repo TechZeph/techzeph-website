@@ -17,7 +17,7 @@
   }
 
   body {
-    font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+    font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
     color: var(--ink-strong);
     background:
       radial-gradient(circle at 5% 5%, rgba(19, 91, 236, 0.08), transparent 30%),

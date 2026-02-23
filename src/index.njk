@@ -8,17 +8,9 @@ title: Best AI Tools for UK Trades
 
   <div class="shell relative z-10 grid items-center gap-12 lg:grid-cols-2">
     <div class="space-y-6">
-      <div class="inline-flex w-fit items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
-        <span class="relative flex h-2 w-2">
-          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-500 opacity-75"></span>
-          <span class="relative inline-flex h-2 w-2 rounded-full bg-blue-600"></span>
-        </span>
-        UK Trades Platform
-      </div>
-
       <h1 class="text-5xl font-bold leading-[1.05] tracking-tight text-slate-900 lg:text-7xl">
-        Power Up Your
-        <span class="block bg-gradient-to-r from-blue-700 to-blue-400 bg-clip-text text-transparent">Trade with AI</span>
+        Power up your
+        <span class="block whitespace-nowrap"><span class="bg-gradient-to-r from-blue-700 to-blue-400 bg-clip-text text-transparent">Business</span> with AI.</span>
       </h1>
 
       <p class="max-w-xl text-lg leading-relaxed text-slate-600 lg:text-xl">
@@ -112,8 +104,12 @@ title: Best AI Tools for UK Trades
       {% if loop.index <= 4 %}
         <a class="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 transition-all hover:shadow-lg hover:ring-blue-300/70" href="{{ cat.tag | tagHref | url }}">
           {% if loop.index == 1 %}
-            <div class="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-blue-50 transition-all group-hover:bg-blue-100"></div>
-            <div class="relative z-10 mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-600 text-white"><span class="text-sm font-bold">Q</span></div>
+            <div class="absolute -right-2 -top-2 h-6 w-6 rounded-full bg-blue-50 transition-all group-hover:bg-blue-100"></div>
+            <div class="relative z-10 mb-6 flex h-5 w-5 items-center justify-center rounded-sm bg-blue-600 text-white">
+              <svg aria-hidden="true" viewBox="0 0 24 24" class="h-2.5 w-2.5" fill="currentColor">
+                <path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"></path>
+              </svg>
+            </div>
           {% elif loop.index == 2 %}
             <div class="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-rose-50 transition-all group-hover:bg-rose-100"></div>
             <div class="relative z-10 mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-rose-600 text-white"><span class="text-sm font-bold">S</span></div>
@@ -149,7 +145,7 @@ title: Best AI Tools for UK Trades
           Use our side-by-side comparisons to evaluate pricing, features, and UK fit before choosing a tool.
         </p>
         <div class="mt-8 flex flex-col gap-4 sm:flex-row">
-          <a class="inline-flex items-center justify-center rounded-lg bg-blue-600 px-8 py-3 text-sm font-bold text-white transition hover:bg-blue-500" href="{{ '/tools/' | url }}">Start Comparison</a>
+          <a class="inline-flex items-center justify-center rounded-lg bg-white/10 px-8 py-3 text-sm font-bold text-white transition hover:bg-white/20" href="{{ '/tools/' | url }}">Find Tools</a>
           <a class="inline-flex items-center justify-center rounded-lg bg-white/10 px-8 py-3 text-sm font-bold text-white transition hover:bg-white/20" href="{{ '/categories/' | url }}">Browse Categories</a>
         </div>
       </div>
