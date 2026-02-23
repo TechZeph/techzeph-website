@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "css:build": "@tailwindcss/cli -i ./src/input.css -o ./_site/styles.css --minify",
-    "css:watch": "@tailwindcss/cli -i ./src/input.css -o ./_site/styles.css --watch",
+    "css:build": "tailwindcss -i ./src/input.css -o ./_site/styles.css --minify",
+    "css:watch": "tailwindcss -i ./src/input.css -o ./_site/styles.css --watch",
     "start": "eleventy --serve",
     "build": "npm run css:build && eleventy"
   },
