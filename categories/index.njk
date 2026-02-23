@@ -1,0 +1,27 @@
+---
+layout: layout.njk
+title: Categories
+permalink: /categories/
+---
+<section class="space-y-4">
+  <p class="section-kicker">Categories</p>
+  <h1 class="page-title">AI tool categories for UK trades and small businesses</h1>
+  <p class="max-w-3xl text-lg text-slate-700">
+    Explore by job-to-be-done instead of generic software labels.
+  </p>
+</section>
+
+<section class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+  {% for cat in nav.categories %}
+    <a class="panel p-5 transition hover:-translate-y-0.5 hover:shadow-md" href="{{ cat.url }}">
+      <h2 class="text-xl font-semibold text-slate-900">{{ cat.label }}</h2>
+      <p class="mt-2 text-sm text-slate-600">{{ cat.description }}</p>
+    </a>
+  {% endfor %}
+</section>
+
+<section class="panel mt-10 p-6">
+  <h2 class="text-2xl font-semibold text-slate-900">Best for Electricians</h2>
+  <p class="mt-2 text-slate-700">Start with our live electrician hub while we expand other trade-specific collections.</p>
+  <a class="mt-4 inline-block text-sm font-semibold text-slate-900 underline underline-offset-4" href="/best-ai-tools-uk-electricians/">Go to electrician hub</a>
+</section>

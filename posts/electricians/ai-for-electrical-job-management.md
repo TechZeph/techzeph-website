@@ -4,6 +4,7 @@ title: Using AI for Electrical Job Management in the UK
 description: How to use AI assistants for scheduling, handovers, and client updates without adding complexity.
 permalink: /best-ai-tools-uk-electricians/ai-for-electrical-job-management/
 tags:
+  - blog
   - electricians
 ---
 ## Where AI helps most

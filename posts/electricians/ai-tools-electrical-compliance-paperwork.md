@@ -4,6 +4,7 @@ title: AI Tools for Electrical Compliance Paperwork (UK)
 description: Practical ways AI can reduce admin time around documentation while keeping compliance standards intact.
 permalink: /best-ai-tools-uk-electricians/ai-tools-electrical-compliance-paperwork/
 tags:
+  - blog
   - electricians
 ---
 ## Paperwork tasks worth automating
