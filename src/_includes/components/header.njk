@@ -1,6 +1,6 @@
 <header id="site-header" class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/85 backdrop-blur-md">
   <div class="shell flex items-center justify-between gap-4 py-3">
-    <a class="flex items-center gap-2 text-lg font-bold tracking-tight text-slate-900" href="/">
+    <a class="flex items-center gap-2 text-lg font-bold tracking-tight text-slate-900" href="{{ '/' | url }}">
       <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100 text-blue-700">
         <svg aria-hidden="true" viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor">
           <path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"></path>
@@ -15,7 +15,7 @@
           <div class="group relative">
             <a
               class="inline-flex items-center gap-1 {{ page.url | activeClass(item) }}"
-              href="{{ item.url }}"
+              href="{{ item.url | url }}"
               aria-haspopup="true"
             >
               {{ item.label }}
@@ -32,29 +32,31 @@
               <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-xl">
                 <div class="mb-3 flex items-center justify-between border-b border-slate-200 pb-2">
                   <p class="text-sm font-semibold text-slate-900">Browse Categories</p>
-                  <a class="text-xs font-medium text-slate-600 hover:text-slate-900" href="/categories/">View all</a>
+                  <a class="text-xs font-medium text-slate-600 hover:text-slate-900" href="{{ '/categories/' | url }}">View all</a>
                 </div>
                 <ul class="grid grid-cols-2 gap-3" role="menu">
-                  {% for cat in nav.categories %}
-                    <li>
-                      <a class="block rounded-lg border border-slate-200 p-3 hover:border-slate-300 hover:bg-slate-50" href="{{ cat.url }}" role="menuitem">
-                        <p class="font-medium text-slate-900">{{ cat.label }}</p>
-                        <p class="mt-1 text-xs text-slate-600">{{ cat.description }}</p>
-                      </a>
-                    </li>
+                  {% for cat in collections.contentTags %}
+                    {% if loop.index <= 8 %}
+                      <li>
+                        <a class="block rounded-lg border border-slate-200 p-3 hover:border-slate-300 hover:bg-slate-50" href="{{ cat.tag | tagHref | url }}" role="menuitem">
+                          <p class="font-medium text-slate-900">{{ cat.label }}</p>
+                          <p class="mt-1 text-xs text-slate-600">{{ cat.count }} post{% if cat.count != 1 %}s{% endif %}</p>
+                        </a>
+                      </li>
+                    {% endif %}
                   {% endfor %}
                 </ul>
               </div>
             </div>
           </div>
         {% else %}
-          <a class="{{ page.url | activeClass(item) }}" href="{{ item.url }}">{{ item.label }}</a>
+          <a class="{{ page.url | activeClass(item) }}" href="{{ item.url | url }}">{{ item.label }}</a>
         {% endif %}
       {% endfor %}
     </nav>
 
     <div class="hidden items-center gap-2 md:flex">
-      <a class="btn-primary rounded-full px-4 py-2" href="{{ nav.cta.url }}">{{ nav.cta.label }}</a>
+      <a class="btn-primary rounded-full px-4 py-2" href="{{ nav.cta.url | url }}">{{ nav.cta.label }}</a>
     </div>
 
     <button
@@ -83,7 +85,7 @@
       <button id="mobile-menu-close" class="rounded-lg border border-slate-300 px-3 py-1.5 text-sm" type="button" aria-label="Close menu">Close</button>
     </div>
 
-    <a class="mb-4 inline-flex w-full items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white" href="{{ nav.cta.url }}">{{ nav.cta.label }}</a>
+    <a class="mb-4 inline-flex w-full items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white" href="{{ nav.cta.url | url }}">{{ nav.cta.label }}</a>
 
     <nav aria-label="Mobile Primary" class="space-y-2">
       {% for item in nav.primary %}
@@ -92,17 +94,17 @@
             <summary class="cursor-pointer list-none text-base font-semibold text-slate-900">Categories</summary>
             <ul class="mt-3 space-y-2 border-t border-slate-200 pt-3">
               <li>
-                <a class="block rounded-md px-2 py-1.5 text-sm text-slate-700 hover:bg-slate-100" href="/categories/">View all categories</a>
+                <a class="block rounded-md px-2 py-1.5 text-sm text-slate-700 hover:bg-slate-100" href="{{ '/categories/' | url }}">View all categories</a>
               </li>
-              {% for cat in nav.categories %}
+              {% for cat in collections.contentTags %}
                 <li>
-                  <a class="block rounded-md px-2 py-1.5 text-sm text-slate-700 hover:bg-slate-100" href="{{ cat.url }}">{{ cat.label }}</a>
+                  <a class="block rounded-md px-2 py-1.5 text-sm text-slate-700 hover:bg-slate-100" href="{{ cat.tag | tagHref | url }}">{{ cat.label }}</a>
                 </li>
               {% endfor %}
             </ul>
           </details>
         {% else %}
-          <a class="block rounded-lg border border-slate-200 px-3 py-2 text-base {{ page.url | activeClass(item) }}" href="{{ item.url }}">{{ item.label }}</a>
+          <a class="block rounded-lg border border-slate-200 px-3 py-2 text-base {{ page.url | activeClass(item) }}" href="{{ item.url | url }}">{{ item.label }}</a>
         {% endif %}
       {% endfor %}
     </nav>
@@ -112,7 +114,7 @@
       <ul class="space-y-1">
         {% for link in nav.footer %}
           <li>
-            <a class="text-sm text-slate-700 hover:text-slate-900" href="{{ link.url }}">{{ link.label }}</a>
+            <a class="text-sm text-slate-700 hover:text-slate-900" href="{{ link.url | url }}">{{ link.label }}</a>
           </li>
         {% endfor %}
       </ul>

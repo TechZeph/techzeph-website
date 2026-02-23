@@ -4,7 +4,6 @@ title: Best AI Quote Tools for UK Electricians (2026)
 description: A practical framework for choosing AI-assisted quoting tools without risking margin errors.
 permalink: /best-ai-tools-uk-electricians/ai-quote-tools-uk-electricians/
 tags:
-  - blog
   - electricians
 ---
 ## What to look for first

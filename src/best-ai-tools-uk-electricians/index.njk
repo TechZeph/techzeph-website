@@ -11,8 +11,8 @@ permalink: /best-ai-tools-uk-electricians/
     speed up quoting, improve customer communication, and support safe on-site work.
   </p>
   <div class="flex flex-wrap gap-3">
-    <a class="btn-primary" href="/tools/">Compare tools</a>
-    <a class="btn-secondary" href="/categories/">All categories</a>
+    <a class="btn-primary" href="{{ '/tools/' | url }}">Compare tools</a>
+    <a class="btn-secondary" href="{{ '/categories/' | url }}">All categories</a>
   </div>
 </section>
 
@@ -21,7 +21,7 @@ permalink: /best-ai-tools-uk-electricians/
   <ul class="mt-4 grid gap-4">
     {% for post in collections.electricians | reverse %}
       <li class="panel p-5">
-        <a class="text-xl font-semibold text-slate-900 hover:underline" href="{{ post.url }}">{{ post.data.title }}</a>
+        <a class="text-xl font-semibold text-slate-900 hover:underline" href="{{ post.url | url }}">{{ post.data.title }}</a>
         {% if post.data.description %}
           <p class="mt-2 text-slate-700">{{ post.data.description }}</p>
         {% endif %}

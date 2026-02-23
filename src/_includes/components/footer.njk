@@ -3,7 +3,7 @@
     <p>&copy; 2026 TechZeph. Independent reviews for UK trades and small businesses.</p>
     <nav aria-label="Footer" class="flex items-center gap-4">
       {% for link in nav.footer %}
-        <a class="hover:text-slate-900 hover:underline" href="{{ link.url }}">{{ link.label }}</a>
+        <a class="hover:text-slate-900 hover:underline" href="{{ link.url | url }}">{{ link.label }}</a>
       {% endfor %}
     </nav>
   </div>

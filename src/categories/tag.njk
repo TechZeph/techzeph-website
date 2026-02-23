@@ -1,0 +1,28 @@
+---
+layout: layout.njk
+pagination:
+  data: collections.contentTags
+  size: 1
+  alias: tagGroup
+permalink: "/categories/{{ tagGroup.slug }}/"
+title: "{{ tagGroup.label }} Category"
+---
+<section class="space-y-4">
+  <p class="section-kicker">Category</p>
+  <h1 class="page-title">{{ tagGroup.label }}</h1>
+  <p class="max-w-3xl text-lg text-slate-700">
+    {{ tagGroup.count }} related guide{% if tagGroup.count != 1 %}s{% endif %} in this category.
+  </p>
+  <a class="inline-block text-sm font-semibold text-slate-900 underline underline-offset-4" href="{{ '/categories/' | url }}">Back to all categories</a>
+</section>
+
+<section class="mt-8 grid gap-4">
+  {% for post in tagGroup.posts %}
+    <article class="panel p-5">
+      <a class="text-xl font-semibold text-slate-900 hover:underline" href="{{ post.url | url }}">{{ post.data.title }}</a>
+      {% if post.data.description %}
+        <p class="mt-2 text-slate-700">{{ post.data.description }}</p>
+      {% endif %}
+    </article>
+  {% endfor %}
+</section>
