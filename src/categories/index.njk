@@ -9,7 +9,7 @@ permalink: /categories/
 </section>
 
 <section class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-  {% for cat in collections.contentTags %}
+  {% for cat in collections.businessCategories %}
     <a class="panel p-5 transition hover:-translate-y-0.5 hover:shadow-md" href="{{ cat.tag | tagHref | url }}">
       <h2 class="text-xl font-semibold text-slate-900">{{ cat.label }}</h2>
       <p class="mt-2 text-sm text-slate-600">{{ cat.count }} related guide{% if cat.count != 1 %}s{% endif %}</p>

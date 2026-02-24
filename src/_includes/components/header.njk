@@ -28,19 +28,19 @@
                 <path d="M20 9l-8 8-8-8 1.414-1.414L12 14.172l6.586-6.586z"></path>
               </svg>
             </a>
-            <div class="invisible pointer-events-none absolute left-0 top-full w-[34rem] pt-2 opacity-0 transition group-hover:visible group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:visible group-focus-within:pointer-events-auto group-focus-within:opacity-100">
-              <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-xl">
+            <div class="invisible pointer-events-none absolute left-1/2 top-full w-[min(92vw,42rem)] -translate-x-1/2 pt-2 opacity-0 transition group-hover:visible group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:visible group-focus-within:pointer-events-auto group-focus-within:opacity-100">
+              <div class="max-h-[65vh] overflow-auto rounded-2xl border border-slate-200 bg-white p-4 shadow-xl">
                 <div class="mb-3 flex items-center justify-between border-b border-slate-200 pb-2">
                   <p class="text-sm font-semibold text-slate-900">Browse Categories</p>
                   <a class="text-xs font-medium text-slate-600 hover:text-slate-900" href="{{ '/categories/' | url }}">View all</a>
                 </div>
                 <ul class="grid grid-cols-2 gap-3" role="menu">
-                  {% for cat in collections.contentTags %}
+                  {% for cat in collections.businessCategories %}
                     {% if loop.index <= 8 %}
                       <li>
                         <a class="block rounded-lg border border-slate-200 p-3 hover:border-slate-300 hover:bg-slate-50" href="{{ cat.tag | tagHref | url }}" role="menuitem">
                           <p class="font-medium text-slate-900">{{ cat.label }}</p>
-                          <p class="mt-1 text-xs text-slate-600">{{ cat.count }} post{% if cat.count != 1 %}s{% endif %}</p>
+                          <p class="mt-1 text-xs text-slate-600">{{ cat.count }} guide{% if cat.count != 1 %}s{% endif %}</p>
                         </a>
                       </li>
                     {% endif %}
@@ -92,7 +92,7 @@
               <li>
                 <a class="block rounded-md px-2 py-1.5 text-sm text-slate-700 hover:bg-slate-100" href="{{ '/categories/' | url }}">View all categories</a>
               </li>
-              {% for cat in collections.contentTags %}
+              {% for cat in collections.businessCategories %}
                 <li>
                   <a class="block rounded-md px-2 py-1.5 text-sm text-slate-700 hover:bg-slate-100" href="{{ cat.tag | tagHref | url }}">{{ cat.label }}</a>
                 </li>

@@ -28,9 +28,17 @@ module.exports = function(eleventyConfig) {
       });
   };
 
+  let primaryCategoryForPost = function(postData) {
+    let category = canonicalTag(postData.primaryCategory || "");
+    if (!category || systemTags.has(category)) {
+      return "";
+    }
+    return category;
+  };
+
   eleventyConfig.addCollection("contentTags", function(collectionApi) {
     let posts = collectionApi
-      .getFilteredByGlob("src/posts/**/*.{md,njk}")
+      .getFilteredByGlob("src/posts/**/*.md")
       .sort(function(a, b) {
         return b.date - a.date;
       });
@@ -78,9 +86,51 @@ module.exports = function(eleventyConfig) {
       });
   });
 
+  eleventyConfig.addCollection("businessCategories", function(collectionApi) {
+    let posts = collectionApi
+      .getFilteredByGlob("src/posts/**/*.md")
+      .sort(function(a, b) {
+        return b.date - a.date;
+      });
+
+    let groups = new Map();
+
+    posts.forEach(function(post) {
+      let category = primaryCategoryForPost(post.data);
+      if (!category) {
+        return;
+      }
+
+      if (!groups.has(category)) {
+        groups.set(category, {
+          tag: category,
+          slug: toSlug(category),
+          label: toLabel(category),
+          posts: []
+        });
+      }
+
+      groups.get(category).posts.push(post);
+    });
+
+    return Array.from(groups.values())
+      .map(function(group) {
+        return {
+          tag: group.tag,
+          slug: group.slug,
+          label: group.label,
+          posts: group.posts,
+          count: group.posts.length
+        };
+      })
+      .sort(function(a, b) {
+        return a.label.localeCompare(b.label);
+      });
+  });
+
   eleventyConfig.addCollection("searchPosts", function(collectionApi) {
     return collectionApi
-      .getFilteredByGlob("src/posts/**/*.{md,njk}")
+      .getFilteredByGlob("src/posts/**/*.md")
       .sort(function(a, b) {
         return b.date - a.date;
       })
@@ -111,8 +161,13 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addCollection("electricianHub", function(collectionApi) {
     return collectionApi
-      .getFilteredByGlob("src/posts/**/*.{md,njk}")
+      .getFilteredByGlob("src/posts/**/*.md")
       .filter(function(post) {
+        let primaryCategory = primaryCategoryForPost(post.data);
+        if (primaryCategory === "electrician") {
+          return true;
+        }
+
         let tags = post.data.tags || [];
         if (!Array.isArray(tags)) {
           tags = [tags];

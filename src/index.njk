@@ -100,7 +100,7 @@ title: Best AI Tools for UK Trades
   </div>
 
   <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-    {% for cat in collections.contentTags %}
+    {% for cat in collections.businessCategories %}
       {% if loop.index <= 4 %}
         <a class="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 transition-all hover:shadow-lg hover:ring-blue-300/70" href="{{ cat.tag | tagHref | url }}">
           {% if loop.index == 1 %}
