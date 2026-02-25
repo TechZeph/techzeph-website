@@ -13,8 +13,12 @@ permalink: /best-ai-tools-uk/
 </section>
 
 <section class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-  <a class="panel p-5 transition hover:-translate-y-0.5 hover:shadow-md" href="{{ '/best-ai-tools-uk/electrician/' | url }}">
-    <h2 class="text-xl font-semibold text-slate-900">Electrician</h2>
-    <p class="mt-2 text-sm text-slate-600">Live category hub for electrician-focused tool research.</p>
-  </a>
+  {% for cat in collections.businessCategories %}
+    <a class="panel p-5 transition hover:-translate-y-0.5 hover:shadow-md" href="{{ ('/best-ai-tools-uk/' + cat.slug + '/') | url }}">
+      <h2 class="text-xl font-semibold text-slate-900">{{ cat.label }}</h2>
+      <p class="mt-2 text-sm text-slate-600">
+        {{ cat.count }} guide{% if cat.count != 1 %}s{% endif %} focused on UK {{ cat.label | lower }} businesses.
+      </p>
+    </a>
+  {% endfor %}
 </section>

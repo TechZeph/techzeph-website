@@ -10,6 +10,7 @@ module.exports = {
   },
   footer: [
     { label: "Disclosure", url: "/disclosure/" },
+    { label: "Cookies", url: "/cookies/" },
     { label: "Privacy", url: "/privacy/" },
     { label: "Contact", url: "/contact/" }
   ]

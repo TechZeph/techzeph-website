@@ -5,17 +5,27 @@
   var countLabel = document.getElementById("tool-finder-count");
   var emptyState = document.getElementById("tool-finder-empty");
   var dataNode = document.getElementById("tool-finder-data");
+  var searchIndexUrl = "/search/index.json";
 
-  if (!searchInput || !resultsList || !countLabel || !emptyState || !dataNode) {
+  if (!searchInput || !resultsList || !countLabel || !emptyState) {
     return;
   }
 
   var posts = [];
-  try {
-    posts = JSON.parse(dataNode.textContent || "[]");
-  } catch (error) {
-    posts = [];
-  }
+  var parseEmbeddedPosts = function () {
+    if (!dataNode) {
+      return [];
+    }
+
+    try {
+      var parsed = JSON.parse(dataNode.textContent || "[]");
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (error) {
+      return [];
+    }
+  };
+
+  posts = parseEmbeddedPosts();
 
   var activeIndex = -1;
   var visibleResults = [];
@@ -168,6 +178,28 @@
     }
   };
 
+  var loadSearchIndex = function () {
+    return fetch(searchIndexUrl, { credentials: "same-origin" })
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error("search index request failed");
+        }
+        return response.json();
+      })
+      .then(function (payload) {
+        if (Array.isArray(payload)) {
+          posts = payload;
+          activeIndex = -1;
+          update();
+        }
+      })
+      .catch(function () {
+        if (!posts.length) {
+          countLabel.textContent = "Search index unavailable right now.";
+        }
+      });
+  };
+
   var moveActive = function (direction) {
     if (!visibleResults.length) {
       return;
@@ -241,4 +273,5 @@
   });
 
   update();
+  loadSearchIndex();
 })();

@@ -1,0 +1,36 @@
+---
+layout: layout.njk
+pagination:
+  data: collections.businessCategories
+  size: 1
+  alias: tradeHub
+permalink: "/best-ai-tools-uk/{{ tradeHub.slug }}/"
+title: "Best AI Tools for UK {{ tradeHub.label }} Businesses"
+---
+<section class="space-y-4">
+  <p class="section-kicker">Category Hub</p>
+  <h1 class="page-title">Best AI Tools for UK {{ tradeHub.label }} Businesses</h1>
+  <p class="max-w-3xl text-lg text-slate-700">
+    Practical, no-hype guides for UK {{ tradeHub.label | lower }} businesses. We focus on tools that
+    reduce admin, speed up quoting, improve communication, and keep day-to-day operations running
+    smoothly.
+  </p>
+  <div class="flex flex-wrap gap-3">
+    <a class="btn-primary" href="{{ '/tools/' | url }}">Compare tools</a>
+    <a class="btn-secondary" href="{{ '/categories/' | url }}">All categories</a>
+  </div>
+</section>
+
+<section class="mt-10">
+  <h2 class="text-2xl font-semibold">Start Here</h2>
+  <ul class="mt-4 grid gap-4">
+    {% for post in tradeHub.posts %}
+      <li class="panel p-5">
+        <a class="text-xl font-semibold text-slate-900 hover:underline" href="{{ post.url | url }}">{{ post.data.title }}</a>
+        {% if post.data.description %}
+          <p class="mt-2 text-slate-700">{{ post.data.description }}</p>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</section>

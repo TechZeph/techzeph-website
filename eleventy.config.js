@@ -1,3 +1,5 @@
+const fs = require("node:fs");
+
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy({ CNAME: "CNAME" });
@@ -35,56 +37,6 @@ module.exports = function(eleventyConfig) {
     }
     return category;
   };
-
-  eleventyConfig.addCollection("contentTags", function(collectionApi) {
-    let posts = collectionApi
-      .getFilteredByGlob("src/posts/**/*.md")
-      .sort(function(a, b) {
-        return b.date - a.date;
-      });
-
-    let groups = new Map();
-
-    posts.forEach(function(post) {
-      let tags = post.data.tags || [];
-      if (!Array.isArray(tags)) {
-        tags = [tags];
-      }
-
-      tags.forEach(function(tag) {
-        let canonical = canonicalTag(tag);
-
-        if (!canonical || systemTags.has(canonical)) {
-          return;
-        }
-
-        if (!groups.has(canonical)) {
-          groups.set(canonical, {
-            tag: canonical,
-            slug: toSlug(canonical),
-            label: toLabel(canonical),
-            posts: []
-          });
-        }
-
-        groups.get(canonical).posts.push(post);
-      });
-    });
-
-    return Array.from(groups.values())
-      .map(function(group) {
-        return {
-          tag: group.tag,
-          slug: group.slug,
-          label: group.label,
-          posts: group.posts,
-          count: group.posts.length
-        };
-      })
-      .sort(function(a, b) {
-        return a.label.localeCompare(b.label);
-      });
-  });
 
   eleventyConfig.addCollection("businessCategories", function(collectionApi) {
     let posts = collectionApi
@@ -182,23 +134,6 @@ module.exports = function(eleventyConfig) {
       });
   });
 
-  eleventyConfig.addFilter("isActiveNavItem", function(pageUrl, item) {
-    if (!pageUrl || !item) {
-      return false;
-    }
-
-    if (item.match === "exact") {
-      return pageUrl === item.url;
-    }
-
-    if (item.match && item.match.startsWith("prefix:")) {
-      let prefix = item.match.replace("prefix:", "");
-      return pageUrl.startsWith(prefix);
-    }
-
-    return false;
-  });
-
   eleventyConfig.addFilter("activeClass", function(pageUrl, item) {
     let active = false;
     if (pageUrl && item) {
@@ -222,6 +157,44 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addFilter("json", function(value) {
     return JSON.stringify(value);
+  });
+
+  let toIsoDate = function(value) {
+    if (!value) {
+      return "";
+    }
+
+    let date = value instanceof Date ? value : new Date(value);
+    if (Number.isNaN(date.getTime())) {
+      return "";
+    }
+
+    return date.toISOString();
+  };
+
+  eleventyConfig.addFilter("sitemapLastmod", function(entry) {
+    if (!entry || !entry.data) {
+      return "";
+    }
+
+    let manualDate = toIsoDate(entry.data.lastUpdated || entry.data.lastVerified);
+    if (manualDate) {
+      return manualDate;
+    }
+
+    if (entry.inputPath) {
+      try {
+        let stat = fs.statSync(entry.inputPath);
+        let fileModified = toIsoDate(stat.mtime);
+        if (fileModified) {
+          return fileModified;
+        }
+      } catch (error) {
+        // Ignore missing file paths and continue to fallback.
+      }
+    }
+
+    return toIsoDate(entry.date);
   });
 
   return {
