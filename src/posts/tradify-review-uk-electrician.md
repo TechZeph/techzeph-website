@@ -4,6 +4,8 @@ title: Tradify Review for UK Electrician (2026)
 description: Is Tradify worth it for UK electricians? Pricing, strengths, weaknesses, and best‑fit use cases.
 seoSlug: tradify-review-uk-electrician
 primaryCategory: electrician
+lastUpdated: "2026-02-25"
+lastVerified: "2026-02-25"
 tags:
  - electrician
  - tradify

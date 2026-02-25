@@ -4,6 +4,8 @@ title: Buildxact Review for UK Electrician (2026)
 description: Is Buildxact worth it for UK electricians? Pricing, strengths, weaknesses, and best‑fit use cases.
 seoSlug: buildxact-review-uk-electrician
 primaryCategory: electrician
+lastUpdated: "2026-02-25"
+lastVerified: "2026-02-25"
 tags:
  - electrician
  - buildxact

@@ -4,6 +4,8 @@ title: Workiz Review for UK Electrician (2026)
 description: Is Workiz worth it for UK electricians? Pricing, strengths, weaknesses, and best‑fit use cases.
 seoSlug: workiz-review-uk-electrician
 primaryCategory: electrician
+lastUpdated: "2026-02-25"
+lastVerified: "2026-02-25"
 tags:
  - electrician
  - workiz

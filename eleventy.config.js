@@ -159,18 +159,47 @@ module.exports = function(eleventyConfig) {
     return JSON.stringify(value);
   });
 
-  let toIsoDate = function(value) {
+  let toDateObject = function(value) {
     if (!value) {
-      return "";
+      return null;
     }
 
     let date = value instanceof Date ? value : new Date(value);
     if (Number.isNaN(date.getTime())) {
+      return null;
+    }
+
+    return date;
+  };
+
+  let toIsoDate = function(value) {
+    let date = toDateObject(value);
+    if (!date) {
       return "";
     }
 
     return date.toISOString();
   };
+
+  eleventyConfig.addFilter("dateDmy", function(value) {
+    if (!value) {
+      return "";
+    }
+
+    let isoDate = "";
+    if (value && typeof value.toISOString === "function") {
+      isoDate = value.toISOString().slice(0, 10);
+    } else {
+      isoDate = String(value).trim().slice(0, 10);
+    }
+
+    let match = isoDate.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (!match) {
+      return String(value);
+    }
+
+    return match[3] + "-" + match[2] + "-" + match[1];
+  });
 
   eleventyConfig.addFilter("sitemapLastmod", function(entry) {
     if (!entry || !entry.data) {

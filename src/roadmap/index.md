@@ -1,12 +1,13 @@
 ---
 layout: roadmap.njk
 title: TechZeph Roadmap
-permalink: /roadmap/
+noindex: true
+eleventyExcludeFromCollections: true
 ---
 
 # TechZeph Growth & Development Roadmap (Execution Edition)
 
-Updated: 2026-02-24
+Updated: 2026-02-25
 
 This version converts strategy into a measurable operating plan: what to ship, in what sequence, and what success/failure looks like.
 
@@ -40,12 +41,14 @@ Current repo state:
 
 - 10 published review posts in `src/posts/*.md` (electrician-focused)
 - Build/deploy automation is live through GitHub Actions
-- Affiliate disclosure page exists
-- Privacy page is still a placeholder and needs full UK GDPR copy
-- No evidence in templates yet of full analytics/event instrumentation
-- No evidence in templates yet of sitewide JSON-LD/OG/Twitter/canonical standardization
+- Public deploys exclude `/roadmap/`; roadmap remains available in local/private builds
+- Baseline analytics (Cloudflare Web Analytics) and GSC are live
+- Sitewide canonical + OG + Twitter metadata and JSON-LD baseline support are live
+- Privacy and cookies pages are in place with UK-focused copy and update timestamps
+- Post freshness metadata (`lastUpdated`, `lastVerified`) is now present across current review posts
+- Advanced event instrumentation is intentionally deferred until traffic/revenue thresholds are met
 
-Implication: first execution stage should focus on measurement + trust + conversion fundamentals before expansion.
+Implication: measurement/compliance foundations are closed; next leverage is content model standardization (schema + computed URL migration + publish-decision governance) before scaling output.
 
 ## 4) Phase Plan With Gates
 
@@ -55,19 +58,33 @@ Objective: stop publishing blind and remove trust/compliance weakness.
 
 Deliverables:
 
-- Finish Privacy Policy content for UK GDPR expectations
-- Make affiliate disclosure visible in every review template
+- ~~Finish Privacy Policy content for UK GDPR expectations~~
 - Add "Last updated" and "Last verified" metadata to posts
-- Configure analytics (GA4 or Plausible) and GSC
-- Track affiliate outbound clicks by placement (`top`, `mid`, `end`, `table`)
-- Standardize canonical + OG + Twitter tags sitewide
-- Add JSON-LD base support (Article/Breadcrumb)
+- ~~Configure baseline analytics (Cloudflare Web Analytics) and GSC~~
+- ~~Standardize canonical + OG + Twitter tags sitewide~~
+- ~~Add JSON-LD base support (Article/Breadcrumb)~~
 
 Exit criteria:
 
-- Every post has visible disclosure and update date
-- Affiliate click event data appears in analytics
-- All indexed pages emit canonical and OG metadata
+- Every post has visible update date
+- ~~All indexed pages emit canonical and OG metadata~~
+- ~~Baseline traffic measurement is live (sessions, pages, referrers)~~
+
+### Advanced Analytics Activation Gate
+
+Objective: only add advanced event analytics after signal and economics justify the extra complexity.
+
+Activation thresholds (meet at least one traffic/revenue trigger, plus event volume trigger):
+
+- Traffic trigger: >= 15,000 sessions/month for 3 consecutive months
+- Revenue trigger: >= GBP 500/month affiliate revenue for 2 consecutive months
+- Event-volume trigger: >= 200 monetization events/month (affiliate clicks/leads)
+
+When gate is met:
+
+- Implement affiliate outbound click event tracking by placement (`top`, `mid`, `end`, `table`)
+- Add advanced analytics instrumentation and conversion views
+- Start CTA and placement experiments with sufficient sample size
 
 ### Phase 1: Information Architecture + Content Model
 
@@ -75,35 +92,57 @@ Objective: make content structured enough for filtering, automation, and program
 
 Deliverables:
 
+- Implement computed permalink architecture (URL from metadata, not folder structure)
+- Generate category landing pages from metadata at `/best-ai-tools-uk/{businessType}/{primaryCategory}/`
 - Enforce frontmatter schema for all posts
 - Backfill all current posts to the schema
 - Add validation script to fail CI when required fields are missing
-- Define normalized values (trade, toolType, businessSize, pricingTier)
-- Create vendor data objects (`src/_data/vendors/*.json`)
+- Add publish-decision schema (`index`, `noindex`, `canonicalize_to_generic`) to prevent thin duplicate variants
+- Maintain redirect map for any legacy URL that changes
 
-Recommended frontmatter v2:
+Programmatic URL schema (canonical):
+
+- Tool reviews: `/best-ai-tools-uk/{businessType}/{primaryCategory}/{toolSlug}/`
+- Top lists: `/best-ai-tools-uk/{businessType}/{primaryCategory}/top-5-{listTopic}/`
+- Comparisons: `/best-ai-tools-uk/{comparisonA}-vs-{comparisonB}/`
+- All authored content remains in `src/posts/*.md`; URL shape is computed from frontmatter
+
+Frontmatter schema v3:
 
 ```yaml
-trade: electrician
-toolType: scheduling
-vendor: servicem8
-pricingTier: low-mid
-businessSize: 1-5 vans
-affiliateType: partner
-affiliateModel: recurring
-commissionType: fixed_plus_recurring
-region: uk
+contentType: toolReview # toolReview | topList | comparison
+businessType: trades
+primaryCategory: electrician
+toolName: Jobber
+toolSlug: jobber
+listTopic: job-management # required for topList
+comparisonA: jobber # required for comparison
+comparisonB: tradify # required for comparison
+seoSlug: jobber-review-uk-electrician # optional override
+canonicalMode: self # self | generic
+canonicalTarget: /best-ai-tools-uk/trades/general/jobber/ # required if canonicalMode=generic
+indexMode: index # index | noindex
 currency: GBP
-lastVerified: 2026-02-24
+region: uk
+lastUpdated: 2026-02-25
+lastVerified: 2026-02-25
 sources:
   - https://vendor-site.example/pricing
   - https://vendor-site.example/partner-program
 ```
 
+Publish-decision schema:
+
+- `index`: use when trade-specific page has materially unique workflow, constraints, pricing fit, and verdict
+- `canonicalize_to_generic`: use when content substantially overlaps generic tool guidance
+- `noindex`: use for draft, thin, or low-confidence variants pending enrichment
+
 Exit criteria:
 
 - 100% of posts pass schema validation in CI
 - Taxonomy collisions reduced to zero (single canonical value per concept)
+- 100% of new posts follow canonical URL schema by content type
+- Legacy URLs resolve via redirects without orphaned traffic
 
 ### Phase 2: Conversion Optimization On Existing Traffic
 
@@ -156,7 +195,7 @@ Deliverables:
   - research capture from primary sources
   - structured draft JSON generation
   - markdown render from templates
-  - QA checks (sources, claims, disclosures, metadata)
+  - QA checks (sources, claims, compliance copy, metadata)
   - PR with checklist for human approval
 - Add refresh bot to re-validate price/affiliate claims by priority tier
 
@@ -222,24 +261,28 @@ A post is publishable only if all checks pass:
 - Pricing and affiliate terms verified as current at publish time
 - UK relevance explicit (currency, support region, compliance context)
 - Clear "Best for / Not ideal for" statements
-- Affiliate disclosure visible
 - Internal links: minimum 3 relevant links
 - CTA present in planned positions
 - Metadata complete (title, description, canonical, schema)
+- Publish decision set and justified (`index` vs `canonicalize_to_generic` vs `noindex`)
+- For trade-specific pages, uniqueness is explicit (workflow differences, pricing-fit differences, trade-specific recommendation logic)
 
 ## 7) Execution Sequence (Non-Time-Gated)
 
 ### Sequence Block A: Foundation
 
-- Finalize analytics, event tracking, and compliance copy
-- Add disclosure/update-date components in templates
+- ~~Finalize baseline analytics and compliance copy~~
+- Add update-date components in templates
+- Implement computed permalink engine for `contentType/businessType/primaryCategory`
+- Migrate existing posts to canonical URL schema and ship redirect mappings
 - Implement frontmatter schema validation in CI
-- Backfill legacy posts and remove taxonomy drift
+- Backfill legacy posts, publish-decision fields, and remove taxonomy drift
 
 ### Sequence Block B: Commercial Expansion
 
 - Publish highest-intent comparison pages
 - Publish business-size segment pages
+- If Advanced Analytics Activation Gate is met, implement event tracking and CTA testing instrumentation
 - Launch CTA placement test cycle and roll out winning variants
 - Publish informational bridge posts with internal links
 

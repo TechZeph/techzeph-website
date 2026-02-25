@@ -4,6 +4,8 @@ title: FieldPulse Review for UK Electrician (2026)
 description: Is FieldPulse worth it for UK electricians? Pricing, strengths, weaknesses, and best‑fit use cases.
 seoSlug: fieldpulse-review-uk-electrician
 primaryCategory: electrician
+lastUpdated: "2026-02-25"
+lastVerified: "2026-02-25"
 tags:
  - electrician
  - fieldpulse
