@@ -38,6 +38,21 @@ module.exports = function(eleventyConfig) {
     return category;
   };
 
+  let contentTypeForPost = function(postData) {
+    let raw = String(postData.contentType || "toolReview").trim().toLowerCase();
+    if (raw === "comparison" || raw === "compare") {
+      return "comparison";
+    }
+    if (raw === "toplist" || raw === "top-list" || raw === "top") {
+      return "topList";
+    }
+    return "toolReview";
+  };
+
+  let legacyPostSlugForPost = function(post) {
+    return toSlug(post.data.seoSlug || post.fileSlug || post.data.title || "");
+  };
+
   eleventyConfig.addCollection("businessCategories", function(collectionApi) {
     let posts = collectionApi
       .getFilteredByGlob("src/posts/**/*.md")
@@ -111,6 +126,36 @@ module.exports = function(eleventyConfig) {
       });
   });
 
+  eleventyConfig.addCollection("legacyPostRedirects", function(collectionApi) {
+    return collectionApi
+      .getFilteredByGlob("src/posts/**/*.md")
+      .map(function(post) {
+        if (contentTypeForPost(post.data) !== "toolReview") {
+          return null;
+        }
+
+        let category = primaryCategoryForPost(post.data);
+        let slug = legacyPostSlugForPost(post);
+        if (!category || !slug) {
+          return null;
+        }
+
+        let from = "/best-ai-tools-uk/" + toSlug(category) + "/" + slug + "/";
+        let to = post.url || "";
+
+        if (!to || from === to) {
+          return null;
+        }
+
+        return {
+          from: from,
+          to: to,
+          title: post.data.title || slug
+        };
+      })
+      .filter(Boolean);
+  });
+
   eleventyConfig.addCollection("electricianHub", function(collectionApi) {
     return collectionApi
       .getFilteredByGlob("src/posts/**/*.md")
@@ -152,7 +197,7 @@ module.exports = function(eleventyConfig) {
   });
 
   eleventyConfig.addFilter("tagHref", function(tag) {
-    return "/categories/" + toSlug(tag) + "/";
+    return "/best-ai-tools-uk/trades/" + toSlug(tag) + "/";
   });
 
   eleventyConfig.addFilter("json", function(value) {

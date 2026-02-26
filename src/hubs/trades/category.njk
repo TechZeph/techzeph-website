@@ -4,16 +4,16 @@ pagination:
   data: collections.businessCategories
   size: 1
   alias: tagGroup
-permalink: "/categories/{{ tagGroup.slug }}/"
-title: "{{ tagGroup.label }} Category"
+permalink: "/best-ai-tools-uk/trades/{{ tagGroup.slug }}/"
+title: "Best AI Tools for UK {{ tagGroup.label }} Businesses"
 ---
 <section class="space-y-4">
-  <p class="section-kicker">Category</p>
-  <h1 class="page-title">{{ tagGroup.label }}</h1>
+  <p class="section-kicker">Trade Category</p>
+  <h1 class="page-title">Best AI Tools for UK {{ tagGroup.label }} Businesses</h1>
   <p class="max-w-3xl text-lg text-slate-700">
-    {{ tagGroup.count }} related guide{% if tagGroup.count != 1 %}s{% endif %} in this category.
+    {{ tagGroup.count }} related guide{% if tagGroup.count != 1 %}s{% endif %} for UK {{ tagGroup.label | lower }} teams.
   </p>
-  <a class="inline-block text-sm font-semibold text-slate-900 underline underline-offset-4" href="{{ '/categories/' | url }}">Back to all categories</a>
+  <a class="inline-block text-sm font-semibold text-slate-900 underline underline-offset-4" href="{{ '/best-ai-tools-uk/trades/' | url }}">Back to all trade categories</a>
 </section>
 
 <section class="mt-8 grid gap-4">

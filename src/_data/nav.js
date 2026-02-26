@@ -1,7 +1,7 @@
 module.exports = {
   primary: [
     { label: "Tool Finder", url: "/tools/", match: "prefix:/tools/" },
-    { label: "Categories", url: "/categories/", match: "prefix:/categories/" },
+    { label: "Categories", url: "/best-ai-tools-uk/trades/", match: "prefix:/best-ai-tools-uk/trades/" },
     { label: "About", url: "/about/", match: "exact" }
   ],
   cta: {
