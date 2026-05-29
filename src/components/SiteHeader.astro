@@ -9,8 +9,11 @@ import ThemeMenu from "./ThemeMenu.astro";
 		class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8"
 		aria-label="Primary navigation"
 	>
-		<a href="/" class="group inline-flex items-center gap-2 text-sm font-semibold tracking-normal">
-			<span class="grid size-8 place-items-center rounded-md border border-[var(--border-subtle)] bg-[var(--surface-panel)] text-[var(--accent-primary)] shadow-[var(--shadow-panel)]">
+		<a
+			href="/"
+			class="group inline-flex min-h-10 items-center gap-2 rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-panel)] px-3 text-sm font-semibold tracking-normal text-[var(--text-muted)] shadow-[var(--shadow-panel)] transition hover:-translate-y-0.5 hover:bg-[var(--surface-panel-muted)] hover:text-[var(--text-primary)] hover:shadow-[var(--shadow-interactive)]"
+		>
+			<span class="grid size-6 place-items-center rounded-md text-[var(--accent-primary)]">
 				<Home size={15} strokeWidth={2.2} aria-hidden="true" />
 			</span>
 			<span>TechZeph</span>
