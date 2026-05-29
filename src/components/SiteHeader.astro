@@ -13,10 +13,10 @@ import ThemeMenu from "./ThemeMenu.astro";
 			href="/"
 			class="group inline-flex min-h-10 items-center gap-2 rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-panel)] px-3 text-sm font-semibold tracking-normal text-[var(--text-muted)] shadow-[var(--shadow-panel)] transition hover:-translate-y-0.5 hover:bg-[var(--surface-panel-muted)] hover:text-[var(--text-primary)] hover:shadow-[var(--shadow-interactive)]"
 		>
-			<span class="grid size-6 place-items-center rounded-md text-[var(--accent-primary)]">
-				<Home size={15} strokeWidth={2.2} aria-hidden="true" />
+			<span class="grid size-6 place-items-center rounded-md text-[var(--accent-primary)] transition group-hover:text-[var(--accent-primary-hover)]">
+				<Home size={15} stroke-width={2.2} aria-hidden="true" />
 			</span>
-			<span>TechZeph</span>
+			<span class="text-[var(--text-muted)] transition group-hover:text-[var(--text-primary)]">TechZeph</span>
 		</a>
 
 		<div class="flex items-center gap-2">
