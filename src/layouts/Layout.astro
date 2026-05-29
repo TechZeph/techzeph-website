@@ -1,0 +1,59 @@
+---
+import { defaultDarkTheme, defaultLightTheme } from "../data/themes";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import "../styles/global.css";
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = "TechZeph | Portfolio",
+	description = "A calm technical portfolio for projects, experiments, case studies, and interface work.",
+} = Astro.props;
+
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="description" content={description} />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<script define:vars={{ defaultDarkTheme, defaultLightTheme }}>
+			const storedTheme = localStorage.getItem("theme");
+			const initialTheme =
+				storedTheme === "dark"
+					? defaultDarkTheme
+					: storedTheme === "light"
+						? defaultLightTheme
+						: storedTheme;
+
+			if (initialTheme) {
+				document.documentElement.dataset.theme = initialTheme;
+			}
+		</script>
+	</head>
+	<body class="antialiased">
+		<a
+			href="#main-content"
+			class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-[var(--surface-panel)] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[var(--text-primary)]"
+		>
+			Skip to content
+		</a>
+
+		<SiteHeader />
+
+		<main id="main-content">
+			<slot />
+		</main>
+
+		<SiteFooter />
+	</body>
+</html>

@@ -1,0 +1,119 @@
+---
+import ButtonLink from "../components/ButtonLink.astro";
+import Layout from "../layouts/Layout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import { projects } from "../data/projects";
+
+const focusItems = [
+	"Building the core portfolio structure.",
+	"Keeping copy modest and easy to replace.",
+	"Making room for cyber, dev, AI, and broader project work.",
+];
+---
+
+<Layout
+	title="TechZeph | Project Portfolio"
+	description="A calm technical portfolio for projects, experiments, case studies, and interface work."
+>
+	<section class="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-24">
+		<div class="flex flex-col justify-center">
+			<p class="mb-5 font-mono text-sm text-[var(--accent-primary)]">/portfolio /projects /lab</p>
+			<h1 class="max-w-4xl text-4xl font-semibold leading-tight tracking-normal text-[var(--text-primary)] sm:text-5xl lg:text-6xl">
+				A quiet home for technical projects, experiments, and case studies.
+			</h1>
+			<p class="mt-6 max-w-2xl text-lg text-[var(--text-muted)]">
+				TechZeph is being rebuilt as a personal portfolio: practical, fast, and flexible enough
+				to hold finished work, prototypes, UI explorations, notes, and future media.
+			</p>
+			<div class="mt-8 flex flex-col gap-3 sm:flex-row">
+				<ButtonLink href="/projects">View current work</ButtonLink>
+				<ButtonLink href="/contact" variant="secondary">Contact</ButtonLink>
+			</div>
+		</div>
+
+		<aside
+			class="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-panel)] p-5 shadow-[var(--shadow-panel)]"
+			aria-label="Current site status"
+		>
+			<div class="flex items-center justify-between gap-4 border-b border-[var(--border-subtle)] pb-4">
+				<p class="font-mono text-sm text-[var(--accent-primary)]">status</p>
+				<span class="rounded-full bg-[var(--surface-panel-muted)] px-3 py-1 font-mono text-xs text-[var(--text-muted)]">
+					v0.1
+				</span>
+			</div>
+			<div class="space-y-6 pt-5">
+				<div>
+					<p class="text-sm font-semibold text-[var(--text-primary)]">Current build</p>
+					<p class="mt-2 text-sm text-[var(--text-muted)]">
+						Homepage shell, portfolio positioning, and a first project structure to review.
+					</p>
+				</div>
+				<div>
+					<p class="text-sm font-semibold text-[var(--text-primary)]">Next routes</p>
+					<p class="mt-2 font-mono text-sm text-[var(--text-muted)]">
+						/about /projects /contact /ui
+					</p>
+				</div>
+				<div>
+					<p class="text-sm font-semibold text-[var(--text-primary)]">Design mood</p>
+					<p class="mt-2 text-sm text-[var(--text-muted)]">
+						Earthy green, spacious, technical, and deliberately restrained.
+					</p>
+				</div>
+			</div>
+		</aside>
+	</section>
+
+	<section class="border-y border-[var(--border-subtle)] bg-[var(--surface-page-muted)] py-16">
+		<div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+			<SectionHeader
+				kicker="/work"
+				title="Current project map"
+				description="Early placeholders for the work this site is expected to support. Public copy can be replaced once the first real case studies are ready."
+			/>
+
+			<div class="mt-8 grid gap-4 md:grid-cols-3">
+				{projects.map((project) => <ProjectCard project={project} />)}
+			</div>
+		</div>
+	</section>
+
+	<section id="focus" class="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.8fr_1fr] lg:px-8">
+		<div>
+			<p class="font-mono text-sm text-[var(--accent-primary)]">/focus</p>
+			<h2 class="mt-3 text-3xl font-semibold tracking-normal">Built for review, then iteration.</h2>
+		</div>
+		<div class="space-y-4">
+			{
+				focusItems.map((item, index) => (
+					<div class="flex gap-4 rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-panel)] p-4 shadow-[var(--shadow-panel)]">
+						<span class="font-mono text-sm text-[var(--accent-primary)]">
+							{String(index + 1).padStart(2, "0")}
+						</span>
+						<p class="text-[var(--text-muted)]">{item}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<section id="contact" class="bg-[var(--surface-inverse)] py-16 text-[var(--text-inverse)]">
+		<div class="mx-auto flex max-w-6xl flex-col gap-6 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+			<div class="max-w-2xl">
+				<p class="font-mono text-sm text-[var(--accent-soft)]">/contact</p>
+				<h2 class="mt-3 text-3xl font-semibold tracking-normal">A simple starting point.</h2>
+				<p class="mt-4 text-[var(--text-inverse-muted)]">
+					This page is ready for review. The final voice, project details, and contact links can
+					be tightened as the rest of the portfolio takes shape.
+				</p>
+			</div>
+			<a
+				href="mailto:hello@techzeph.co.uk"
+				class="inline-flex items-center justify-center rounded-md border border-[var(--border-inverse)] bg-[var(--button-inverse-bg)] px-5 py-3 text-sm font-semibold text-[var(--button-inverse-text)] shadow-[var(--shadow-panel)] transition hover:-translate-y-0.5 hover:bg-[var(--button-inverse-bg-hover)] hover:shadow-[var(--shadow-interactive)]"
+			>
+				hello@techzeph.co.uk
+			</a>
+		</div>
+	</section>
+</Layout>

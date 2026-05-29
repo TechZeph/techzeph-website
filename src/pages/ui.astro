@@ -1,0 +1,47 @@
+---
+import ButtonLink from "../components/ButtonLink.astro";
+import PageIntro from "../components/PageIntro.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import StatusBadge from "../components/StatusBadge.astro";
+import Layout from "../layouts/Layout.astro";
+import { projects } from "../data/projects";
+---
+
+<Layout
+	title="UI | TechZeph"
+	description="A lightweight component showcase and future interface lab for the TechZeph portfolio."
+>
+	<PageIntro
+		kicker="/ui"
+		title="Component showcase and interface lab."
+		description="A controlled area for reusable components, theme previews, and future interaction experiments. The main portfolio should stay calmer than this space."
+	/>
+
+	<section class="border-y border-[var(--border-subtle)] bg-[var(--surface-page-muted)] py-16">
+		<div class="mx-auto space-y-12 px-4 sm:px-6 lg:max-w-6xl lg:px-8">
+			<div>
+				<SectionHeader
+					kicker="/components"
+					title="Current building blocks"
+					description="These examples are intentionally simple while the design system is still young."
+				/>
+				<div class="mt-8 flex flex-wrap gap-3">
+					<ButtonLink href="/projects">Primary button</ButtonLink>
+					<ButtonLink href="/about" variant="secondary">Secondary button</ButtonLink>
+				</div>
+			</div>
+
+			<div>
+				<p class="font-mono text-sm text-[var(--accent-primary)]">/badges</p>
+				<div class="mt-4 flex flex-wrap gap-3">
+					{["Built", "Planned", "Prototype", "Learning"].map((status) => <StatusBadge status={status} />)}
+				</div>
+			</div>
+
+			<div class="max-w-md">
+				<ProjectCard project={projects[0]} />
+			</div>
+		</div>
+	</section>
+</Layout>
