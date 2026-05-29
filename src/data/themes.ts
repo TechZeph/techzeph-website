@@ -1,11 +1,17 @@
 export const themeOptions = [
 	{
 		id: "earth-green-light",
-		label: "Earth Green Light",
+		family: "earth-green",
+		familyLabel: "Earth Green",
+		mode: "light",
+		label: "Light",
 	},
 	{
 		id: "earth-green-dark",
-		label: "Earth Green Dark",
+		family: "earth-green",
+		familyLabel: "Earth Green",
+		mode: "dark",
+		label: "Dark",
 	},
 ] as const;
 
@@ -13,3 +19,4 @@ export const defaultLightTheme = "earth-green-light";
 export const defaultDarkTheme = "earth-green-dark";
 
 export type ThemeId = (typeof themeOptions)[number]["id"];
+export type ThemeMode = (typeof themeOptions)[number]["mode"];

@@ -1,0 +1,92 @@
+---
+const hubPages = [
+	{
+		href: "/about",
+		label: "About",
+		description: "Background and current focus",
+	},
+	{
+		href: "/projects",
+		label: "Projects",
+		description: "Case studies and prototypes",
+	},
+	{
+		href: "/ui",
+		label: "UI",
+		description: "Component and theme lab",
+	},
+	{
+		href: "/contact",
+		label: "Contact",
+		description: "Public contact route",
+	},
+];
+---
+
+<div class="relative" data-site-menu>
+	<button
+		type="button"
+		data-site-menu-trigger
+		class="inline-flex min-h-10 items-center gap-2 rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-panel)] px-3 font-mono text-xs font-semibold text-[var(--text-muted)] shadow-[var(--shadow-panel)] transition hover:-translate-y-0.5 hover:bg-[var(--surface-panel-muted)] hover:text-[var(--text-primary)] hover:shadow-[var(--shadow-interactive)]"
+		aria-haspopup="menu"
+		aria-expanded="false"
+	>
+		<span>Menu</span>
+		<span aria-hidden="true" class="hidden text-[var(--accent-primary)] sm:inline">/</span>
+		<span class="hidden md:inline">Hubs</span>
+	</button>
+
+	<div
+		data-site-menu-options
+		class="absolute right-0 top-12 z-50 hidden w-64 max-w-[calc(100vw-2rem)] rounded-lg border border-[var(--dropdown-border)] bg-[var(--dropdown-surface)] p-1 shadow-[var(--shadow-interactive)]"
+		role="menu"
+	>
+		{
+			hubPages.map((item, index) => (
+				<a
+					href={item.href}
+					class:list={[
+						"block rounded-md px-3 py-2 transition hover:bg-[var(--dropdown-surface-hover)]",
+						index > 0 && "mt-1",
+					]}
+					role="menuitem"
+				>
+					<span class="block text-sm font-semibold text-[var(--dropdown-text)]">{item.label}</span>
+					<span class="mt-0.5 block text-xs text-[var(--dropdown-text-muted)]">{item.description}</span>
+				</a>
+			))
+		}
+	</div>
+</div>
+
+<script>
+	const siteMenu = document.querySelector("[data-site-menu]");
+	const siteMenuTrigger = document.querySelector("[data-site-menu-trigger]");
+	const siteMenuOptions = document.querySelector("[data-site-menu-options]");
+
+	function closeSiteMenu() {
+		siteMenuOptions?.classList.add("hidden");
+		siteMenuTrigger?.setAttribute("aria-expanded", "false");
+	}
+
+	function toggleSiteMenu() {
+		const isOpen = siteMenuTrigger?.getAttribute("aria-expanded") === "true";
+		siteMenuOptions?.classList.toggle("hidden", isOpen);
+		siteMenuTrigger?.setAttribute("aria-expanded", String(!isOpen));
+	}
+
+	siteMenuTrigger?.addEventListener("click", toggleSiteMenu);
+
+	document.addEventListener("click", (event) => {
+		if (siteMenu && event.target instanceof Node && !siteMenu.contains(event.target)) {
+			closeSiteMenu();
+		}
+	});
+
+	document.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") {
+			closeSiteMenu();
+			siteMenuTrigger?.focus();
+		}
+	});
+</script>

@@ -1,5 +1,29 @@
 ---
+import { Check, Palette } from "@lucide/astro";
 import { defaultDarkTheme, defaultLightTheme, themeOptions } from "../data/themes";
+
+const themeGroups = Object.values(
+	themeOptions.reduce(
+		(groups, theme) => {
+			groups[theme.family] ??= {
+				id: theme.family,
+				label: theme.familyLabel,
+				options: [],
+			};
+
+			groups[theme.family].options.push(theme);
+			return groups;
+		},
+		{} as Record<
+			string,
+			{
+				id: string;
+				label: string;
+				options: typeof themeOptions[number][];
+			}
+		>,
+	),
+);
 ---
 
 <div class="relative" data-theme-menu>
@@ -10,30 +34,44 @@ import { defaultDarkTheme, defaultLightTheme, themeOptions } from "../data/theme
 		aria-haspopup="menu"
 		aria-expanded="false"
 	>
+		<Palette size={15} strokeWidth={2} aria-hidden="true" />
 		<span>Theme</span>
 		<span aria-hidden="true" class="hidden text-[var(--accent-primary)] md:inline">/</span>
 		<span data-theme-label class="hidden lg:inline">Earth Green</span>
 	</button>
 	<div
 		data-theme-options
-		class="absolute right-0 top-12 z-50 hidden w-52 max-w-[calc(100vw-2rem)] rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-panel)] p-1 shadow-[var(--shadow-interactive)]"
+		class="absolute right-0 top-12 z-50 hidden w-56 max-w-[calc(100vw-2rem)] rounded-lg border border-[var(--dropdown-border)] bg-[var(--dropdown-surface)] p-1 shadow-[var(--shadow-interactive)]"
 		role="menu"
 	>
 		{
-			themeOptions.map((theme, index) => (
-				<button
-					type="button"
-					data-theme-option={theme.id}
-					data-preview-theme={theme.id}
-					class:list={[
-						"theme-menu-option flex w-full items-center justify-between rounded-md px-3 py-2 text-left font-mono text-xs font-semibold transition",
-						index > 0 && "mt-1",
-					]}
-					role="menuitem"
-				>
-					<span>{theme.label}</span>
-					<span data-theme-check={theme.id} aria-hidden="true" />
-				</button>
+			themeGroups.map((group, groupIndex) => (
+				<div class:list={[groupIndex > 0 && "mt-2"]}>
+					<p class="px-3 py-1 font-mono text-[0.7rem] font-semibold uppercase tracking-normal text-[var(--dropdown-text-muted)]">
+						{group.label}
+					</p>
+					<div class="grid grid-cols-2 gap-1">
+						{group.options.map((theme) => (
+							<button
+								type="button"
+								data-theme-option={theme.id}
+								data-preview-theme={theme.id}
+								class="theme-menu-option flex min-h-10 items-center justify-between rounded-md px-3 py-2 text-left font-mono text-xs font-semibold transition"
+								role="menuitem"
+							>
+								<span>{theme.label}</span>
+								<span
+									data-theme-check={theme.id}
+									class="grid size-4 place-items-center text-[var(--preview-text)] opacity-0 transition"
+									aria-hidden="true"
+								>
+									<Check size={14} strokeWidth={2.5} />
+								</span>
+								<span class="sr-only" data-theme-selected-text={theme.id}></span>
+							</button>
+						))}
+					</div>
+				</div>
 			))
 		}
 	</div>
@@ -47,7 +85,9 @@ import { defaultDarkTheme, defaultLightTheme, themeOptions } from "../data/theme
 	const themeChoiceButtons = document.querySelectorAll("[data-theme-option]");
 	const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)");
 	const themeIds = themeOptions.map((theme) => theme.id);
-	const themeLabels = Object.fromEntries(themeOptions.map((theme) => [theme.id, theme.label]));
+	const themeLabels = Object.fromEntries(
+		themeOptions.map((theme) => [theme.id, `${theme.familyLabel} ${theme.label}`]),
+	);
 
 	function normalizeStoredTheme(theme) {
 		if (theme === "light") {
@@ -81,7 +121,13 @@ import { defaultDarkTheme, defaultLightTheme, themeOptions } from "../data/theme
 
 		document.querySelectorAll("[data-theme-check]").forEach((check) => {
 			const isSelected = check.getAttribute("data-theme-check") === nextTheme;
-			check.textContent = isSelected ? "Selected" : "";
+			check.classList.toggle("opacity-0", !isSelected);
+			check.classList.toggle("opacity-100", isSelected);
+		});
+
+		document.querySelectorAll("[data-theme-selected-text]").forEach((selectedText) => {
+			const isSelected = selectedText.getAttribute("data-theme-selected-text") === nextTheme;
+			selectedText.textContent = isSelected ? "Selected theme" : "";
 		});
 	}
 
