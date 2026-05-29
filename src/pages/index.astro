@@ -16,13 +16,13 @@ const focusItems = [
 	title="TechZeph | Project Portfolio"
 	description="A calm technical portfolio for projects, experiments, case studies, and interface work."
 >
-	<section class="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-24">
+	<section class="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:gap-12 sm:px-6 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-24">
 		<div class="flex flex-col justify-center">
 			<p class="mb-5 font-mono text-sm text-[var(--accent-primary)]">/portfolio /projects /lab</p>
-			<h1 class="max-w-4xl text-4xl font-semibold leading-tight tracking-normal text-[var(--text-primary)] sm:text-5xl lg:text-6xl">
+			<h1 class="max-w-4xl text-3xl font-semibold leading-tight tracking-normal text-[var(--text-primary)] sm:text-5xl lg:text-6xl">
 				A quiet home for technical projects, experiments, and case studies.
 			</h1>
-			<p class="mt-6 max-w-2xl text-lg text-[var(--text-muted)]">
+			<p class="mt-5 max-w-2xl text-base text-[var(--text-muted)] sm:mt-6 sm:text-lg">
 				TechZeph is being rebuilt as a personal portfolio: practical, fast, and flexible enough
 				to hold finished work, prototypes, UI explorations, notes, and future media.
 			</p>
@@ -65,7 +65,7 @@ const focusItems = [
 		</aside>
 	</section>
 
-	<section class="border-y border-[var(--border-subtle)] bg-[var(--surface-page-muted)] py-16">
+	<section class="border-y border-[var(--border-subtle)] bg-[var(--surface-page-muted)] py-12 sm:py-16">
 		<div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
 			<SectionHeader
 				kicker="/work"
@@ -79,10 +79,10 @@ const focusItems = [
 		</div>
 	</section>
 
-	<section id="focus" class="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.8fr_1fr] lg:px-8">
+	<section id="focus" class="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[0.8fr_1fr] lg:gap-10 lg:px-8">
 		<div>
 			<p class="font-mono text-sm text-[var(--accent-primary)]">/focus</p>
-			<h2 class="mt-3 text-3xl font-semibold tracking-normal">Built for review, then iteration.</h2>
+			<h2 class="mt-3 text-2xl font-semibold tracking-normal sm:text-3xl">Built for review, then iteration.</h2>
 		</div>
 		<div class="space-y-4">
 			{
@@ -98,11 +98,11 @@ const focusItems = [
 		</div>
 	</section>
 
-	<section id="contact" class="bg-[var(--surface-inverse)] py-16 text-[var(--text-inverse)]">
+	<section id="contact" class="bg-[var(--surface-inverse)] py-12 text-[var(--text-inverse)] sm:py-16">
 		<div class="mx-auto flex max-w-6xl flex-col gap-6 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
 			<div class="max-w-2xl">
 				<p class="font-mono text-sm text-[var(--accent-soft)]">/contact</p>
-				<h2 class="mt-3 text-3xl font-semibold tracking-normal">A simple starting point.</h2>
+				<h2 class="mt-3 text-2xl font-semibold tracking-normal sm:text-3xl">A simple starting point.</h2>
 				<p class="mt-4 text-[var(--text-inverse-muted)]">
 					This page is ready for review. The final voice, project details, and contact links can
 					be tightened as the rest of the portfolio takes shape.
@@ -110,7 +110,7 @@ const focusItems = [
 			</div>
 			<a
 				href="mailto:hello@techzeph.co.uk"
-				class="inline-flex items-center justify-center rounded-md border border-[var(--border-inverse)] bg-[var(--button-inverse-bg)] px-5 py-3 text-sm font-semibold text-[var(--button-inverse-text)] shadow-[var(--shadow-panel)] transition hover:-translate-y-0.5 hover:bg-[var(--button-inverse-bg-hover)] hover:shadow-[var(--shadow-interactive)]"
+				class="inline-flex items-center justify-center rounded-md border border-[var(--border-inverse)] bg-[var(--button-inverse-bg)] px-5 py-3 text-sm font-semibold text-[var(--button-inverse-text)] shadow-[var(--shadow-panel)] transition hover:-translate-y-0.5 hover:bg-[var(--button-inverse-bg-hover)] hover:shadow-[var(--shadow-interactive)] sm:w-auto"
 			>
 				hello@techzeph.co.uk
 			</a>
