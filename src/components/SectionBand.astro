@@ -1,0 +1,19 @@
+---
+interface Props {
+	tone?: "default" | "muted" | "inverse";
+	class?: string;
+	[key: string]: unknown;
+}
+
+const { tone = "muted", class: className = "", ...attrs } = Astro.props;
+
+const tones = {
+	default: "",
+	muted: "border-y border-[var(--border-subtle)] bg-[var(--surface-page-muted)]",
+	inverse: "bg-[var(--surface-inverse)] text-[var(--text-inverse)]",
+};
+---
+
+<section {...attrs} class:list={[tones[tone], "py-12 sm:py-16", className]}>
+	<slot />
+</section>

@@ -1,7 +1,9 @@
 ---
 import ButtonLink from "../components/ButtonLink.astro";
 import Layout from "../layouts/Layout.astro";
+import Panel from "../components/Panel.astro";
 import ProjectCard from "../components/ProjectCard.astro";
+import SectionBand from "../components/SectionBand.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import { projects } from "../data/projects";
 
@@ -32,10 +34,7 @@ const focusItems = [
 			</div>
 		</div>
 
-		<aside
-			class="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-panel)] p-5 shadow-[var(--shadow-panel)]"
-			aria-label="Current site status"
-		>
+		<Panel as="aside" aria-label="Current site status">
 			<div class="flex items-center justify-between gap-4 border-b border-[var(--border-subtle)] pb-4">
 				<p class="font-mono text-sm text-[var(--accent-primary)]">status</p>
 				<span class="rounded-full bg-[var(--surface-panel-muted)] px-3 py-1 font-mono text-xs text-[var(--text-muted)]">
@@ -62,10 +61,10 @@ const focusItems = [
 					</p>
 				</div>
 			</div>
-		</aside>
+		</Panel>
 	</section>
 
-	<section class="border-y border-[var(--border-subtle)] bg-[var(--surface-page-muted)] py-12 sm:py-16">
+	<SectionBand>
 		<div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
 			<SectionHeader
 				kicker="/work"
@@ -77,7 +76,7 @@ const focusItems = [
 				{projects.map((project) => <ProjectCard project={project} />)}
 			</div>
 		</div>
-	</section>
+	</SectionBand>
 
 	<section id="focus" class="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[0.8fr_1fr] lg:gap-10 lg:px-8">
 		<div>
@@ -87,18 +86,18 @@ const focusItems = [
 		<div class="space-y-4">
 			{
 				focusItems.map((item, index) => (
-					<div class="flex gap-4 rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-panel)] p-4 shadow-[var(--shadow-panel)]">
+					<Panel class="flex gap-4" padding="sm">
 						<span class="font-mono text-sm text-[var(--accent-primary)]">
 							{String(index + 1).padStart(2, "0")}
 						</span>
 						<p class="text-[var(--text-muted)]">{item}</p>
-					</div>
+					</Panel>
 				))
 			}
 		</div>
 	</section>
 
-	<section id="contact" class="bg-[var(--surface-inverse)] py-12 text-[var(--text-inverse)] sm:py-16">
+	<SectionBand id="contact" tone="inverse">
 		<div class="mx-auto flex max-w-6xl flex-col gap-6 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
 			<div class="max-w-2xl">
 				<p class="font-mono text-sm text-[var(--accent-soft)]">/contact</p>
@@ -115,5 +114,5 @@ const focusItems = [
 				hello@techzeph.co.uk
 			</a>
 		</div>
-	</section>
+	</SectionBand>
 </Layout>

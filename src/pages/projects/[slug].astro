@@ -1,7 +1,11 @@
 ---
 import ButtonLink from "../../components/ButtonLink.astro";
+import InfoCard from "../../components/InfoCard.astro";
 import PageIntro from "../../components/PageIntro.astro";
+import Panel from "../../components/Panel.astro";
+import SectionBand from "../../components/SectionBand.astro";
 import StatusBadge from "../../components/StatusBadge.astro";
+import TagList from "../../components/TagList.astro";
 import Layout from "../../layouts/Layout.astro";
 import { projects } from "../../data/projects";
 
@@ -25,26 +29,18 @@ const { project } = Astro.props;
 		description={project.summary}
 	/>
 
-	<section class="border-y border-[var(--border-subtle)] bg-[var(--surface-page-muted)] py-16">
+	<SectionBand>
 		<div class="mx-auto grid max-w-6xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.7fr_1fr] lg:px-8">
-			<aside class="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-panel)] p-5 shadow-[var(--shadow-panel)]">
+			<Panel as="aside">
 				<div class="flex items-start justify-between gap-4">
 					<p class="font-mono text-sm text-[var(--text-muted)]">{project.type}</p>
 					<StatusBadge status={project.status} />
 				</div>
-				<div class="mt-6 flex flex-wrap gap-2">
-					{
-						project.tags.map((tag) => (
-							<span class="rounded-md border border-[var(--tag-border)] px-2.5 py-1 font-mono text-xs text-[var(--tag-text)]">
-								{tag}
-							</span>
-						))
-					}
-				</div>
+				<TagList tags={project.tags} class="mt-6" />
 				<div class="mt-8">
 					<ButtonLink href="/projects" variant="secondary">Back to projects</ButtonLink>
 				</div>
-			</aside>
+			</Panel>
 
 			<div class="space-y-4">
 				{
@@ -54,13 +50,10 @@ const { project } = Astro.props;
 						["What I learned", project.learned],
 						["What I would improve next", project.next],
 					].map(([title, body]) => (
-						<section class="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-panel)] p-5 shadow-[var(--shadow-panel)]">
-							<h2 class="text-lg font-semibold">{title}</h2>
-							<p class="mt-2 text-[var(--text-muted)]">{body}</p>
-						</section>
+						<InfoCard title={title}>{body}</InfoCard>
 					))
 				}
 			</div>
 		</div>
-	</section>
+	</SectionBand>
 </Layout>

@@ -1,6 +1,8 @@
 ---
 import ButtonLink from "../components/ButtonLink.astro";
 import PageIntro from "../components/PageIntro.astro";
+import Panel from "../components/Panel.astro";
+import SectionBand from "../components/SectionBand.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -14,9 +16,9 @@ import Layout from "../layouts/Layout.astro";
 		description="This page keeps contact options clear while the rest of the portfolio content is still being shaped."
 	/>
 
-	<section class="border-y border-[var(--border-subtle)] bg-[var(--surface-page-muted)] py-16">
+	<SectionBand>
 		<div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-			<div class="max-w-xl rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-panel)] p-5 shadow-[var(--shadow-panel)]">
+			<Panel class="max-w-xl">
 				<h2 class="text-xl font-semibold">Contact details</h2>
 				<p class="mt-3 text-[var(--text-muted)]">
 					Replace this with the preferred public contact route when ready.
@@ -24,7 +26,7 @@ import Layout from "../layouts/Layout.astro";
 				<div class="mt-6">
 					<ButtonLink href="mailto:hello@techzeph.co.uk">hello@techzeph.co.uk</ButtonLink>
 				</div>
-			</div>
+			</Panel>
 		</div>
-	</section>
+	</SectionBand>
 </Layout>

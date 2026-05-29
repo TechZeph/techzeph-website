@@ -1,0 +1,26 @@
+---
+interface Props {
+	as?: "article" | "aside" | "div" | "section";
+	class?: string;
+	padding?: "sm" | "md";
+	[key: string]: unknown;
+}
+
+const { as: Tag = "div", class: className = "", padding = "md", ...attrs } = Astro.props;
+
+const paddingClasses = {
+	sm: "p-4",
+	md: "p-5",
+};
+---
+
+<Tag
+	{...attrs}
+	class:list={[
+		"rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-panel)] shadow-[var(--shadow-panel)]",
+		paddingClasses[padding],
+		className,
+	]}
+>
+	<slot />
+</Tag>

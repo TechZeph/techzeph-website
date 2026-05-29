@@ -2,6 +2,7 @@
 import ButtonLink from "../components/ButtonLink.astro";
 import PageIntro from "../components/PageIntro.astro";
 import ProjectCard from "../components/ProjectCard.astro";
+import SectionBand from "../components/SectionBand.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import StatusBadge from "../components/StatusBadge.astro";
 import Layout from "../layouts/Layout.astro";
@@ -18,7 +19,7 @@ import { projects } from "../data/projects";
 		description="A controlled area for reusable components, theme previews, and future interaction experiments. The main portfolio should stay calmer than this space."
 	/>
 
-	<section class="border-y border-[var(--border-subtle)] bg-[var(--surface-page-muted)] py-16">
+	<SectionBand>
 		<div class="mx-auto space-y-12 px-4 sm:px-6 lg:max-w-6xl lg:px-8">
 			<div>
 				<SectionHeader
@@ -43,5 +44,5 @@ import { projects } from "../data/projects";
 				<ProjectCard project={projects[0]} />
 			</div>
 		</div>
-	</section>
+	</SectionBand>
 </Layout>

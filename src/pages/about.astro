@@ -1,6 +1,8 @@
 ---
+import InfoCard from "../components/InfoCard.astro";
 import PageIntro from "../components/PageIntro.astro";
 import SectionHeader from "../components/SectionHeader.astro";
+import SectionBand from "../components/SectionBand.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -14,7 +16,7 @@ import Layout from "../layouts/Layout.astro";
 		description="This page is a placeholder for a short personal introduction, background, current focus, and the kind of work that belongs on the site."
 	/>
 
-	<section class="border-y border-[var(--border-subtle)] bg-[var(--surface-page-muted)] py-16">
+	<SectionBand>
 		<div class="mx-auto grid max-w-6xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.8fr_1fr] lg:px-8">
 			<SectionHeader
 				kicker="/profile"
@@ -22,21 +24,15 @@ import Layout from "../layouts/Layout.astro";
 				description="Public copy should stay modest and easy to replace until the final voice is written."
 			/>
 			<div class="space-y-4">
-				<div class="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-panel)] p-5 shadow-[var(--shadow-panel)]">
-					<h2 class="text-lg font-semibold">Current focus</h2>
-					<p class="mt-2 text-[var(--text-muted)]">
-						Building the core portfolio, documenting projects clearly, and keeping space for future
-						cyber, development, AI, UI, and creative work.
-					</p>
-				</div>
-				<div class="rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-panel)] p-5 shadow-[var(--shadow-panel)]">
-					<h2 class="text-lg font-semibold">Working style</h2>
-					<p class="mt-2 text-[var(--text-muted)]">
-						Project-based, practical, iterative, and careful about separating shipped work from
-						prototypes, concepts, and learning projects.
-					</p>
-				</div>
+				<InfoCard title="Current focus">
+					Building the core portfolio, documenting projects clearly, and keeping space for future
+					cyber, development, AI, UI, and creative work.
+				</InfoCard>
+				<InfoCard title="Working style">
+					Project-based, practical, iterative, and careful about separating shipped work from
+					prototypes, concepts, and learning projects.
+				</InfoCard>
 			</div>
 		</div>
-	</section>
+	</SectionBand>
 </Layout>
