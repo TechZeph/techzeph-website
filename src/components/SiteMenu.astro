@@ -1,4 +1,6 @@
 ---
+import { Menu } from "@lucide/astro";
+
 const hubPages = [
 	{
 		href: "/about",
@@ -31,6 +33,7 @@ const hubPages = [
 		aria-haspopup="menu"
 		aria-expanded="false"
 	>
+		<Menu size={15} strokeWidth={2.2} aria-hidden="true" />
 		<span>Menu</span>
 		<span aria-hidden="true" class="hidden text-[var(--accent-primary)] sm:inline">/</span>
 		<span class="hidden md:inline">Hubs</span>

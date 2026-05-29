@@ -1,4 +1,5 @@
 ---
+import { Home } from "@lucide/astro";
 import SiteMenu from "./SiteMenu.astro";
 import ThemeMenu from "./ThemeMenu.astro";
 ---
@@ -9,8 +10,8 @@ import ThemeMenu from "./ThemeMenu.astro";
 		aria-label="Primary navigation"
 	>
 		<a href="/" class="group inline-flex items-center gap-2 text-sm font-semibold tracking-normal">
-			<span class="grid size-8 place-items-center rounded-md border border-[var(--border-subtle)] bg-[var(--surface-panel)] font-mono text-xs text-[var(--accent-primary)] shadow-[var(--shadow-panel)]">
-				TZ
+			<span class="grid size-8 place-items-center rounded-md border border-[var(--border-subtle)] bg-[var(--surface-panel)] text-[var(--accent-primary)] shadow-[var(--shadow-panel)]">
+				<Home size={15} strokeWidth={2.2} aria-hidden="true" />
 			</span>
 			<span>TechZeph</span>
 		</a>
