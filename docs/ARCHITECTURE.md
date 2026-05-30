@@ -108,7 +108,7 @@ Avoid using raw palette names or hard-coded hex values inside page/component mar
 
 ## Project Data Flow
 
-Project summaries currently live in `src/data/projects.ts`.
+Project summaries are normalized through `src/data/projects.ts`, but the actual project entries come from generated GitHub data.
 
 Use this data for:
 
@@ -117,7 +117,9 @@ Use this data for:
 - `/projects/[slug]` case-study pages
 - UI preview examples
 
-Move to Astro content collections later when project or blog content becomes substantial enough to need Markdown, schemas, or richer publishing workflows.
+Do not add manual project placeholders to `src/data/projects.ts`. Add GitHub topics or `.portfolio/project.json` metadata to the source repo, then refresh `src/data/github-projects.generated.ts` with `pnpm sync:github-projects`.
+
+Move long-form project or blog content to Astro content collections later when the content becomes substantial enough to need Markdown, schemas, or richer publishing workflows.
 
 ## Working Rules
 

@@ -2,8 +2,8 @@
 // Do not edit it by hand. Edit GitHub repo topics or `.portfolio/project.json` instead.
 export const githubProjects = [
 	{
-		"slug": "techzeph-github-io",
-		"title": "Techzeph.Github.Io",
+		"slug": "techzeph-website",
+		"title": "Techzeph Website",
 		"status": "Built",
 		"type": "Astro",
 		"summary": "Website Hosting",
@@ -20,10 +20,10 @@ export const githubProjects = [
 		"currentState": "Public GitHub repository. Last pushed 2026-05-30.",
 		"learned": "Add richer project notes in `.portfolio/project.json` inside the source repository.",
 		"next": "Add project-specific metadata, screenshots, and a fuller case-study narrative.",
-		"repositoryUrl": "https://github.com/TechZeph/techzeph.github.io",
+		"repositoryUrl": "https://github.com/TechZeph/techzeph-website",
 		"github": {
-			"name": "techzeph.github.io",
-			"fullName": "TechZeph/techzeph.github.io",
+			"name": "techzeph-website",
+			"fullName": "TechZeph/techzeph-website",
 			"defaultBranch": "main",
 			"language": "Astro",
 			"topics": [
@@ -36,8 +36,8 @@ export const githubProjects = [
 			],
 			"stars": 0,
 			"forks": 0,
-			"updatedAt": "2026-05-30T12:18:55Z",
-			"pushedAt": "2026-05-30T11:29:40Z",
+			"updatedAt": "2026-05-30T12:58:48Z",
+			"pushedAt": "2026-05-30T12:58:44Z",
 			"private": false,
 			"archived": false
 		}

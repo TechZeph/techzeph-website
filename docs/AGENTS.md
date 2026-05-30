@@ -273,7 +273,9 @@ Set `"include": true` in `.portfolio/project.json` to include a repo even if it 
 
 Generated files are owned by the sync script. Do not hand-edit `src/data/github-projects.generated.ts`; edit GitHub repo topics or `.portfolio/project.json` instead.
 
-Manual placeholder or planned projects may still live in `src/data/projects.ts`. Pages and components should consume the normalized `Project` type from `src/data/projects.ts`.
+Project entries should come from GitHub-synced data only. Do not add manual placeholder or planned project entries to `src/data/projects.ts`; add GitHub topics or `.portfolio/project.json` metadata to the source repo instead.
+
+Pages and components should consume the normalized `Project` type from `src/data/projects.ts`.
 
 ---
 
