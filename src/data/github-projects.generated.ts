@@ -3,28 +3,24 @@
 export const githubProjects = [
 	{
 		"slug": "techzeph-website",
-		"title": "Techzeph Website",
+		"title": "TechZeph Portfolio",
 		"status": "Built",
-		"type": "Astro",
-		"summary": "Website Hosting",
+		"type": "Personal portfolio",
+		"summary": "A static Astro portfolio that pulls project metadata from GitHub and presents repos as lightweight project pages.",
 		"tags": [
 			"Astro",
-			"astro",
-			"portfolio",
-			"tailwindcss",
-			"techzeph",
-			"typescript",
-			"web-development"
+			"Tailwind CSS",
+			"GitHub API",
+			"Static site",
+			"Portfolio"
 		],
 		"skills": [
-			"Astro",
-			"JavaScript",
-			"CSS",
-			"TypeScript",
-			"Portfolio systems",
+			"Astro routing",
+			"Static site generation",
 			"Tailwind CSS",
-			"Techzeph",
-			"Web development"
+			"GitHub API integration",
+			"Generated project data",
+			"Responsive UI components"
 		],
 		"complexity": {
 			"level": "Layered",
@@ -33,12 +29,13 @@ export const githubProjects = [
 				"4 detected languages",
 				"6 GitHub topics",
 				"1,180 KB repository size"
-			]
+			],
+			"notes": "The project combines static Astro routes, generated GitHub data, theme state, reusable components, and documentation for future agent workflows."
 		},
-		"role": "Project owner",
-		"currentState": "Public GitHub repository. Last pushed 2026-05-30.",
-		"learned": "Add richer project notes in `.portfolio/project.json` inside the source repository.",
-		"next": "Add project-specific metadata, screenshots, and a fuller case-study narrative.",
+		"role": "Solo build with AI-assisted iteration",
+		"currentState": "The site has core routes, theme controls, shared layout components, GitHub-synced project data, and documentation templates in place.",
+		"learned": "Keeping project data normalized makes it easier to combine objective GitHub signals with richer human-written project context.",
+		"next": "Add richer copy, screenshots, live project links, and more source repos with `.portfolio/project.json` metadata.",
 		"repositoryUrl": "https://github.com/TechZeph/techzeph-website",
 		"github": {
 			"name": "techzeph-website",
@@ -48,23 +45,23 @@ export const githubProjects = [
 			"languages": [
 				{
 					"name": "Astro",
-					"bytes": 32707,
-					"percentage": 65.2
+					"bytes": 35002,
+					"percentage": 62.6
 				},
 				{
 					"name": "JavaScript",
-					"bytes": 7570,
-					"percentage": 15.1
+					"bytes": 10145,
+					"percentage": 18.1
 				},
 				{
 					"name": "CSS",
 					"bytes": 7498,
-					"percentage": 14.9
+					"percentage": 13.4
 				},
 				{
 					"name": "TypeScript",
-					"bytes": 2389,
-					"percentage": 4.8
+					"bytes": 3313,
+					"percentage": 5.9
 				}
 			],
 			"topics": [
@@ -78,8 +75,8 @@ export const githubProjects = [
 			"sizeKb": 1180,
 			"stars": 0,
 			"forks": 0,
-			"updatedAt": "2026-05-30T13:02:27Z",
-			"pushedAt": "2026-05-30T13:02:24Z",
+			"updatedAt": "2026-05-30T13:17:54Z",
+			"pushedAt": "2026-05-30T13:17:51Z",
 			"private": false,
 			"archived": false
 		}
