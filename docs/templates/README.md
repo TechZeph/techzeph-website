@@ -14,3 +14,4 @@ The project sync script reads this file during `pnpm sync:github-projects` and m
 
 Repos can also be included by adding one of the configured GitHub topics, such as `portfolio`, `case-study`, or `featured`.
 
+Use `PORTFOLIO_PROJECT_METADATA.md` when asking an agent to populate this file in another repo.
