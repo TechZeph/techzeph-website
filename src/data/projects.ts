@@ -1,4 +1,34 @@
-export const projects = [
+import { githubProjects } from "./github-projects.generated";
+
+export interface Project {
+	slug: string;
+	title: string;
+	status: string;
+	type: string;
+	summary: string;
+	tags: readonly string[];
+	role: string;
+	currentState: string;
+	learned: string;
+	next: string;
+	repositoryUrl?: string;
+	homepageUrl?: string;
+	github?: {
+		name: string;
+		fullName: string;
+		defaultBranch: string;
+		language: string;
+		topics: readonly string[];
+		stars: number;
+		forks: number;
+		updatedAt: string;
+		pushedAt: string;
+		private: boolean;
+		archived: boolean;
+	};
+}
+
+const manualProjects = [
 	{
 		slug: "portfolio-foundation",
 		title: "Portfolio foundation",
@@ -41,6 +71,6 @@ export const projects = [
 		learned: "Not started yet.",
 		next: "Add examples for buttons, cards, badges, panels, theme previews, and layout patterns.",
 	},
-] as const;
+] as const satisfies readonly Project[];
 
-export type Project = (typeof projects)[number];
+export const projects = [...githubProjects, ...manualProjects] satisfies readonly Project[];

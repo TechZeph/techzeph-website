@@ -1,0 +1,13 @@
+{
+  "title": "Project Title",
+  "status": "Built",
+  "type": "Project type",
+  "summary": "One or two clear sentences about what this project is and why it exists.",
+  "role": "Solo build",
+  "tags": ["Primary tech", "Secondary tech", "Project type"],
+  "currentState": "Describe what currently exists, what is shipped, or what is still a prototype.",
+  "learned": "Describe the main technical, design, product, or workflow lesson from the project.",
+  "next": "Describe the most useful next improvement.",
+  "include": true
+}
+
