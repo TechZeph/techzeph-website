@@ -263,6 +263,8 @@ Example:
   "summary": "A fast Astro portfolio for projects, case studies, UI experiments, and writing.",
   "role": "Solo build with AI-assisted iteration",
   "tags": ["Astro", "Tailwind", "Static site"],
+  "skills": ["Astro routing", "Static site generation", "Tailwind CSS"],
+  "complexityNotes": "Uses static Astro routes, generated GitHub data, and reusable UI components.",
   "currentState": "Homepage, theme system, layout, and project routes are in place.",
   "learned": "Semantic theme tokens made future experiments easier.",
   "next": "Add richer case-study content and screenshots."

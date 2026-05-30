@@ -17,6 +17,15 @@ export function getStaticPaths() {
 }
 
 const { project } = Astro.props;
+const languages = project.github?.languages ?? [];
+const skills = project.skills ?? [];
+const complexitySignals = project.complexity?.signals ?? [];
+const repositorySignals = [
+	project.github?.sizeKb ? `${project.github.sizeKb.toLocaleString("en-GB")} KB repository size` : "",
+	project.github ? `${project.github.stars} star${project.github.stars === 1 ? "" : "s"}` : "",
+	project.github ? `${project.github.forks} fork${project.github.forks === 1 ? "" : "s"}` : "",
+	project.github?.pushedAt ? `Last pushed ${new Date(project.github.pushedAt).toISOString().slice(0, 10)}` : "",
+].filter(Boolean);
 ---
 
 <Layout
@@ -37,12 +46,63 @@ const { project } = Astro.props;
 					<StatusBadge status={project.status} />
 				</div>
 				<TagList tags={project.tags} class="mt-6" />
-				<div class="mt-8">
+				<div class="mt-8 flex flex-col gap-3">
 					<ButtonLink href="/projects" variant="secondary">Back to projects</ButtonLink>
+					{project.repositoryUrl && <ButtonLink href={project.repositoryUrl} variant="secondary">GitHub repo</ButtonLink>}
+					{project.homepageUrl && <ButtonLink href={project.homepageUrl} variant="secondary">Live site</ButtonLink>}
 				</div>
 			</Panel>
 
 			<div class="space-y-4">
+				{
+					skills.length > 0 && (
+						<InfoCard title="Skills and tooling">
+							<TagList tags={skills} />
+						</InfoCard>
+					)
+				}
+				{
+					languages.length > 0 && (
+						<InfoCard title="Detected languages">
+							<ul class="space-y-2">
+								{languages.map((language) => (
+									<li class="flex items-center justify-between gap-4 border-b border-[var(--border-subtle)] pb-2 last:border-b-0 last:pb-0">
+										<span>{language.name}</span>
+										<span class="font-mono text-sm">{language.percentage}%</span>
+									</li>
+								))}
+							</ul>
+						</InfoCard>
+					)
+				}
+				{
+					project.complexity && (
+						<InfoCard title="Estimated complexity">
+							<div class="space-y-3">
+								<p>
+									<span class="font-semibold text-[var(--text-primary)]">{project.complexity.level}</span>
+									{" "}
+									based on public GitHub repository signals.
+								</p>
+								{project.complexity.notes && <p>{project.complexity.notes}</p>}
+								{complexitySignals.length > 0 && (
+									<ul class="list-disc space-y-1 pl-5">
+										{complexitySignals.map((signal) => <li>{signal}</li>)}
+									</ul>
+								)}
+							</div>
+						</InfoCard>
+					)
+				}
+				{
+					repositorySignals.length > 0 && (
+						<InfoCard title="Repository signals">
+							<ul class="list-disc space-y-1 pl-5">
+								{repositorySignals.map((signal) => <li>{signal}</li>)}
+							</ul>
+						</InfoCard>
+					)
+				}
 				{
 					[
 						["My role", project.role],

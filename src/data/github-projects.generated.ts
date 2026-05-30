@@ -16,6 +16,25 @@ export const githubProjects = [
 			"typescript",
 			"web-development"
 		],
+		"skills": [
+			"Astro",
+			"JavaScript",
+			"CSS",
+			"TypeScript",
+			"Portfolio systems",
+			"Tailwind CSS",
+			"Techzeph",
+			"Web development"
+		],
+		"complexity": {
+			"level": "Layered",
+			"score": 6,
+			"signals": [
+				"4 detected languages",
+				"6 GitHub topics",
+				"1,180 KB repository size"
+			]
+		},
 		"role": "Project owner",
 		"currentState": "Public GitHub repository. Last pushed 2026-05-30.",
 		"learned": "Add richer project notes in `.portfolio/project.json` inside the source repository.",
@@ -26,6 +45,28 @@ export const githubProjects = [
 			"fullName": "TechZeph/techzeph-website",
 			"defaultBranch": "main",
 			"language": "Astro",
+			"languages": [
+				{
+					"name": "Astro",
+					"bytes": 32707,
+					"percentage": 65.2
+				},
+				{
+					"name": "JavaScript",
+					"bytes": 7570,
+					"percentage": 15.1
+				},
+				{
+					"name": "CSS",
+					"bytes": 7498,
+					"percentage": 14.9
+				},
+				{
+					"name": "TypeScript",
+					"bytes": 2389,
+					"percentage": 4.8
+				}
+			],
 			"topics": [
 				"astro",
 				"portfolio",
@@ -34,10 +75,11 @@ export const githubProjects = [
 				"typescript",
 				"web-development"
 			],
+			"sizeKb": 1180,
 			"stars": 0,
 			"forks": 0,
-			"updatedAt": "2026-05-30T12:58:48Z",
-			"pushedAt": "2026-05-30T12:58:44Z",
+			"updatedAt": "2026-05-30T13:02:27Z",
+			"pushedAt": "2026-05-30T13:02:24Z",
 			"private": false,
 			"archived": false
 		}

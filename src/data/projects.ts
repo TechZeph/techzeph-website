@@ -7,6 +7,13 @@ export interface Project {
 	type: string;
 	summary: string;
 	tags: readonly string[];
+	skills?: readonly string[];
+	complexity?: {
+		level: string;
+		score: number;
+		signals: readonly string[];
+		notes?: string;
+	};
 	role: string;
 	currentState: string;
 	learned: string;
@@ -18,7 +25,13 @@ export interface Project {
 		fullName: string;
 		defaultBranch: string;
 		language: string;
+		languages?: readonly {
+			name: string;
+			bytes: number;
+			percentage: number;
+		}[];
 		topics: readonly string[];
+		sizeKb?: number;
 		stars: number;
 		forks: number;
 		updatedAt: string;

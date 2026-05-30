@@ -5,9 +5,10 @@
   "summary": "One or two clear sentences about what this project is and why it exists.",
   "role": "Solo build",
   "tags": ["Primary tech", "Secondary tech", "Project type"],
+  "skills": ["Skill or tool", "Workflow area", "Technical concept"],
+  "complexityNotes": "Optional short note about what makes the project simple, moderate, or complex.",
   "currentState": "Describe what currently exists, what is shipped, or what is still a prototype.",
   "learned": "Describe the main technical, design, product, or workflow lesson from the project.",
   "next": "Describe the most useful next improvement.",
   "include": true
 }
-

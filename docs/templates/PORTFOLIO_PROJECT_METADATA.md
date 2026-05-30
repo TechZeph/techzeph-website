@@ -20,6 +20,8 @@ GitHub already provides:
 - description
 - topics
 - primary language
+- language breakdown
+- repository size
 - updated dates
 - star and fork counts
 
@@ -31,6 +33,10 @@ The JSON should provide:
 - project role/context
 - case-study notes
 - useful tags for the website UI
+- optional skill/tooling notes
+- optional complexity notes
+
+The portfolio site also estimates skills, languages, and complexity from GitHub repo data. Use the JSON fields to improve or clarify those signals, not to invent work that is not visible in the repo.
 
 ## Field Guide
 
@@ -115,6 +121,32 @@ Example:
 
 Do not duplicate every GitHub topic unless each one is useful to a portfolio visitor.
 
+### `skills`
+
+Optional. Use this when the project should show a more useful skills/tooling list than GitHub topics alone can provide.
+
+Good:
+
+```json
+"skills": ["Astro routing", "Static site generation", "Tailwind CSS", "GitHub API integration"]
+```
+
+Prefer concrete skills, frameworks, workflows, and technical concepts. Do not list broad traits like `hard working` or `problem solving`.
+
+If omitted, the portfolio sync script infers skills from detected languages and GitHub topics.
+
+### `complexityNotes`
+
+Optional. Add a short explanation of complexity that GitHub cannot infer.
+
+Good:
+
+```json
+"complexityNotes": "The project combines static Astro routes, generated GitHub data, theme state, and reusable UI components."
+```
+
+The site will still calculate an estimated complexity level from public repo signals such as language count, repo size, topic count, and whether a live site is linked.
+
 ### `currentState`
 
 Say what currently exists.
@@ -169,6 +201,8 @@ Most repos should use GitHub topics instead:
   "summary": "A static Astro portfolio that collects projects, case studies, interface experiments, and future writing in one place.",
   "role": "Solo build with AI-assisted iteration",
   "tags": ["Astro", "Tailwind", "Static site", "Portfolio"],
+  "skills": ["Astro routing", "Static site generation", "Tailwind CSS", "GitHub API integration"],
+  "complexityNotes": "The project combines static Astro routes, generated GitHub data, theme state, and reusable UI components.",
   "currentState": "Homepage, project routes, theme tokens, and the GitHub project sync workflow are in place.",
   "learned": "Keeping project data normalized early makes it easier to add generated GitHub projects without rewriting page components.",
   "next": "Add richer case-study content, screenshots, and clearer public copy for each project.",
@@ -184,7 +218,8 @@ Before committing `.portfolio/project.json` in another repo:
 - Prefer clear, modest copy over promotional copy.
 - Keep the title human-readable.
 - Keep tags useful for portfolio visitors.
+- Use `skills` to clarify useful technical skills that are not obvious from GitHub topics.
+- Use `complexityNotes` only for factual implementation detail.
 - Do not invent features, metrics, users, or outcomes.
 - Make sure the file is valid JSON.
 - Run the portfolio repo's `pnpm sync:github-projects` afterward if checking the result locally.
-

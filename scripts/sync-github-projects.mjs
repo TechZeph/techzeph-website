@@ -100,6 +100,13 @@ async function fetchProjectMetadata(repo) {
 	return JSON.parse(decoded);
 }
 
+async function fetchLanguages(repo) {
+	const url = `https://api.github.com/repos/${repo.owner.login}/${repo.name}/languages`;
+	const languages = await fetchJson(url);
+
+	return languages && typeof languages === "object" && !Array.isArray(languages) ? languages : {};
+}
+
 function slugify(value) {
 	return value
 		.toLowerCase()
@@ -117,6 +124,80 @@ function compactTags(tags) {
 	return [...new Set(tags.filter(Boolean).map(String))].slice(0, 8);
 }
 
+function compactSkills(skills) {
+	return [...new Set(skills.filter(Boolean).map(String))].slice(0, 12);
+}
+
+function languageBreakdown(languages) {
+	const total = Object.values(languages).reduce((sum, value) => sum + Number(value || 0), 0);
+
+	return Object.entries(languages)
+		.sort(([, a], [, b]) => Number(b) - Number(a))
+		.map(([name, bytes]) => ({
+			name,
+			bytes: Number(bytes),
+			percentage: total > 0 ? Math.round((Number(bytes) / total) * 1000) / 10 : 0,
+		}));
+}
+
+function inferSkills(topics, languages) {
+	const topicSkills = {
+		astro: "Astro",
+		tailwindcss: "Tailwind CSS",
+		typescript: "TypeScript",
+		javascript: "JavaScript",
+		"web-development": "Web development",
+		portfolio: "Portfolio systems",
+		"static-site": "Static sites",
+		automation: "Automation",
+		"ui-components": "UI components",
+	};
+
+	return compactSkills([
+		...languages.map((language) => language.name),
+		...topics.map((topic) => topicSkills[topic] || titleize(topic)),
+	]);
+}
+
+function estimateComplexity(repo, topics, languages) {
+	const languageCount = languages.length;
+	const sizeKb = Number(repo.size || 0);
+	let score = 1;
+	const signals = [];
+
+	if (languageCount > 0) {
+		signals.push(`${languageCount} detected language${languageCount === 1 ? "" : "s"}`);
+	}
+
+	if (languageCount >= 4) score += 2;
+	else if (languageCount >= 2) score += 1;
+
+	if (topics.length >= 6) score += 1;
+	if (sizeKb >= 1000) score += 2;
+	else if (sizeKb >= 250) score += 1;
+	if (repo.homepage) score += 1;
+
+	if (topics.length > 0) {
+		signals.push(`${topics.length} GitHub topic${topics.length === 1 ? "" : "s"}`);
+	}
+
+	if (sizeKb > 0) {
+		signals.push(`${sizeKb.toLocaleString("en-GB")} KB repository size`);
+	}
+
+	if (repo.homepage) {
+		signals.push("live site or homepage linked");
+	}
+
+	const level = score >= 5 ? "Layered" : score >= 3 ? "Moderate" : "Focused";
+
+	return {
+		level,
+		score,
+		signals,
+	};
+}
+
 function statusFromTopics(topics) {
 	if (topics.includes("prototype")) return "Prototype";
 	if (topics.includes("concept")) return "Concept";
@@ -125,11 +206,17 @@ function statusFromTopics(topics) {
 	return "Built";
 }
 
-function normalizeProject(repo, metadata = {}) {
+function normalizeProject(repo, metadata = {}, languages = {}) {
 	const topics = Array.isArray(repo.topics) ? repo.topics.map((topic) => topic.toLowerCase()) : [];
 	const language = repo.language || "";
+	const languagesUsed = languageBreakdown(languages);
 	const updatedDate = repo.pushed_at || repo.updated_at;
 	const updatedLabel = updatedDate ? new Date(updatedDate).toISOString().slice(0, 10) : "unknown";
+	const skills = compactSkills(metadata.skills || inferSkills(topics, languagesUsed));
+	const complexity = {
+		...estimateComplexity(repo, topics, languagesUsed),
+		notes: metadata.complexityNotes || undefined,
+	};
 
 	return {
 		slug: slugify(metadata.slug || repo.name),
@@ -138,6 +225,8 @@ function normalizeProject(repo, metadata = {}) {
 		type: metadata.type || language || "GitHub project",
 		summary: metadata.summary || repo.description || "A public GitHub repository synced into the portfolio project index.",
 		tags: compactTags(metadata.tags || [language, ...topics]),
+		skills,
+		complexity,
 		role: metadata.role || "Project owner",
 		currentState:
 			metadata.currentState ||
@@ -155,7 +244,9 @@ function normalizeProject(repo, metadata = {}) {
 			fullName: repo.full_name,
 			defaultBranch: repo.default_branch,
 			language,
+			languages: languagesUsed,
 			topics,
+			sizeKb: repo.size,
 			stars: repo.stargazers_count,
 			forks: repo.forks_count,
 			updatedAt: repo.updated_at,
@@ -231,7 +322,9 @@ async function main() {
 				continue;
 			}
 
-			projects.push(normalizeProject(repo, metadata || {}));
+			const languages = await fetchLanguages(repo);
+
+			projects.push(normalizeProject(repo, metadata || {}, languages));
 		}
 
 		await writeProjects(projects);
