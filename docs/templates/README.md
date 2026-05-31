@@ -10,7 +10,13 @@ Copy `portfolio-project.json` into any GitHub repo that should provide richer po
 .portfolio/project.json
 ```
 
-The project sync script reads this file during `pnpm sync:github-projects` and merges it with GitHub repo metadata.
+Copy `portfolio-progress.json` into the same repo when you want editable progress lists:
+
+```text
+.portfolio/progress.json
+```
+
+The project sync script reads these files during `pnpm sync:github-projects` and merges them with GitHub repo metadata.
 
 Repos can also be included by adding one of the configured GitHub topics, such as `portfolio`, `case-study`, or `featured`.
 

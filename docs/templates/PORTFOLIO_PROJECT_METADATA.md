@@ -6,9 +6,13 @@ The portfolio site reads this file from each source repo:
 
 ```text
 .portfolio/project.json
+.portfolio/progress.json
 ```
 
-Copy `docs/templates/portfolio-project.json` from this repo into the source repo as `.portfolio/project.json`, then replace the placeholder values with accurate project details.
+`docs/templates/portfolio-project.json` is a reusable source template only. Do not replace its placeholder values with repo-specific project data.
+`docs/templates/portfolio-progress.json` is the matching source template for editable progress lists.
+
+When generating metadata for a repo, create `.portfolio/project.json` and `.portfolio/progress.json` in that repo, then replace the placeholder values there with accurate project details.
 
 ## Purpose
 
@@ -35,6 +39,11 @@ The JSON should provide:
 - useful tags for the website UI
 - optional skill/tooling notes
 - optional complexity notes
+
+The progress JSON should provide:
+
+- what has been done
+- what the user wants to do next
 
 The portfolio site also estimates skills, languages, and complexity from GitHub repo data. Use the JSON fields to improve or clarify those signals, not to invent work that is not visible in the repo.
 
@@ -159,26 +168,43 @@ Good:
 
 Avoid pretending planned features already exist.
 
-### `learned`
+## Progress File
 
-Describe the most useful lesson from the work.
+Progress should live in `.portfolio/progress.json`, not `.portfolio/project.json`.
 
-This can be technical, design-related, workflow-related, or product-related.
-
-Good:
+Use `done` for concrete work that already exists:
 
 ```json
-"learned": "Keeping project data normalized early makes it easier to add generated GitHub projects without rewriting page components."
+"done": [
+  "Built static Astro routes for the core portfolio pages.",
+  "Added GitHub-synced project data for public repositories."
+]
 ```
 
-### `next`
-
-Describe the most useful next improvement.
-
-Good:
+Use `next` for useful future work:
 
 ```json
-"next": "Add richer case-study content, screenshots, and clearer public copy for each project."
+"next": [
+  "Add screenshots to project detail pages.",
+  "Refine public copy across project pages."
+]
+```
+
+Keep these as short, factual bullets. They are not personal reflections or long-form case-study notes.
+
+Complete progress example:
+
+```json
+{
+  "done": [
+    "Built static Astro routes for the core portfolio pages.",
+    "Added GitHub-synced project data for public repositories."
+  ],
+  "next": [
+    "Add screenshots to project detail pages.",
+    "Refine public copy across project pages."
+  ]
+}
 ```
 
 ### `include`
@@ -201,25 +227,32 @@ Most repos should use GitHub topics instead:
   "summary": "A static Astro portfolio that collects projects, case studies, interface experiments, and future writing in one place.",
   "role": "Solo build with AI-assisted iteration",
   "tags": ["Astro", "Tailwind", "Static site", "Portfolio"],
-  "skills": ["Astro routing", "Static site generation", "Tailwind CSS", "GitHub API integration"],
+  "skills": [
+    "Astro routing",
+    "Static site generation",
+    "Tailwind CSS",
+    "GitHub API integration"
+  ],
   "complexityNotes": "The project combines static Astro routes, generated GitHub data, theme state, and reusable UI components.",
   "currentState": "Homepage, project routes, theme tokens, and the GitHub project sync workflow are in place.",
-  "learned": "Keeping project data normalized early makes it easier to add generated GitHub projects without rewriting page components.",
-  "next": "Add richer case-study content, screenshots, and clearer public copy for each project.",
   "include": true
 }
 ```
 
 ## Agent Checklist
 
-Before committing `.portfolio/project.json` in another repo:
+Before committing portfolio metadata in another repo:
 
+- Create or update `.portfolio/project.json`; do not put repo-specific values in `templates/portfolio-project.json`.
+- Create or update `.portfolio/progress.json`; do not put repo-specific values in `templates/portfolio-progress.json`.
 - Confirm the status is honest.
 - Prefer clear, modest copy over promotional copy.
 - Keep the title human-readable.
 - Keep tags useful for portfolio visitors.
 - Use `skills` to clarify useful technical skills that are not obvious from GitHub topics.
 - Use `complexityNotes` only for factual implementation detail.
+- Use `done` only for work that already exists.
+- Use `next` only for useful future work.
 - Do not invent features, metrics, users, or outcomes.
-- Make sure the file is valid JSON.
+- Make sure both files are valid JSON.
 - Run the portfolio repo's `pnpm sync:github-projects` afterward if checking the result locally.

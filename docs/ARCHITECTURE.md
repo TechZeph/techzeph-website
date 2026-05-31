@@ -117,7 +117,7 @@ Use this data for:
 - `/projects/[slug]` case-study pages
 - UI preview examples
 
-Do not add manual project placeholders to `src/data/projects.ts`. Add GitHub topics or `.portfolio/project.json` metadata to the source repo, then refresh `src/data/github-projects.generated.ts` with `pnpm sync:github-projects`.
+Do not add manual project placeholders to `src/data/projects.ts`. Add GitHub topics, `.portfolio/project.json`, or `.portfolio/progress.json` metadata to the source repo, then refresh `src/data/github-projects.generated.ts` with `pnpm sync:github-projects`.
 
 The sync script also derives useful repository detail where GitHub exposes it:
 
@@ -126,7 +126,12 @@ The sync script also derives useful repository detail where GitHub exposes it:
 - repository size, stars, forks, and pushed date
 - a conservative estimated complexity label based on public repo signals
 
-Use `.portfolio/project.json` for human context such as title, summary, role, skills overrides, complexity notes, current state, lessons, and next steps.
+Use `.portfolio/project.json` for stable human context such as title, summary, role, skills overrides, complexity notes, and current state.
+
+Use `.portfolio/progress.json` for editable progress lists:
+
+- `done` - work that already exists
+- `next` - useful future work
 
 Move long-form project or blog content to Astro content collections later when the content becomes substantial enough to need Markdown, schemas, or richer publishing workflows.
 

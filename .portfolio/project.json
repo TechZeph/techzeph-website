@@ -15,8 +15,5 @@
   ],
   "complexityNotes": "The project combines static Astro routes, generated GitHub data, theme state, reusable components, and documentation for future agent workflows.",
   "currentState": "The site has core routes, theme controls, shared layout components, GitHub-synced project data, and documentation templates in place.",
-  "learned": "Keeping project data normalized makes it easier to combine objective GitHub signals with richer human-written project context.",
-  "next": "Add richer copy, screenshots, live project links, and more source repos with `.portfolio/project.json` metadata.",
   "include": true
 }
-

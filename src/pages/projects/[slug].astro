@@ -107,12 +107,20 @@ const repositorySignals = [
 					[
 						["My role", project.role],
 						["Current state", project.currentState],
-						["What I learned", project.learned],
-						["What I would improve next", project.next],
 					].map(([title, body]) => (
 						<InfoCard title={title}>{body}</InfoCard>
 					))
 				}
+				<InfoCard title="What has been done">
+					<ul class="list-disc space-y-1 pl-5">
+						{project.done.map((item) => <li>{item}</li>)}
+					</ul>
+				</InfoCard>
+				<InfoCard title="What I want to do next">
+					<ul class="list-disc space-y-1 pl-5">
+						{project.nextSteps.map((item) => <li>{item}</li>)}
+					</ul>
+				</InfoCard>
 			</div>
 		</div>
 	</SectionBand>

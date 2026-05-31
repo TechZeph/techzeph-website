@@ -203,8 +203,8 @@ Important decisions
 Current state
 Screenshots or demo links
 GitHub/live links
-What I learned
-What I would improve next
+What has been done
+What I want to do next
 ```
 
 The first project can be the portfolio site itself, including different UI/theme experiments.
@@ -223,6 +223,7 @@ This is not browser-live data. The bridge is:
 GitHub repos
   repo topics
   optional .portfolio/project.json
+  optional .portfolio/progress.json
         ↓
 scripts/sync-github-projects.mjs
         ↓
@@ -265,17 +266,36 @@ Example:
   "tags": ["Astro", "Tailwind", "Static site"],
   "skills": ["Astro routing", "Static site generation", "Tailwind CSS"],
   "complexityNotes": "Uses static Astro routes, generated GitHub data, and reusable UI components.",
-  "currentState": "Homepage, theme system, layout, and project routes are in place.",
-  "learned": "Semantic theme tokens made future experiments easier.",
-  "next": "Add richer case-study content and screenshots."
+  "currentState": "Homepage, theme system, layout, and project routes are in place."
+}
+```
+
+For editable progress lists, add this optional file to the source repo:
+
+```text
+.portfolio/progress.json
+```
+
+Example:
+
+```json
+{
+  "done": [
+    "Built the homepage, shared layout, and project routes.",
+    "Added generated GitHub project data."
+  ],
+  "next": [
+    "Add screenshots to project detail pages.",
+    "Refine public copy across the project pages."
+  ]
 }
 ```
 
 Set `"include": true` in `.portfolio/project.json` to include a repo even if it does not have one of the configured topics.
 
-Generated files are owned by the sync script. Do not hand-edit `src/data/github-projects.generated.ts`; edit GitHub repo topics or `.portfolio/project.json` instead.
+Generated files are owned by the sync script. Do not hand-edit `src/data/github-projects.generated.ts`; edit GitHub repo topics, `.portfolio/project.json`, or `.portfolio/progress.json` instead.
 
-Project entries should come from GitHub-synced data only. Do not add manual placeholder or planned project entries to `src/data/projects.ts`; add GitHub topics or `.portfolio/project.json` metadata to the source repo instead.
+Project entries should come from GitHub-synced data only. Do not add manual placeholder or planned project entries to `src/data/projects.ts`; add GitHub topics, `.portfolio/project.json`, or `.portfolio/progress.json` metadata to the source repo instead.
 
 Pages and components should consume the normalized `Project` type from `src/data/projects.ts`.
 

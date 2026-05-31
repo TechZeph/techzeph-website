@@ -16,8 +16,8 @@ export interface Project {
 	};
 	role: string;
 	currentState: string;
-	learned: string;
-	next: string;
+	done: readonly string[];
+	nextSteps: readonly string[];
 	repositoryUrl?: string;
 	homepageUrl?: string;
 	github?: {
