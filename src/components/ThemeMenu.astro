@@ -30,7 +30,7 @@ const themeGroups = Object.values(
 	<button
 		type="button"
 		data-theme-trigger
-		class="inline-flex min-h-10 items-center gap-2 rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-panel)] px-3 font-mono text-xs font-semibold text-[var(--text-muted)] shadow-[var(--shadow-panel)] transition hover:-translate-y-0.5 hover:bg-[var(--surface-panel-muted)] hover:text-[var(--text-primary)] hover:shadow-[var(--shadow-interactive)]"
+		class="tz-control inline-flex min-h-10 items-center gap-2 px-3 text-xs font-semibold transition hover:-translate-y-0.5"
 		aria-haspopup="menu"
 		aria-expanded="false"
 	>
@@ -41,13 +41,13 @@ const themeGroups = Object.values(
 	</button>
 	<div
 		data-theme-options
-		class="absolute right-0 top-12 z-50 hidden w-56 max-w-[calc(100vw-2rem)] rounded-lg border border-[var(--dropdown-border)] bg-[var(--dropdown-surface)] p-1 shadow-[var(--shadow-interactive)]"
+		class="tz-dropdown absolute right-0 top-12 z-50 hidden w-56 max-w-[calc(100vw-2rem)] p-1"
 		role="menu"
 	>
 		{
 			themeGroups.map((group, groupIndex) => (
 				<div class:list={[groupIndex > 0 && "mt-2"]}>
-					<p class="px-3 py-1 font-mono text-[0.7rem] font-semibold uppercase tracking-normal text-[var(--dropdown-text-muted)]">
+					<p class="font-display px-3 py-1 text-[0.7rem] uppercase tracking-normal text-[var(--dropdown-text-muted)]">
 						{group.label}
 					</p>
 					<div class="grid grid-cols-2 gap-1">
@@ -56,16 +56,22 @@ const themeGroups = Object.values(
 								type="button"
 								data-theme-option={theme.id}
 								data-preview-theme={theme.id}
-								class="theme-menu-option flex min-h-10 items-center justify-between rounded-md px-3 py-2 text-left font-mono text-xs font-semibold transition"
+								class="theme-menu-option tz-dropdown-item flex min-h-10 items-center justify-between px-3 py-2 text-left text-xs font-semibold transition"
 								role="menuitem"
 							>
 								<span>{theme.label}</span>
-								<span
-									data-theme-check={theme.id}
-									class="grid size-4 place-items-center text-[var(--preview-text)] opacity-0 transition"
-									aria-hidden="true"
-								>
-									<Check size={14} strokeWidth={2.5} />
+								<span class="flex items-center gap-2">
+									<span class="theme-preview-swatch" aria-hidden="true">
+										<span></span>
+										<span></span>
+									</span>
+									<span
+										data-theme-check={theme.id}
+										class="grid size-4 place-items-center text-[var(--preview-text)] opacity-0 transition"
+										aria-hidden="true"
+									>
+										<Check size={14} strokeWidth={2.5} />
+									</span>
 								</span>
 								<span class="sr-only" data-theme-selected-text={theme.id}></span>
 							</button>

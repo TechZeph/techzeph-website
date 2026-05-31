@@ -21,7 +21,7 @@ const focusItems = [
 >
 	<section class="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:gap-12 sm:px-6 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-24">
 		<div class="flex flex-col justify-center">
-			<p class="mb-5 font-mono text-sm text-[var(--accent-primary)]">/portfolio /projects /lab</p>
+			<p class="font-display mb-5 text-sm uppercase text-[var(--accent-primary)]">/portfolio /projects /lab</p>
 			<h1 class="max-w-4xl text-3xl font-semibold leading-tight tracking-normal text-[var(--text-primary)] sm:text-5xl lg:text-6xl">
 				A quiet home for technical projects, experiments, and case studies.
 			</h1>
@@ -30,14 +30,14 @@ const focusItems = [
 				to hold finished work, prototypes, UI explorations, notes, and future media.
 			</p>
 			<div class="mt-8 flex flex-col gap-3 sm:flex-row">
-				<ButtonLink href="/projects">View current work</ButtonLink>
+				<ButtonLink href="/projects" variant="secondary">View current work</ButtonLink>
 				<ButtonLink href="/contact" variant="secondary">Contact</ButtonLink>
 			</div>
 		</div>
 
 		<Panel as="aside" aria-label="Current site status">
-			<div class="flex items-center justify-between gap-4 border-b border-[var(--border-subtle)] pb-4">
-				<p class="font-mono text-sm text-[var(--accent-primary)]">status</p>
+			<div class="tz-divider-b flex items-center justify-between gap-4 pb-4">
+				<p class="font-display text-sm uppercase text-[var(--accent-primary)]">status</p>
 				<StatusBadge status="v0.1" />
 			</div>
 			<div class="space-y-6 pt-5">
@@ -49,7 +49,7 @@ const focusItems = [
 				</div>
 				<div>
 					<p class="text-sm font-semibold text-[var(--text-primary)]">Next routes</p>
-					<p class="mt-2 font-mono text-sm text-[var(--text-muted)]">
+					<p class="font-display mt-2 text-sm text-[var(--text-muted)]">
 						/about /projects /contact /ui
 					</p>
 				</div>
@@ -79,14 +79,14 @@ const focusItems = [
 
 	<section id="focus" class="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[0.8fr_1fr] lg:gap-10 lg:px-8">
 		<div>
-			<p class="font-mono text-sm text-[var(--accent-primary)]">/focus</p>
+			<p class="font-display text-sm uppercase text-[var(--accent-primary)]">/focus</p>
 			<h2 class="mt-3 text-2xl font-semibold tracking-normal sm:text-3xl">Built for review, then iteration.</h2>
 		</div>
 		<div class="space-y-4">
 			{
 				focusItems.map((item, index) => (
 					<Panel class="flex gap-4" padding="sm">
-						<span class="font-mono text-sm text-[var(--accent-primary)]">
+						<span class="font-display text-sm text-[var(--accent-primary)]">
 							{String(index + 1).padStart(2, "0")}
 						</span>
 						<p class="text-[var(--text-muted)]">{item}</p>
@@ -99,7 +99,7 @@ const focusItems = [
 	<SectionBand id="contact" tone="inverse">
 		<div class="mx-auto flex max-w-6xl flex-col gap-6 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
 			<div class="max-w-2xl">
-				<p class="font-mono text-sm text-[var(--accent-soft)]">/contact</p>
+				<p class="font-display text-sm uppercase text-[var(--accent-soft)]">/contact</p>
 				<h2 class="mt-3 text-2xl font-semibold tracking-normal sm:text-3xl">A simple starting point.</h2>
 				<p class="mt-4 text-[var(--text-inverse-muted)]">
 					This page is ready for review. The final voice, project details, and contact links can
@@ -108,7 +108,7 @@ const focusItems = [
 			</div>
 			<a
 				href="mailto:hello@techzeph.co.uk"
-				class="inline-flex items-center justify-center rounded-md border border-[var(--border-inverse)] bg-[var(--button-inverse-bg)] px-5 py-3 text-sm font-semibold text-[var(--button-inverse-text)] shadow-[var(--shadow-panel)] transition hover:-translate-y-0.5 hover:bg-[var(--button-inverse-bg-hover)] hover:shadow-[var(--shadow-interactive)] sm:w-auto"
+				class="tz-hard-control inline-flex items-center justify-center bg-[var(--button-inverse-bg)] px-5 py-3 text-sm font-semibold text-[var(--button-inverse-text)] transition hover:-translate-y-0.5 hover:bg-[var(--button-inverse-bg-hover)] sm:w-auto"
 			>
 				hello@techzeph.co.uk
 			</a>

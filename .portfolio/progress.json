@@ -3,7 +3,8 @@
     "Built the core Astro route structure for home, about, contact, UI, and project pages.",
     "Added a GitHub project sync workflow that pulls public repo metadata into generated portfolio data.",
     "Added project metadata templates and documentation for future agent-assisted repo updates.",
-    "Added generated skills, language breakdown, repository signals, and complexity summaries to project pages."
+    "Added generated skills, language breakdown, repository signals, and complexity summaries to project pages.",
+    "Added Retro UI boxes, that are theme oriented."
   ],
   "next": [
     "Update and refine UI, to be a good looking portfolio",

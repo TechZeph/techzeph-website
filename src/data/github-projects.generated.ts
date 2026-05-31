@@ -79,17 +79,23 @@ export const githubProjects = [
 			"signals": [
 				"4 detected languages",
 				"6 GitHub topics",
-				"1,215 KB repository size"
+				"1,221 KB repository size"
 			],
 			"notes": "The project combines static Astro routes, generated GitHub data, theme state, reusable components, and documentation for future agent workflows."
 		},
 		"role": "Solo build with AI-assisted iteration",
 		"currentState": "The site has core routes, theme controls, shared layout components, GitHub-synced project data, and documentation templates in place.",
 		"done": [
-			"The site has core routes, theme controls, shared layout components, GitHub-synced project data, and documentation templates in place."
+			"Built the core Astro route structure for home, about, contact, UI, and project pages.",
+			"Added a GitHub project sync workflow that pulls public repo metadata into generated portfolio data.",
+			"Added project metadata templates and documentation for future agent-assisted repo updates.",
+			"Added generated skills, language breakdown, repository signals, and complexity summaries to project pages."
 		],
 		"nextSteps": [
-			"Add richer copy, screenshots, live project links, and more source repos with `.portfolio/project.json` metadata."
+			"Update and refine UI, to be a good looking portfolio",
+			"Refine public copy across the homepage and project pages.",
+			"Add more public repos with `.portfolio/project.json` and `.portfolio/progress.json` metadata.",
+			"Improve project cards once more real project data is available."
 		],
 		"repositoryUrl": "https://github.com/TechZeph/techzeph-website",
 		"github": {
@@ -100,23 +106,23 @@ export const githubProjects = [
 			"languages": [
 				{
 					"name": "Astro",
-					"bytes": 35002,
-					"percentage": 62.1
+					"bytes": 35245,
+					"percentage": 59.4
 				},
 				{
 					"name": "JavaScript",
-					"bytes": 10145,
-					"percentage": 18
+					"bytes": 11005,
+					"percentage": 18.6
 				},
 				{
 					"name": "CSS",
 					"bytes": 7498,
-					"percentage": 13.3
+					"percentage": 12.6
 				},
 				{
 					"name": "TypeScript",
-					"bytes": 3763,
-					"percentage": 6.7
+					"bytes": 5572,
+					"percentage": 9.4
 				}
 			],
 			"topics": [
@@ -127,11 +133,11 @@ export const githubProjects = [
 				"typescript",
 				"web-development"
 			],
-			"sizeKb": 1215,
+			"sizeKb": 1221,
 			"stars": 0,
 			"forks": 0,
-			"updatedAt": "2026-05-30T21:02:39Z",
-			"pushedAt": "2026-05-30T21:02:35Z",
+			"updatedAt": "2026-05-31T08:53:53Z",
+			"pushedAt": "2026-05-31T08:53:49Z",
 			"private": false,
 			"archived": false
 		}

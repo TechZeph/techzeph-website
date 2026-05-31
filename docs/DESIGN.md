@@ -204,10 +204,10 @@ Light mode should feel warm, muted, and editorial, not stark white.
 Preferred typography direction:
 
 ```text
-Modern sans-serif with monospace accents.
+Instrument Sans for readable UI, with Workbench as a restrained retro-system accent.
 ```
 
-Use sans-serif for:
+Use Instrument Sans for:
 
 - body text
 - navigation
@@ -215,7 +215,7 @@ Use sans-serif for:
 - long-form content
 - labels where readability matters
 
-Use monospace accents for:
+Use Workbench sparingly for:
 
 - route labels
 - project metadata
@@ -223,10 +223,11 @@ Use monospace accents for:
 - small technical tags
 - code-adjacent content
 - status badges where appropriate
+- retro window headers
 
 Avoid:
 
-- monospace-heavy body copy
+- Workbench-heavy body copy
 - overly decorative typefaces
 - too many font families
 - cramped letter spacing

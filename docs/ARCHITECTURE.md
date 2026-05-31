@@ -104,6 +104,17 @@ Global semantic theme tokens live in `src/styles/global.css`. Components should 
 - `--badge-bg`
 - `--shadow-panel`
 
+Shared themed UI treatments also live in `src/styles/global.css`. Prefer these classes before composing one-off border, background, and shadow recipes in components:
+
+- `tz-window` - full framed panel/card surface
+- `tz-window-interactive` - hover shadow behavior for clickable cards
+- `tz-control` - small nav/menu controls
+- `tz-hard-control` - button-style hard-bordered controls
+- `tz-chip` - tag/tooling chips
+- `tz-badge` - status badges
+- `tz-dropdown` and `tz-dropdown-item` - menu surfaces and items
+- `tz-divider-y`, `tz-divider-t`, `tz-divider-b` - theme-aware hard dividers
+
 Avoid using raw palette names or hard-coded hex values inside page/component markup unless building an intentional theme preview.
 
 ## Project Data Flow

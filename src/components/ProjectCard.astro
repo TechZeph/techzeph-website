@@ -1,5 +1,4 @@
 ---
-import Panel from "./Panel.astro";
 import StatusBadge from "./StatusBadge.astro";
 import TagList from "./TagList.astro";
 import type { Project } from "../data/projects";
@@ -11,18 +10,23 @@ interface Props {
 const { project } = Astro.props;
 ---
 
-<Panel
-	as="article"
-	class="flex flex-col transition hover:-translate-y-0.5 hover:border-[var(--accent-soft)] hover:shadow-[var(--shadow-interactive)] md:min-h-72"
->
-	<div class="flex items-start justify-between gap-3">
-		<p class="font-mono text-xs text-[var(--text-muted)]">{project.type}</p>
-		<StatusBadge status={project.status} />
+<article class="tz-window tz-window-interactive flex flex-col transition hover:-translate-y-0.5 md:min-h-72">
+	<div class="tz-window-header p-3">
+		<div class="flex items-center justify-between gap-3">
+			<p class="font-display text-xs uppercase leading-none">{project.type}</p>
+			<div class="flex shrink-0 gap-1" aria-hidden="true">
+				<div class="tz-window-control"></div>
+				<div class="tz-window-control"></div>
+			</div>
+		</div>
 	</div>
-	<h3 class="mt-5 text-xl font-semibold">{project.title}</h3>
-	<p class="mt-3 text-sm text-[var(--text-muted)]">{project.summary}</p>
-	<TagList tags={project.tags} class="mt-auto pt-6" />
-	<a href={`/projects/${project.slug}`} class="mt-5 text-sm font-semibold text-[var(--accent-primary)]">
-		Read more
-	</a>
-</Panel>
+	<div class="flex flex-1 flex-col p-4 sm:p-5">
+		<StatusBadge status={project.status} />
+		<h3 class="mt-5 text-xl font-semibold">{project.title}</h3>
+		<p class="mt-3 text-sm text-[var(--text-muted)]">{project.summary}</p>
+		<TagList tags={project.tags} class="mt-auto pt-6" />
+		<a href={`/projects/${project.slug}`} class="mt-5 text-sm font-semibold text-[var(--accent-primary)]">
+			Read more
+		</a>
+	</div>
+</article>

@@ -234,7 +234,7 @@ src/data/projects.ts
 /projects and /projects/[slug]
 ```
 
-Use `pnpm sync:github-projects` to refresh generated GitHub project data manually. `pnpm build` runs the sync first through the `prebuild` script.
+Use `pnpm sync:github-projects` to refresh generated GitHub project data manually. Normal local and deployment builds use the existing generated data; the deploy workflow refreshes GitHub project data only on the scheduled cron run.
 
 The sync script reads these environment variables:
 

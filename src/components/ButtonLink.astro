@@ -10,16 +10,16 @@ const variants = {
 	primary:
 		"bg-[var(--button-primary-bg)] text-[var(--button-primary-text)] hover:bg-[var(--button-primary-bg-hover)]",
 	secondary:
-		"border border-[var(--border-subtle)] bg-[var(--button-secondary-bg)] text-[var(--button-secondary-text)] hover:bg-[var(--button-secondary-bg-hover)]",
+		"bg-[var(--button-secondary-bg)] text-[var(--button-secondary-text)] hover:bg-[var(--button-secondary-bg-hover)]",
 	inverse:
-		"border border-[var(--border-inverse)] bg-[var(--button-inverse-bg)] text-[var(--button-inverse-text)] hover:bg-[var(--button-inverse-bg-hover)]",
+		"bg-[var(--button-inverse-bg)] text-[var(--button-inverse-text)] hover:bg-[var(--button-inverse-bg-hover)]",
 };
 ---
 
 <a
 	href={href}
 	class:list={[
-		"inline-flex items-center justify-center rounded-md px-5 py-3 text-sm font-semibold shadow-[var(--shadow-panel)] transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-interactive)]",
+		"tz-hard-control inline-flex items-center justify-center px-5 py-3 text-sm font-semibold transition hover:-translate-y-0.5",
 		variants[variant],
 	]}
 >

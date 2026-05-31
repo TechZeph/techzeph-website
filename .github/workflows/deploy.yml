@@ -19,10 +19,33 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Install, build, and upload site
-        uses: withastro/action@v6
+      - name: Setup Node
+        uses: actions/setup-node@v5
         with:
           node-version: 24
+
+      - name: Enable pnpm
+        run: corepack enable
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Sync GitHub project data
+        if: github.event_name == 'schedule'
+        run: pnpm sync:github-projects
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Build site
+        run: pnpm build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
 
   deploy:
     needs: build

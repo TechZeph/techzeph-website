@@ -1,6 +1,4 @@
 ---
-import Panel from "./Panel.astro";
-
 interface Props {
 	title: string;
 }
@@ -8,9 +6,17 @@ interface Props {
 const { title } = Astro.props;
 ---
 
-<Panel>
-	<h2 class="text-lg font-semibold">{title}</h2>
-	<div class="mt-2 text-[var(--text-muted)]">
+<article class="tz-window">
+	<div class="tz-window-header p-3">
+		<div class="flex items-center justify-between gap-4">
+			<h2 class="font-display text-xs uppercase leading-none tracking-normal">{title}</h2>
+			<div class="flex shrink-0 gap-1" aria-hidden="true">
+				<div class="tz-window-control"></div>
+				<div class="tz-window-control"></div>
+			</div>
+		</div>
+	</div>
+	<div class="p-4 text-[var(--text-muted)] sm:p-5">
 		<slot />
 	</div>
-</Panel>
+</article>

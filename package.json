@@ -8,13 +8,14 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "prebuild": "pnpm sync:github-projects",
     "build": "astro build",
     "preview": "astro preview",
     "sync:github-projects": "node scripts/sync-github-projects.mjs",
     "astro": "astro"
   },
   "dependencies": {
+    "@fontsource-variable/instrument-sans": "^5.2.8",
+    "@fontsource-variable/workbench": "^5.2.8",
     "@lucide/astro": "^1.17.0",
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.3.7",
