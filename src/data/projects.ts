@@ -41,4 +41,21 @@ export interface Project {
 	};
 }
 
-export const projects = githubProjects satisfies readonly Project[];
+const projectDisplayOverrides = {
+	"techzeph-website": {
+		status: "In Progress",
+		summary: "This portfolio site",
+	},
+} satisfies Record<string, Partial<Pick<Project, "status" | "summary">>>;
+
+export const projects = githubProjects
+	.map((project) => ({
+		...project,
+		...projectDisplayOverrides[project.slug],
+	}))
+	.sort((a, b) => {
+		if (a.slug === "techzeph-website") return -1;
+		if (b.slug === "techzeph-website") return 1;
+
+		return 0;
+	}) satisfies readonly Project[];

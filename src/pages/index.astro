@@ -9,28 +9,28 @@ import StatusBadge from "../components/StatusBadge.astro";
 import { projects } from "../data/projects";
 
 const focusItems = [
-	"Building the core portfolio structure.",
-	"Ensuring the website can stay up to date, hands-free.",
-	"Making room for cyber, dev, AI, and broader project work, later.",
+	"Designing clear pages that help visitors understand what you offer.",
+	"Keeping websites fast, tidy, and easy to update.",
+	"Adding useful automations where they save time or reduce admin.",
 ];
 ---
 
 <Layout
 	title="TechZeph | Project Portfolio"
-	description="A calm technical portfolio for projects, experiments, automations, and interface work."
+	description="Clean, fast websites and useful automations for people who want a stronger online presence."
 >
 	<section class="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:gap-12 sm:px-6 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-24">
 		<div class="flex flex-col justify-center">
-			<p class="font-display mb-5 text-sm uppercase text-[var(--accent-primary)]">/portfolio /projects /lab</p>
-			<h1 class="max-w-4xl text-3xl font-semibold leading-tight tracking-normal text-[var(--text-primary)] sm:text-5xl lg:text-6xl">
-				A calm technical portfolio for projects, experiments, custom automations, and interface work.
+			<p class="font-display mb-5 text-sm uppercase text-[var(--accent-primary)]">/Home</p>
+			<h1 class="max-w-4xl text-2xl font-semibold leading-tight tracking-normal text-[var(--text-primary)] sm:text-4xl lg:text-5xl">
+				Clean, fast websites and custom automations for people who want their online presence to work harder.
 			</h1>
 			<p class="mt-5 max-w-2xl text-base text-[var(--text-muted)] sm:mt-6 sm:text-lg">
-				TechZeph is a personal portfolio: practical, fast, and flexible.
-				Programmatic approaches to data driven components, so that information is pulled automatically, reliably. Compiled statically, for speed.
-				<br><br>If you don't speak technical talk:
-				<br>This website always remains up to date, and will always showcase my latest work. No manual editing. It is built to be as fast to load as possible.
-				<br>No having to constantly update my site with the latest projects, pictures, videos and work. It does it all for me every time I start something new, or update a project I am working on. <br><br>Contact me for paid custom automations.
+				TechZeph is my portfolio and service space for practical website design, simple digital systems, and custom workflow automation.
+				I build sites that look good, load quickly, and are easier to keep updated.
+				<br><br>
+				That means less manual editing, fewer repeated tasks, and a website that can grow with your work.
+				If you need a polished site, a better project showcase, or a custom automation for your business, get in touch.
 			</p>
 			<div class="mt-8 flex flex-col gap-3 sm:flex-row">
 				<ButtonLink href="/projects" variant="secondary">View current work</ButtonLink>
@@ -38,31 +38,30 @@ const focusItems = [
 			</div>
 		</div>
 
-		<Panel as="aside" aria-label="Current site status">
+		<Panel as="aside" class="self-start" aria-label="Current site status">
 			<div class="tz-divider-b flex items-center justify-between gap-4 pb-4">
 				<p class="font-display text-sm uppercase text-[var(--accent-primary)]">status</p>
 				<StatusBadge status="v0.1" />
 			</div>
 			<div class="space-y-6 pt-5">
 				<div>
-					<p class="text-sm font-semibold text-[var(--text-primary)]">Current build</p>
+					<p class="text-sm font-semibold text-[var(--text-primary)]">Current focus</p>
 					<p class="mt-2 text-sm text-[var(--text-muted)]">
-						Lightweight UI, minimalistic thematic choices, and an up to date showcase; Directly pulled from GitHub live data.
+						A lightweight portfolio that explains my work clearly and shows how I can help clients with websites and automation.
 					</p>
 				</div>
 				<div>
 					<p class="text-sm font-semibold text-[var(--text-primary)]">Next Tasks</p>
-					<p class="font-display mt-2 text-sm text-[var(--text-muted)]">
-						Programmatic and dynamically updating components across the site.
-						Design mood pulling directly from themes.
-						Programmatic Versioning, for this component block.
-					</p>
+					<ul class="mt-2 list-disc space-y-1 pl-5 text-sm text-[var(--text-muted)]">
+						<li>Improve the homepage copy and service offer.</li>
+						<li>Add clearer examples of website and automation work.</li>
+						<li>Keep project updates simple, accurate, and easy to browse.</li>
+					</ul>
 				</div>
 				<div>
-					<p class="text-sm font-semibold text-[var(--text-primary)]">Design mood</p>
+					<p class="text-sm font-semibold text-[var(--text-primary)]">Style</p>
 					<p class="mt-2 text-sm text-[var(--text-muted)]">
-						Earthy green, dark mode or light mode. Spacious, technical, and deliberately restrained.
-						Retro elements with brutalist accents.
+						Clean, calm, and practical. Designed to feel professional without becoming cold or overcomplicated.
 					</p>
 				</div>
 			</div>
@@ -74,7 +73,7 @@ const focusItems = [
 			<SectionHeader
 				kicker="/work"
 				title="Current project map"
-				description="Projects are pulled from GitHub repo metadata at build time, then labelled by status so the index stays honest as the work changes."
+				description="A simple look at current work, examples, and ideas in progress. Each card is labelled so you can quickly see what is finished and what is still being improved."
 			/>
 
 			<div class="mt-8 grid gap-4 md:grid-cols-3">
@@ -86,7 +85,7 @@ const focusItems = [
 	<section id="focus" class="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[0.8fr_1fr] lg:gap-10 lg:px-8">
 		<div>
 			<p class="font-display text-sm uppercase text-[var(--accent-primary)]">/focus</p>
-			<h2 class="mt-3 text-2xl font-semibold tracking-normal sm:text-3xl">Built for speed, staying up to date with data.</h2>
+			<h2 class="mt-3 text-2xl font-semibold tracking-normal sm:text-3xl">Built to be clear, fast, and easy to maintain.</h2>
 		</div>
 		<div class="space-y-4">
 			{
@@ -106,9 +105,9 @@ const focusItems = [
 		<div class="mx-auto flex max-w-6xl flex-col gap-6 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
 			<div class="max-w-2xl">
 				<p class="font-display text-sm uppercase text-[var(--accent-soft)]">/contact</p>
-				<h2 class="mt-3 text-2xl font-semibold tracking-normal sm:text-3xl">A simple starting point.</h2>
+				<h2 class="mt-3 text-2xl font-semibold tracking-normal sm:text-3xl">Start with a simple message.</h2>
 				<p class="mt-4 text-[var(--text-inverse-muted)]">
-					You may contact me at the following email for Design work, Automations, Local AI setup and Custom Workflows for your business' needs.
+					Email me about website design, custom automations, local AI setup, or practical workflow improvements for your business.
 				</p>
 			</div>
 			<a
