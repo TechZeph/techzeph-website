@@ -5,7 +5,6 @@ import Panel from "../components/Panel.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import SectionBand from "../components/SectionBand.astro";
 import SectionHeader from "../components/SectionHeader.astro";
-import StatusBadge from "../components/StatusBadge.astro";
 import { projects } from "../data/projects";
 
 const focusItems = [
@@ -19,10 +18,10 @@ const focusItems = [
 	title="TechZeph | Project Portfolio"
 	description="Clean, fast websites and useful automations for people who want a stronger online presence."
 >
-	<section class="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:gap-12 sm:px-6 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-24">
-		<div class="flex flex-col justify-center">
+	<section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+		<div class="flex max-w-4xl flex-col justify-center">
 			<p class="font-display mb-5 text-sm uppercase text-[var(--accent-primary)]">/Home</p>
-			<h1 class="max-w-4xl text-2xl font-semibold leading-tight tracking-normal text-[var(--text-primary)] sm:text-4xl lg:text-5xl">
+			<h1 class="text-2xl font-semibold leading-tight tracking-normal text-[var(--text-primary)] sm:text-4xl lg:text-5xl">
 				Clean, fast websites and custom automations for people who want their online presence to work harder.
 			</h1>
 			<p class="mt-5 max-w-2xl text-base text-[var(--text-muted)] sm:mt-6 sm:text-lg">
@@ -37,35 +36,6 @@ const focusItems = [
 				<ButtonLink href="/contact" variant="secondary">Contact</ButtonLink>
 			</div>
 		</div>
-
-		<Panel as="aside" class="self-start" aria-label="Current site status">
-			<div class="tz-divider-b flex items-center justify-between gap-4 pb-4">
-				<p class="font-display text-sm uppercase text-[var(--accent-primary)]">status</p>
-				<StatusBadge status="v0.1" />
-			</div>
-			<div class="space-y-6 pt-5">
-				<div>
-					<p class="text-sm font-semibold text-[var(--text-primary)]">Current focus</p>
-					<p class="mt-2 text-sm text-[var(--text-muted)]">
-						A lightweight portfolio that explains my work clearly and shows how I can help clients with websites and automation.
-					</p>
-				</div>
-				<div>
-					<p class="text-sm font-semibold text-[var(--text-primary)]">Next Tasks</p>
-					<ul class="mt-2 list-disc space-y-1 pl-5 text-sm text-[var(--text-muted)]">
-						<li>Improve the homepage copy and service offer.</li>
-						<li>Add clearer examples of website and automation work.</li>
-						<li>Keep project updates simple, accurate, and easy to browse.</li>
-					</ul>
-				</div>
-				<div>
-					<p class="text-sm font-semibold text-[var(--text-primary)]">Style</p>
-					<p class="mt-2 text-sm text-[var(--text-muted)]">
-						Clean, calm, and practical. Designed to feel professional without becoming cold or overcomplicated.
-					</p>
-				</div>
-			</div>
-		</Panel>
 	</section>
 
 	<SectionBand>
