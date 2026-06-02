@@ -7,6 +7,8 @@ Use this as the living checklist for site work. Add, remove, and reorder items f
 - [ ] Extract reusable customer-site starter once the portfolio foundation settles.
 - [ ] Review project card spacing and hover reveal on mobile and desktop.
 - [ ] Decide whether SVG patterns should move from CSS data URLs into reusable asset files.
+- [ ] Update and refine UI to be a good looking portfolio.
+- [ ] Refine public copy across the homepage and project pages.
 
 ## Later
 
@@ -14,6 +16,8 @@ Use this as the living checklist for site work. Add, remove, and reorder items f
 - [ ] Refresh project metadata with `pnpm sync:github-projects` when checking local changes.
 - [ ] Expand customer theme templates with a completed example theme.
 - [ ] Consider a dedicated template repo for customer sites.
+- [ ] Add more public repos with `.portfolio/project.json` and `.portfolio/progress.json` metadata.
+- [ ] Improve project cards once more real project data is available.
 
 ## Done
 

@@ -42,6 +42,7 @@ const stackGlyphs = Array.from(
 
 <a
 	href={`/projects/${project.slug}`}
+	data-project-card
 	class="tz-window tz-window-interactive group flex flex-col transition hover:-translate-y-0.5 md:min-h-72"
 >
 	<div class="tz-window-header tz-project-card-header p-3">
@@ -72,7 +73,7 @@ const stackGlyphs = Array.from(
 			)
 		}
 		<p class="mt-3 text-sm text-[var(--text-muted)]">{project.summary}</p>
-		<div class="grid max-h-0 overflow-hidden opacity-0 transition-all duration-300 group-hover:mt-4 group-hover:max-h-28 group-hover:opacity-100 group-focus-visible:mt-4 group-focus-visible:max-h-28 group-focus-visible:opacity-100">
+		<div class="tz-project-card-reveal-frame grid">
 			<p class="tz-project-card-reveal text-xs leading-relaxed">
 				{project.currentState}
 			</p>
@@ -82,3 +83,33 @@ const stackGlyphs = Array.from(
 		</span>
 	</div>
 </a>
+
+<script>
+	const projectCardTouchQuery = window.matchMedia("(hover: none), (pointer: coarse)");
+
+	document.addEventListener("click", (event) => {
+		if (!projectCardTouchQuery.matches) {
+			return;
+		}
+
+		const card = event.target instanceof Element ? event.target.closest("[data-project-card]") : null;
+
+		if (!(card instanceof HTMLAnchorElement)) {
+			return;
+		}
+
+		if (card.dataset.expanded === "true") {
+			return;
+		}
+
+		event.preventDefault();
+
+		document.querySelectorAll("[data-project-card][data-expanded='true']").forEach((openCard) => {
+			if (openCard !== card) {
+				openCard.removeAttribute("data-expanded");
+			}
+		});
+
+		card.dataset.expanded = "true";
+	});
+</script>

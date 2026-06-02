@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { githubProjects } from "./github-projects.generated";
 
 export interface Project {
@@ -41,12 +43,36 @@ export interface Project {
 	};
 }
 
+function uncheckedTodoItems(sectionName: string) {
+	try {
+		const todo = readFileSync(resolve(process.cwd(), "TODO.md"), "utf8");
+		const sectionPattern = new RegExp(
+			`^## ${sectionName}\\s*\\n([\\s\\S]*?)(?=^## |\\z)`,
+			"m",
+		);
+		const section = todo.match(sectionPattern)?.[1] ?? "";
+
+		return section
+			.split("\n")
+			.map((line) => line.match(/^- \[ \] (.+)$/)?.[1]?.trim())
+			.filter((item): item is string => Boolean(item));
+	} catch {
+		return [];
+	}
+}
+
+const siteTodoNextSteps = [
+	...uncheckedTodoItems("Now"),
+	...uncheckedTodoItems("Later"),
+];
+
 const projectDisplayOverrides = {
 	"techzeph-website": {
 		status: "In Progress",
 		summary: "This portfolio site",
+		...(siteTodoNextSteps.length > 0 ? { nextSteps: siteTodoNextSteps } : {}),
 	},
-} satisfies Record<string, Partial<Pick<Project, "status" | "summary">>>;
+} satisfies Record<string, Partial<Pick<Project, "status" | "summary" | "nextSteps">>>;
 
 export const projects = githubProjects
 	.map((project) => ({

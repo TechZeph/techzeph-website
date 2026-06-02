@@ -224,6 +224,7 @@ GitHub repos
   repo topics
   optional .portfolio/project.json
   optional .portfolio/progress.json
+  recent default-branch commits
         ↓
 scripts/sync-github-projects.mjs
         ↓
@@ -270,7 +271,9 @@ Example:
 }
 ```
 
-For editable progress lists, add this optional file to the source repo:
+Completed-work notes are generated from recent default-branch commit subjects. Use clear, factual commit messages because they may appear as `done` items on the portfolio.
+
+For editable future-work lists, add this optional file to the source repo:
 
 ```text
 .portfolio/progress.json
@@ -280,10 +283,6 @@ Example:
 
 ```json
 {
-  "done": [
-    "Built the homepage, shared layout, and project routes.",
-    "Added generated GitHub project data."
-  ],
   "next": [
     "Add screenshots to project detail pages.",
     "Refine public copy across the project pages."
@@ -293,7 +292,7 @@ Example:
 
 Set `"include": true` in `.portfolio/project.json` to include a repo even if it does not have one of the configured topics.
 
-Generated files are owned by the sync script. Do not hand-edit `src/data/github-projects.generated.ts`; edit GitHub repo topics, `.portfolio/project.json`, or `.portfolio/progress.json` instead.
+Generated files are owned by the sync script. Do not hand-edit `src/data/github-projects.generated.ts`; edit GitHub repo topics, `.portfolio/project.json`, `.portfolio/progress.json`, or commit history instead.
 
 Project entries should come from GitHub-synced data only. Do not add manual placeholder or planned project entries to `src/data/projects.ts`; add GitHub topics, `.portfolio/project.json`, or `.portfolio/progress.json` metadata to the source repo instead.
 

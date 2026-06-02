@@ -1,11 +1,6 @@
 {
-  "done": [
-    "Describe a concrete thing that already exists in this repo.",
-    "Describe another completed feature, workflow, or useful implementation detail."
-  ],
   "next": [
     "Describe the most useful next improvement.",
     "Describe another planned improvement or follow-up task."
   ]
 }
-

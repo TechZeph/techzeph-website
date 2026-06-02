@@ -138,13 +138,15 @@ The sync script also derives useful repository detail where GitHub exposes it:
 - inferred skills/tooling from languages and topics
 - repository size, stars, forks, and pushed date
 - a conservative estimated complexity label based on public repo signals
+- recent default-branch commit subjects for completed-work notes
 
 Use `.portfolio/project.json` for stable human context such as title, summary, role, skills overrides, complexity notes, and current state.
 
-Use `.portfolio/progress.json` for editable progress lists:
+Use `.portfolio/progress.json` for editable future-work lists:
 
-- `done` - work that already exists
 - `next` - useful future work
+
+The `done` list is generated from recent GitHub commit history, so keep commit subjects clear and factual.
 
 Move long-form project or blog content to Astro content collections later when the content becomes substantial enough to need Markdown, schemas, or richer publishing workflows.
 

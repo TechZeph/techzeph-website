@@ -10,13 +10,15 @@ Copy `portfolio-project.json` into any GitHub repo that should provide richer po
 .portfolio/project.json
 ```
 
-Copy `portfolio-progress.json` into the same repo when you want editable progress lists:
+Copy `portfolio-progress.json` into the same repo when you want editable future-work notes:
 
 ```text
 .portfolio/progress.json
 ```
 
 The project sync script reads these files during `pnpm sync:github-projects` and merges them with GitHub repo metadata.
+
+Completed-work notes are generated from recent GitHub commit subjects on the repo's default branch. Use clear commit messages because they can appear on the portfolio as `done` items.
 
 Repos can also be included by adding one of the configured GitHub topics, such as `portfolio`, `case-study`, or `featured`.
 

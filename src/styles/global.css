@@ -149,6 +149,24 @@ a {
   color: var(--text-muted);
 }
 
+.tz-project-card-reveal-frame {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    margin-top 300ms ease,
+    max-height 300ms ease,
+    opacity 300ms ease;
+}
+
+.tz-window:hover .tz-project-card-reveal-frame,
+.tz-window:focus-visible .tz-project-card-reveal-frame,
+[data-project-card][data-expanded="true"] .tz-project-card-reveal-frame {
+  margin-top: 1rem;
+  max-height: 7rem;
+  opacity: 1;
+}
+
 .tz-badge {
   border: 2px solid var(--compact-border);
   background: var(--badge-bg);
