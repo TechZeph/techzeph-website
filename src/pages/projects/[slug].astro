@@ -19,7 +19,7 @@ export function getStaticPaths() {
 const { project } = Astro.props;
 const languages = project.github?.languages ?? [];
 const skills = project.skills ?? [];
-const complexitySignals = project.complexity?.signals ?? [];
+const buildContext = project.complexity?.notes;
 const nextStepPreview = project.nextSteps[0] ?? "Keep iterating on the project as the repository evolves.";
 const commitHistoryUrl = project.repositoryUrl && project.github?.defaultBranch
 	? `${project.repositoryUrl}/commits/${project.github.defaultBranch}`
@@ -66,16 +66,17 @@ const repositorySignals = [
 			</aside>
 
 			<div class="space-y-4">
-				<div class="grid gap-4 md:grid-cols-3">
-					<InfoCard title="Role">
-						{project.role}
-					</InfoCard>
-					<InfoCard title="State">
-						{project.currentState}
-					</InfoCard>
-					<InfoCard title="Next">
-						{nextStepPreview}
-					</InfoCard>
+				<div class="flex flex-col gap-4 md:flex-row md:items-start">
+					<div class="md:w-fit md:max-w-xs">
+						<InfoCard title="Build role">
+							{project.role}
+						</InfoCard>
+					</div>
+					<div class="md:min-w-0 md:flex-1">
+						<InfoCard title="Next">
+							{nextStepPreview}
+						</InfoCard>
+					</div>
 				</div>
 				{
 					skills.length > 0 && (
@@ -99,21 +100,9 @@ const repositorySignals = [
 					)
 				}
 				{
-					project.complexity && (
-						<InfoCard title="Estimated complexity">
-							<div class="space-y-3">
-								<p>
-									<span class="font-semibold text-[var(--text-primary)]">{project.complexity.level}</span>
-									{" "}
-									based on public GitHub repository signals.
-								</p>
-								{project.complexity.notes && <p>{project.complexity.notes}</p>}
-								{complexitySignals.length > 0 && (
-									<ul class="list-disc space-y-1 pl-5">
-										{complexitySignals.map((signal) => <li>{signal}</li>)}
-									</ul>
-								)}
-							</div>
+					buildContext && (
+						<InfoCard title="Build context">
+							<p>{buildContext}</p>
 						</InfoCard>
 					)
 				}

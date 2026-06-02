@@ -38,7 +38,7 @@ The JSON should provide:
 - case-study notes
 - useful tags for the website UI
 - optional skill/tooling notes
-- optional complexity notes
+- optional build context notes
 
 The progress JSON should provide:
 
@@ -102,7 +102,7 @@ Avoid hype, fake impact, or claims that cannot be verified from the repo.
 
 ### `role`
 
-Explain the user's relationship to the project.
+Explain the user's build responsibility or contribution context for the project. This appears as `Build role` on project pages, so write it as a short project-context label rather than a job title.
 
 Examples:
 
@@ -147,7 +147,7 @@ If omitted, the portfolio sync script infers skills from detected languages and 
 
 ### `complexityNotes`
 
-Optional. Add a short explanation of complexity that GitHub cannot infer.
+Optional. Add a short visitor-facing build context note that GitHub cannot infer.
 
 Good:
 
@@ -155,7 +155,7 @@ Good:
 "complexityNotes": "The project combines static Astro routes, generated GitHub data, theme state, and reusable UI components."
 ```
 
-The site will still calculate an estimated complexity level from public repo signals such as language count, repo size, topic count, and whether a live site is linked.
+The site can still calculate internal complexity signals from public repo data, but this note should read as plain build context rather than a rating.
 
 ### `currentState`
 
@@ -260,7 +260,7 @@ Before committing portfolio metadata in another repo:
 - Keep the title human-readable.
 - Keep tags useful for portfolio visitors.
 - Use `skills` to clarify useful technical skills that are not obvious from GitHub topics.
-- Use `complexityNotes` only for factual implementation detail.
+- Use `complexityNotes` only for factual visitor-facing build context.
 - Use `next` only for useful future work.
 - Use clear commit subjects because recent commits generate the public `done` list.
 - Do not invent features, metrics, users, or outcomes.

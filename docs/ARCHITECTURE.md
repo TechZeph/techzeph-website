@@ -140,7 +140,7 @@ The sync script also derives useful repository detail where GitHub exposes it:
 - a conservative estimated complexity label based on public repo signals
 - recent default-branch commit subjects for completed-work notes
 
-Use `.portfolio/project.json` for stable human context such as title, summary, role, skills overrides, complexity notes, and current state.
+Use `.portfolio/project.json` for stable human context such as title, summary, role, skills overrides, build context notes, and current state.
 
 Use `.portfolio/progress.json` for editable future-work lists:
 
