@@ -21,3 +21,15 @@ The project sync script reads these files during `pnpm sync:github-projects` and
 Repos can also be included by adding one of the configured GitHub topics, such as `portfolio`, `case-study`, or `featured`.
 
 Use `PORTFOLIO_PROJECT_METADATA.md` when asking an agent to populate this file in another repo.
+
+## Customer theme system
+
+Use `theme-system/` when creating a new customer site theme:
+
+```text
+docs/templates/theme-system/customer-theme-brief.md
+docs/templates/theme-system/theme-registry.ts
+docs/templates/theme-system/theme-tokens.css
+```
+
+Start with the brief, then copy the registry and token templates into the runtime theme files described in `docs/theme-system.md`.

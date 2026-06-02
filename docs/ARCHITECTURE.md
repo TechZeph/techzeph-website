@@ -12,7 +12,7 @@ src/
   data/             Small typed data sources
   layouts/          Page/document shells
   pages/            Astro routes
-  styles/           Global CSS and theme tokens
+  styles/           Global CSS, reusable style primitives, and theme tokens
 ```
 
 ## Route Flow
@@ -96,7 +96,7 @@ Pages should compose these components rather than duplicating card, button, badg
 
 Theme options are registered in `src/data/themes.ts`.
 
-Global semantic theme tokens live in `src/styles/global.css`. Components should use semantic tokens such as:
+Global semantic theme tokens live in `src/styles/themes.css`, which is imported by `src/styles/global.css`. Components should use semantic tokens such as:
 
 - `--surface-panel`
 - `--text-muted`
@@ -104,7 +104,7 @@ Global semantic theme tokens live in `src/styles/global.css`. Components should 
 - `--badge-bg`
 - `--shadow-panel`
 
-Shared themed UI treatments also live in `src/styles/global.css`. Prefer these classes before composing one-off border, background, and shadow recipes in components:
+Shared themed UI treatments live in `src/styles/global.css`. Prefer these classes before composing one-off border, background, and shadow recipes in components:
 
 - `tz-window` - full framed panel/card surface
 - `tz-window-interactive` - hover shadow behavior for clickable cards
@@ -116,6 +116,8 @@ Shared themed UI treatments also live in `src/styles/global.css`. Prefer these c
 - `tz-divider-y`, `tz-divider-t`, `tz-divider-b` - theme-aware hard dividers
 
 Avoid using raw palette names or hard-coded hex values inside page/component markup unless building an intentional theme preview.
+
+For repeatable customer site theming, use `docs/theme-system.md` and the starter files in `docs/templates/theme-system/`.
 
 ## Project Data Flow
 

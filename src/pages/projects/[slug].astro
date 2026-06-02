@@ -2,7 +2,6 @@
 import ButtonLink from "../../components/ButtonLink.astro";
 import InfoCard from "../../components/InfoCard.astro";
 import PageIntro from "../../components/PageIntro.astro";
-import Panel from "../../components/Panel.astro";
 import SectionBand from "../../components/SectionBand.astro";
 import StatusBadge from "../../components/StatusBadge.astro";
 import TagList from "../../components/TagList.astro";
@@ -20,6 +19,7 @@ const { project } = Astro.props;
 const languages = project.github?.languages ?? [];
 const skills = project.skills ?? [];
 const complexitySignals = project.complexity?.signals ?? [];
+const nextStepPreview = project.nextSteps[0] ?? "Keep iterating on the project as the repository evolves.";
 const repositorySignals = [
 	project.github?.sizeKb ? `${project.github.sizeKb.toLocaleString("en-GB")} KB repository size` : "",
 	project.github ? `${project.github.stars} star${project.github.stars === 1 ? "" : "s"}` : "",
@@ -39,21 +39,43 @@ const repositorySignals = [
 	/>
 
 	<SectionBand>
-		<div class="mx-auto grid max-w-6xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.7fr_1fr] lg:px-8">
-			<Panel as="aside">
-				<div class="flex items-start justify-between gap-4">
-					<p class="font-display text-sm uppercase text-[var(--text-muted)]">{project.type}</p>
-					<StatusBadge status={project.status} />
+		<div class="mx-auto grid max-w-6xl items-start gap-8 px-4 sm:px-6 lg:grid-cols-[0.7fr_1fr] lg:px-8">
+			<aside class="tz-window">
+				<div class="tz-window-header p-3">
+					<div class="flex items-center justify-between gap-4">
+						<h2 class="font-display text-xs uppercase leading-none tracking-normal">Project overview</h2>
+						<div class="flex shrink-0 gap-1" aria-hidden="true">
+							<div class="tz-window-control"></div>
+							<div class="tz-window-control"></div>
+						</div>
+					</div>
 				</div>
-				<TagList tags={project.tags} class="mt-6" />
-				<div class="mt-8 flex flex-col gap-3">
-					<ButtonLink href="/projects" variant="secondary">Back to projects</ButtonLink>
-					{project.repositoryUrl && <ButtonLink href={project.repositoryUrl} variant="secondary">GitHub repo</ButtonLink>}
-					{project.homepageUrl && <ButtonLink href={project.homepageUrl} variant="secondary">Live site</ButtonLink>}
+				<div class="p-5">
+					<div class="flex items-start justify-between gap-4">
+						<p class="font-display text-sm uppercase text-[var(--text-muted)]">{project.type}</p>
+						<StatusBadge status={project.status} />
+					</div>
+					<TagList tags={project.tags} class="mt-6" />
+					<div class="mt-8 flex flex-col gap-3">
+						<ButtonLink href="/projects" variant="secondary">Back to projects</ButtonLink>
+						{project.repositoryUrl && <ButtonLink href={project.repositoryUrl} variant="secondary">GitHub repo</ButtonLink>}
+						{project.homepageUrl && <ButtonLink href={project.homepageUrl} variant="secondary">Live site</ButtonLink>}
+					</div>
 				</div>
-			</Panel>
+			</aside>
 
 			<div class="space-y-4">
+				<div class="grid gap-4 md:grid-cols-3">
+					<InfoCard title="Role">
+						{project.role}
+					</InfoCard>
+					<InfoCard title="State">
+						{project.currentState}
+					</InfoCard>
+					<InfoCard title="Next">
+						{nextStepPreview}
+					</InfoCard>
+				</div>
 				{
 					skills.length > 0 && (
 						<InfoCard title="Skills and tooling">
@@ -102,14 +124,6 @@ const repositorySignals = [
 							</ul>
 						</InfoCard>
 					)
-				}
-				{
-					[
-						["My role", project.role],
-						["Current state", project.currentState],
-					].map(([title, body]) => (
-						<InfoCard title={title}>{body}</InfoCard>
-					))
 				}
 				<InfoCard title="What has been done">
 					<ul class="list-disc space-y-1 pl-5">

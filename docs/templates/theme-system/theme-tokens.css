@@ -1,0 +1,137 @@
+:root {
+  color-scheme: light;
+  --surface-page: #f4f2ee;
+  --surface-page-muted: #ffffff;
+  --surface-panel: #ffffff;
+  --surface-panel-muted: #ece7df;
+  --surface-inverse: #1f2933;
+  --surface-inverse-muted: rgba(31, 41, 51, 0.08);
+  --text-primary: #1f2933;
+  --text-muted: #52616f;
+  --text-inverse: #f4f2ee;
+  --text-inverse-muted: rgba(244, 242, 238, 0.8);
+  --border-subtle: rgba(31, 41, 51, 0.16);
+  --border-inverse: rgba(244, 242, 238, 0.28);
+  --dropdown-surface: #1f2933;
+  --dropdown-surface-hover: #323f4b;
+  --dropdown-text: #f4f2ee;
+  --dropdown-text-muted: #cbd2d9;
+  --dropdown-border: rgba(244, 242, 238, 0.28);
+  --accent-primary: #3366cc;
+  --accent-primary-hover: #254f9f;
+  --accent-soft: #8fb3ff;
+  --button-primary-bg: #3366cc;
+  --button-primary-bg-hover: #254f9f;
+  --button-primary-text: #ffffff;
+  --button-secondary-bg: #ffffff;
+  --button-secondary-bg-hover: #ece7df;
+  --button-secondary-text: #1f2933;
+  --button-inverse-bg: rgba(244, 242, 238, 0.08);
+  --button-inverse-bg-hover: rgba(244, 242, 238, 0.14);
+  --button-inverse-text: #f4f2ee;
+  --badge-bg: #3366cc;
+  --badge-text: #ffffff;
+  --tag-border: rgba(31, 41, 51, 0.16);
+  --tag-text: #52616f;
+  --window-border: #1f2933;
+  --window-shadow: #52616f;
+  --window-shadow-soft: #1f2933;
+  --window-header: #ece7df;
+  --window-header-strong: #cbd2d9;
+  --project-header-pattern-color: var(--window-border);
+  --project-header-pattern-opacity: 0.14;
+  --project-header-pattern-size: 84px;
+  --compact-border: var(--window-border);
+  --compact-shadow: var(--window-shadow);
+  --shadow-panel: 4px 4px 0 0 var(--window-shadow), 8px 8px 0 0 var(--window-shadow-soft);
+  --shadow-interactive: 5px 5px 0 0 var(--window-shadow), 10px 10px 0 0 var(--window-shadow-soft);
+  --shadow-control: 3px 3px 0 0 var(--compact-shadow);
+  --shadow-chip: 2px 2px 0 0 var(--compact-shadow);
+  --background-glow: rgba(51, 102, 204, 0.18);
+  --surface-header: color-mix(in srgb, var(--surface-page) 88%, transparent);
+  --header-pattern-color: var(--accent-soft);
+  --header-pattern-opacity: 0.35;
+  --selection-bg: #3366cc;
+  --selection-text: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --surface-page: #1f2933;
+    --surface-page-muted: #323f4b;
+    --surface-panel: #323f4b;
+    --surface-panel-muted: #3e4c59;
+    --surface-inverse: #f4f2ee;
+    --surface-inverse-muted: rgba(31, 41, 51, 0.08);
+    --text-primary: #f4f2ee;
+    --text-muted: #cbd2d9;
+    --text-inverse: #1f2933;
+    --text-inverse-muted: rgba(31, 41, 51, 0.72);
+    --border-subtle: rgba(244, 242, 238, 0.16);
+    --border-inverse: rgba(31, 41, 51, 0.2);
+    --dropdown-surface: #f4f2ee;
+    --dropdown-surface-hover: #ece7df;
+    --dropdown-text: #1f2933;
+    --dropdown-text-muted: #52616f;
+    --dropdown-border: rgba(31, 41, 51, 0.2);
+    --accent-primary: #8fb3ff;
+    --accent-primary-hover: #f4f2ee;
+    --accent-soft: #3366cc;
+    --button-primary-bg: #8fb3ff;
+    --button-primary-bg-hover: #f4f2ee;
+    --button-primary-text: #1f2933;
+    --button-secondary-bg: #323f4b;
+    --button-secondary-bg-hover: #3e4c59;
+    --button-secondary-text: #f4f2ee;
+    --button-inverse-bg: rgba(31, 41, 51, 0.08);
+    --button-inverse-bg-hover: rgba(31, 41, 51, 0.14);
+    --button-inverse-text: #1f2933;
+    --badge-bg: #8fb3ff;
+    --badge-text: #1f2933;
+    --tag-border: rgba(244, 242, 238, 0.16);
+    --tag-text: #1f2933;
+    --window-border: #8fb3ff;
+    --window-shadow: #8fb3ff;
+    --window-shadow-soft: #cbd2d9;
+    --window-header: #323f4b;
+    --window-header-strong: #3e4c59;
+    --project-header-pattern-color: var(--accent-primary);
+    --project-header-pattern-opacity: 0.12;
+    --project-header-pattern-size: 84px;
+    --compact-border: #cbd2d9;
+    --compact-shadow: #cbd2d9;
+    --shadow-panel: 4px 4px 0 0 var(--window-shadow), 8px 8px 0 0 var(--window-shadow-soft);
+    --shadow-interactive: 5px 5px 0 0 var(--window-shadow), 10px 10px 0 0 var(--window-shadow-soft);
+    --shadow-control: 3px 3px 0 0 var(--compact-shadow);
+    --shadow-chip: 2px 2px 0 0 var(--compact-shadow);
+    --background-glow: rgba(143, 179, 255, 0.16);
+    --surface-header: color-mix(in srgb, var(--surface-page) 88%, transparent);
+    --header-pattern-color: var(--accent-primary);
+    --header-pattern-opacity: 0.24;
+    --selection-bg: #8fb3ff;
+    --selection-text: #1f2933;
+  }
+}
+
+[data-theme="customer-slug-light"] {
+  color-scheme: light;
+  /* Copy the light :root tokens here for manual theme selection. */
+}
+
+[data-theme="customer-slug-dark"] {
+  color-scheme: dark;
+  /* Copy the dark @media :root tokens here for manual theme selection. */
+}
+
+[data-preview-theme="customer-slug-light"] {
+  --preview-swatch-primary: #f4f2ee;
+  --preview-swatch-secondary: #3366cc;
+  --preview-text: #1f2933;
+}
+
+[data-preview-theme="customer-slug-dark"] {
+  --preview-swatch-primary: #1f2933;
+  --preview-swatch-secondary: #8fb3ff;
+  --preview-text: #f4f2ee;
+}
