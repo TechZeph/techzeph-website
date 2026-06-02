@@ -88,6 +88,7 @@ Current shared components:
 - `TagList.astro` - reusable tag list display
 - `ThemeMenu.astro` - theme dropdown behavior and options
 - `Welcome.astro` - starter component; do not extend unless it remains intentionally useful
+- `WindowControls.astro` - decorative retro window control icons for framed panels
 
 Pages should compose these components rather than duplicating card, button, badge, or section header markup.
 
@@ -145,7 +146,7 @@ Use `.portfolio/progress.json` for editable future-work lists:
 
 - `next` - useful future work
 
-The `done` list is generated from recent GitHub commit history, so keep commit subjects clear and factual.
+The `done` list is generated from recent GitHub commit history, so keep commit subjects clear and factual. Use detailed commit bodies for context while keeping subjects readable as public completed-work notes.
 
 Move long-form project or blog content to Astro content collections later when the content becomes substantial enough to need Markdown, schemas, or richer publishing workflows.
 

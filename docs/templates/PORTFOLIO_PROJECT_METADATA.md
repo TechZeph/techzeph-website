@@ -199,7 +199,7 @@ Complete progress example:
 
 ## Commit Message Guidance
 
-Because recent commit subjects become public `done` items, prefer short, factual commit messages.
+Because recent commit subjects become public `done` items, always use clear, factual commit subjects that read well as completed-work notes. Prefer a concise subject plus a detailed commit body that explains what changed, why it changed, user/developer impact, and validation run.
 
 Good:
 

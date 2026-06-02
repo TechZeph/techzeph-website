@@ -561,6 +561,8 @@ Validation run
 Known risks
 ```
 
+When committing, use a clear, factual subject plus a detailed body. The portfolio sync script turns recent commit subjects into public `done` items, so subjects should read cleanly as completed-work notes. The commit body should explain what changed, why it changed, user/developer impact, and validation run so future agents can understand the work without reverse-engineering the diff.
+
 Suggested commit style:
 
 ```text

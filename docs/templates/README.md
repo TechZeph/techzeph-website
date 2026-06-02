@@ -18,7 +18,7 @@ Copy `portfolio-progress.json` into the same repo when you want editable future-
 
 The project sync script reads these files during `pnpm sync:github-projects` and merges them with GitHub repo metadata.
 
-Completed-work notes are generated from recent GitHub commit subjects on the repo's default branch. Use clear commit messages because they can appear on the portfolio as `done` items.
+Completed-work notes are generated from recent GitHub commit subjects on the repo's default branch. Use clear, factual commit subjects because they can appear on the portfolio as `done` items, and include a detailed commit body so future agents can understand the context behind the work.
 
 Repos can also be included by adding one of the configured GitHub topics, such as `portfolio`, `case-study`, or `featured`.
 

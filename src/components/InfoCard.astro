@@ -1,4 +1,6 @@
 ---
+import WindowControls from "./WindowControls.astro";
+
 interface Props {
 	title: string;
 }
@@ -6,14 +8,11 @@ interface Props {
 const { title } = Astro.props;
 ---
 
-<article class="tz-window">
-	<div class="tz-window-header p-3">
+<article class="tz-window tz-window-interactive transition hover:-translate-y-0.5">
+	<div class="tz-window-header tz-project-card-header p-3">
 		<div class="flex items-center justify-between gap-4">
 			<h2 class="font-display text-xs uppercase leading-none tracking-normal">{title}</h2>
-			<div class="flex shrink-0 gap-1" aria-hidden="true">
-				<div class="tz-window-control"></div>
-				<div class="tz-window-control"></div>
-			</div>
+			<WindowControls />
 		</div>
 	</div>
 	<div class="p-4 text-[var(--text-muted)] sm:p-5">
