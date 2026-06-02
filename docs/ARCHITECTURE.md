@@ -22,7 +22,6 @@ Astro maps files under `src/pages` to public routes:
 - `src/pages/index.astro` -> `/`
 - `src/pages/about.astro` -> `/about`
 - `src/pages/contact.astro` -> `/contact`
-- `src/pages/ui.astro` -> `/ui`
 - `src/pages/projects/index.astro` -> `/projects`
 - `src/pages/projects/[slug].astro` -> `/projects/:slug`
 

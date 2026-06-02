@@ -1,7 +1,5 @@
 ---
-import InfoCard from "../components/InfoCard.astro";
 import PageIntro from "../components/PageIntro.astro";
-import SectionHeader from "../components/SectionHeader.astro";
 import SectionBand from "../components/SectionBand.astro";
 import Layout from "../layouts/Layout.astro";
 ---
@@ -13,29 +11,57 @@ import Layout from "../layouts/Layout.astro";
 	<PageIntro
 		kicker="/about"
 		title="A practical portfolio for technical and creative project work."
-		description="I am a self-directed technical builder moving from hospitality and cybersecurity training into AI-assisted software development, web products, automation, and independent digital businesses.
-		My current work centres on TechZeph, local AI workflows, agentic coding systems, SEO-driven content sites,
-		practical field tools, and experimental automation projects. I enjoy building useful systems from scratch:
-		products that combine real-world utility, clean UI, technical depth, and a strong personal design direction.
-"
+		description="I’m Elliot Harrison, a self-taught developer and technical learner building under the name TechZeph."
 	/>
 
 	<SectionBand>
-		<div class="mx-auto grid max-w-6xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.8fr_1fr] lg:px-8">
-			<SectionHeader
-				kicker="/profile"
-				title="Draft content areas"
-				description="Public copy should stay modest and easy to replace until the final voice is written."
-			/>
-			<div class="space-y-4">
-				<InfoCard title="Current focus">
-					Building the core portfolio, documenting projects clearly, and keeping space for future
-					cyber, development, AI, UI, and creative work.
-				</InfoCard>
-				<InfoCard title="Working style">
-					Project-based, practical, iterative, and careful about separating shipped work from
-					prototypes, concepts, and learning projects.
-				</InfoCard>
+		<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+			<p class="font-display text-sm uppercase text-[var(--accent-primary)]">/about me</p>
+			<h2 class="mt-3 text-2xl font-semibold tracking-normal text-[var(--text-primary)] sm:text-3xl">
+				Building skill in public, one project at a time.
+			</h2>
+
+			<div class="mt-6 space-y-5 text-base leading-8 text-[var(--text-muted)] sm:text-lg">
+				<p>
+					My background is not a traditional computer science route. I came from working as a chef,
+					where I learned how to operate under pressure, solve practical problems quickly, lead teams,
+					and keep systems moving even when things became chaotic. Over time, that same interest in
+					systems, structure, and problem-solving pulled me towards technology.
+				</p>
+
+				<p>
+					My current focus is on cybersecurity, Linux, web development, AI tooling, and local-first
+					systems. I’m especially interested in how people can use technology to become more capable,
+					independent, and creative without being locked into bloated platforms or tools they don’t
+					fully understand.
+				</p>
+
+				<p>
+					TechZeph is where I document that process. I use this site as a personal archive for the
+					things I’m learning, building, breaking, fixing, and refining. Some of that work is practical:
+					websites, scripts, automation, development environments, security labs, and AI-assisted
+					workflows. Some of it is exploratory: operating systems, local language models, digital
+					autonomy, open-source tooling, and better ways to organise knowledge.
+				</p>
+
+				<p>
+					I’m not trying to present myself as a finished expert. The aim is to create useful things,
+					understand them properly, and slowly build a technical foundation strong enough to support
+					larger ideas.
+				</p>
+
+				<p>
+					The kind of work I enjoy sits between creativity and infrastructure. I like clean interfaces,
+					practical tools, resilient systems, and technology that gives people more control over their
+					own lives. I’m drawn to projects that combine design, security, automation, AI, and education.
+				</p>
+
+				<p>
+					At the moment, I’m focused on improving my technical depth, building a stronger portfolio,
+					and creating systems that help me learn, work, and think more clearly. Over time, I want
+					TechZeph to become more than a portfolio: a living archive of experiments, tools, notes, and
+					projects built around useful technology, digital independence, and thoughtful design.
+				</p>
 			</div>
 		</div>
 	</SectionBand>
