@@ -1,17 +1,10 @@
 ---
 import ButtonLink from "../components/ButtonLink.astro";
 import Layout from "../layouts/Layout.astro";
-import Panel from "../components/Panel.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import SectionBand from "../components/SectionBand.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import { projects } from "../data/projects";
-
-const focusItems = [
-	"Designing clear pages that help visitors understand what you offer.",
-	"Keeping websites fast, tidy, and easy to update.",
-	"Adding useful automations where they save time or reduce admin.",
-];
 ---
 
 <Layout
@@ -51,25 +44,6 @@ const focusItems = [
 			</div>
 		</div>
 	</SectionBand>
-
-	<section id="focus" class="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[0.8fr_1fr] lg:gap-10 lg:px-8">
-		<div>
-			<p class="font-display text-sm uppercase text-[var(--accent-primary)]">/focus</p>
-			<h2 class="mt-3 text-2xl font-semibold tracking-normal sm:text-3xl">Built to be clear, fast, and easy to maintain.</h2>
-		</div>
-		<div class="space-y-4">
-			{
-				focusItems.map((item, index) => (
-					<Panel class="flex gap-4" padding="sm">
-						<span class="font-display text-sm text-[var(--accent-primary)]">
-							{String(index + 1).padStart(2, "0")}
-						</span>
-						<p class="text-[var(--text-muted)]">{item}</p>
-					</Panel>
-				))
-			}
-		</div>
-	</section>
 
 	<SectionBand id="contact" tone="inverse">
 		<div class="mx-auto flex max-w-6xl flex-col gap-6 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
