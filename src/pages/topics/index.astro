@@ -1,0 +1,38 @@
+---
+import PageIntro from "../../components/PageIntro.astro";
+import SectionBand from "../../components/SectionBand.astro";
+import Layout from "../../layouts/Layout.astro";
+import { getAllTopics } from "../../data/topics";
+
+const topics = getAllTopics();
+---
+
+<Layout
+	title="Topics | TechZeph"
+	description="Browse TechZeph projects by topic, technology, and skill. Every topic links to the matching case studies and prototypes."
+>
+	<PageIntro
+		kicker="/topics"
+		title="Browse by topic."
+		description="Every technology, skill, and theme across the portfolio. Counts update automatically as projects are added."
+	/>
+
+	<SectionBand>
+		<div class="mx-auto grid max-w-6xl gap-4 px-4 sm:px-6 md:grid-cols-2 lg:grid-cols-3 lg:px-8">
+			{
+				topics.map((topic) => (
+					<a
+						href={`/topics/${topic.slug}`}
+						class="tz-window tz-window-interactive group flex flex-col p-5 transition hover:-translate-y-0.5"
+					>
+						<div class="flex items-baseline justify-between gap-3">
+							<h2 class="text-lg font-semibold">{topic.title}</h2>
+							<span class="font-display text-sm text-[var(--accent-primary)]">{topic.count}</span>
+						</div>
+						<p class="mt-2 text-sm text-[var(--text-muted)]">{topic.description}</p>
+					</a>
+				))
+			}
+		</div>
+	</SectionBand>
+</Layout>

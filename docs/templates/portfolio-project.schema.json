@@ -1,0 +1,144 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://techzeph.co.uk/schemas/portfolio-project.schema.json",
+  "title": "TechZeph .portfolio/project.json",
+  "description": "Contract for a repo's .portfolio/project.json, consumed by scripts/sync-github-projects.mjs -> normalizeProject. Every field is optional; the sync script derives sensible fallbacks from the GitHub repo. `slug` is normally derived from the repo name (override only if needed). The public `done` list is NOT set here - it is generated from recent commit subjects - unless `doneOverride` is provided. Future-work lives in .portfolio/progress.json.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "slug": {
+      "type": "string",
+      "description": "Override the URL slug. Defaults to a slugified repo name. Lowercase, hyphen-separated.",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "title": {
+      "type": "string",
+      "description": "Public portfolio title. Defaults to a titleized repo name.",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "status": {
+      "type": "string",
+      "description": "Honest project status. Defaults to a value inferred from GitHub topics, else 'Built'.",
+      "enum": ["Built", "Planned", "Prototype", "Concept", "Learning project"]
+    },
+    "type": {
+      "type": "string",
+      "description": "Plain-language project type, e.g. 'CLI tool'. Defaults to the primary language or 'GitHub project'.",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "summary": {
+      "type": "string",
+      "description": "One or two clear, modest sentences. Defaults to the GitHub description.",
+      "minLength": 1,
+      "maxLength": 400
+    },
+    "role": {
+      "type": "string",
+      "description": "Build role / context label (renders as 'Build role'). Defaults to 'Project owner'.",
+      "maxLength": 120
+    },
+    "tags": {
+      "type": "array",
+      "description": "3-8 portfolio tags for grouping/scanning. Compacted to a max of 8 (deduped). Each tag also links to its /topics/<slug> page.",
+      "items": { "type": "string", "minLength": 1, "maxLength": 40 },
+      "maxItems": 8,
+      "uniqueItems": true
+    },
+    "skills": {
+      "type": "array",
+      "description": "Concrete skills/tools/concepts. Compacted to a max of 12 (deduped). If omitted, inferred from languages + topics.",
+      "items": { "type": "string", "minLength": 1, "maxLength": 60 },
+      "maxItems": 12,
+      "uniqueItems": true
+    },
+    "complexityNotes": {
+      "type": "string",
+      "description": "Factual visitor-facing build-context note (renders as 'Build context'). Not a rating.",
+      "maxLength": 400
+    },
+    "currentState": {
+      "type": "string",
+      "description": "What currently exists / is shipped. Defaults to 'Public GitHub repository. Last pushed <date>.'",
+      "maxLength": 400
+    },
+    "caseStudy": {
+      "type": "object",
+      "description": "Optional narrative depth. Each field is a short paragraph. Omit any field or the whole object; the section is skipped when all three are empty. Must be verifiable from the repo - no hype, no invented outcomes.",
+      "additionalProperties": false,
+      "properties": {
+        "problem": { "type": "string", "maxLength": 600 },
+        "approach": { "type": "string", "maxLength": 600 },
+        "outcome": { "type": "string", "maxLength": 600 }
+      }
+    },
+    "highlights": {
+      "type": "array",
+      "description": "Up to 5 short, factual proof points. Scannable bullets distinct from the commit-derived done[] history.",
+      "items": { "type": "string", "minLength": 1, "maxLength": 160 },
+      "maxItems": 5
+    },
+    "learned": {
+      "type": "array",
+      "description": "Up to 5 short 'what I took away' bullets (renders as 'What I learned').",
+      "items": { "type": "string", "minLength": 1, "maxLength": 160 },
+      "maxItems": 5
+    },
+    "related": {
+      "type": "array",
+      "description": "Slugs of OTHER projects to cross-link (renders as internal 'Related projects' links). Unknown slugs are filtered at render time. Capped at 6.",
+      "items": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+      "maxItems": 6,
+      "uniqueItems": true
+    },
+    "featured": {
+      "type": "boolean",
+      "description": "Curation flag. Featured projects sort first on the index pages. Defaults to false.",
+      "default": false
+    },
+    "order": {
+      "type": "integer",
+      "description": "Manual ranking key (ascending) applied after `featured`. Lower sorts earlier. Defaults to 9999.",
+      "minimum": 0,
+      "default": 9999
+    },
+    "category": {
+      "type": "string",
+      "description": "Single grouping label for future filtering, e.g. 'Web', 'Automation', 'AI'. Does not overload tags.",
+      "maxLength": 40
+    },
+    "demoUrl": {
+      "type": "string",
+      "description": "Live interactive demo URL, rendered as a CTA button distinct from the repo and homepage links.",
+      "format": "uri",
+      "maxLength": 500
+    },
+    "started": {
+      "type": "string",
+      "description": "When work started. YYYY-MM or YYYY-MM-DD.",
+      "pattern": "^[0-9]{4}-[0-9]{2}(-[0-9]{2})?$"
+    },
+    "shipped": {
+      "type": "string",
+      "description": "When it shipped. YYYY-MM or YYYY-MM-DD.",
+      "pattern": "^[0-9]{4}-[0-9]{2}(-[0-9]{2})?$"
+    },
+    "ogImage": {
+      "type": "string",
+      "description": "Override social-share image (absolute URL). When omitted, the free GitHub auto-generated social-preview image (opengraph.githubassets.com) is used.",
+      "maxLength": 500
+    },
+    "doneOverride": {
+      "type": "array",
+      "description": "The ONLY sanctioned way to bypass the commit-derived done[] list. When this is a non-empty array, it replaces the generated done items. Capped at 8. Leave empty to keep the default commit-derived behaviour.",
+      "items": { "type": "string", "minLength": 1, "maxLength": 200 },
+      "maxItems": 8
+    },
+    "include": {
+      "type": "boolean",
+      "description": "Force inclusion even without one of the portfolio GitHub topics. Forks/archived repos need this set to true to appear.",
+      "default": false
+    }
+  }
+}

@@ -169,11 +169,96 @@ Good:
 
 Avoid pretending planned features already exist.
 
+### `caseStudy`
+
+Optional narrative depth - the highest-value field. An object with up to three
+short paragraphs: `problem`, `approach`, `outcome`. Renders as a "Case study"
+card. Each part must be verifiable from the repo. No hype, no invented metrics.
+
+```json
+"caseStudy": {
+  "problem": "Scaffolding a portfolio-ready repo by hand was many manual steps.",
+  "approach": "A single script that scaffolds metadata, sets topics, and seeds a clean first commit.",
+  "outcome": "New repos appear on the portfolio after the next sync with no hand-editing."
+}
+```
+
+Omit any part, or the whole object; the section is skipped when all parts are empty.
+
+### `highlights`
+
+Optional. Up to 5 short, factual proof points. Renders as a scannable
+"Highlights" card, distinct from the commit-derived `done` history.
+
+```json
+"highlights": ["Ships as a single static bundle", "Zero runtime JS on project pages"]
+```
+
+### `learned`
+
+Optional. Up to 5 short takeaways ("What I learned"). Reflection, not features.
+
+### `related`
+
+Optional. Slugs of OTHER projects to cross-link. Renders as internal
+"Related projects" links (keeps visitors on-site). Unknown slugs are filtered.
+
+```json
+"related": ["techzeph-website"]
+```
+
+### `featured` and `order`
+
+Optional curation. `featured: true` sorts the card first on the index pages;
+`order` (integer, ascending, default 9999) is the manual tiebreak after
+`featured`. Together they are the real ranking lever (every repo has 0 stars,
+so the legacy stars sort is inert).
+
+### `category`
+
+Optional single grouping label (e.g. `Web`, `Automation`, `AI`) for future
+filtering. Do not overload `tags` for this.
+
+### `demoUrl`
+
+Optional live interactive demo URL. Renders as a CTA button distinct from the
+repo and homepage links. A release link auto-fills from the latest GitHub
+release when present.
+
+### `started` and `shipped`
+
+Optional `YYYY-MM` or `YYYY-MM-DD` strings. Render as a human "Timeline" line.
+
+### `ogImage`
+
+Optional absolute URL to override the social-share image. When omitted, the
+portfolio uses the FREE GitHub auto-generated social-preview image
+(`opengraph.githubassets.com/1/<owner>/<repo>`), which always resolves.
+
+### `doneOverride`
+
+Optional. The ONLY sanctioned way to bypass the commit-derived `done` list.
+When this is a non-empty array (max 8), it REPLACES the generated items. Leave
+it out (or empty) to keep the default commit-derived behaviour.
+
+```json
+"doneOverride": [
+  "Scaffold .portfolio metadata and topics in one command.",
+  "Validate generated JSON with jq / python / built-in fallback."
+]
+```
+
+### Free GitHub signals (no metadata needed)
+
+The sync also surfaces, with no metadata from you: the repository license, the
+open-issues count (labelled "open issues / PRs" because GitHub counts PRs), the
+latest release, and the social-preview image. You do not set these here.
+
 ## Progress File
 
 Future-work notes should live in `.portfolio/progress.json`, not `.portfolio/project.json`.
 
-Do not write manual `done` entries. The portfolio sync script generates `done` from recent default-branch commit subjects.
+By default, do not write manual `done` entries: the portfolio sync script generates `done` from recent default-branch commit subjects. The ONE exception is `doneOverride` (see the Field Guide) - when you provide a non-empty `doneOverride` array in `.portfolio/project.json`, it REPLACES the commit-derived list. Use it only when the commit history reads poorly; otherwise prefer clean commit subjects.
 
 Use `next` for useful future work:
 

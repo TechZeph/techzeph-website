@@ -1,0 +1,241 @@
+{
+  "version": 1,
+  "description": "THE single canonical topic vocabulary for the TechZeph portfolio. src/data/topics.ts reads this file to GENERATE the /topics and /topics/[topic] landing pages. Slugs here are post-slugify (lowercase, non-alphanumerics collapsed to single hyphens, trimmed) and post-alias (already canonical). Edit this file to add/rename topics; do not duplicate the slugify logic or the alias map anywhere else. (The Layer-1 topic DETECTOR rules that used to live here under `detectors` are tooling and now live in a separate repo; only the registry + config are needed to render.)",
+  "notes": {
+    "slugify": "Mirrors slugify() in scripts/sync-github-projects.mjs: value.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,''). topics.ts re-implements this identically; keep both in sync.",
+    "titleize": "Mirrors titleize() in scripts/sync-github-projects.mjs: value.replace(/[-_]+/g,' ').replace(/\\b\\w/g, l => l.toUpperCase()). Used as the display-name fallback when a topic has no explicit title here.",
+    "kind": "language | framework | infra | domain | practice | meta. Used for the group facet on the /topics directory page.",
+    "groups": "Facet labels for the /topics directory page. A topic whose kind has no group label falls back to config.defaultGroup ('other').",
+    "minProjects": "Global threshold: an aggregated topic needs at least this many distinct projects to get its own page. Per-topic 'minProjects' overrides this."
+  },
+  "config": {
+    "minProjects": 1,
+    "defaultGroup": "other",
+    "tagCap": 8,
+    "vocabVersion": "2026-06-07"
+  },
+  "groups": {
+    "language": "Languages",
+    "framework": "Frameworks",
+    "infra": "Infrastructure",
+    "domain": "Domains",
+    "practice": "Practices",
+    "other": "Other"
+  },
+  "aliases": {
+    "tailwindcss": "tailwind-css",
+    "tailwind": "tailwind-css",
+    "tailwind-css": "tailwind-css",
+    "js": "javascript",
+    "node": "node-js",
+    "nodejs": "node-js",
+    "node-js": "node-js",
+    "ts": "typescript",
+    "github-api": "github",
+    "github-api-integration": "github",
+    "gh": "github",
+    "static-site": "static-sites",
+    "static-website": "static-sites",
+    "static-site-generation": "static-sites",
+    "ssg": "static-sites",
+    "ui-components": "ui-components",
+    "responsive-ui-components": "ui-components",
+    "responsive-design": "ui-components",
+    "web-development": "web-development",
+    "webdev": "web-development",
+    "developer-workflow": "automation",
+    "ci": "automation",
+    "ci-cd": "automation",
+    "github-actions": "automation",
+    "cli-tool": "cli",
+    "command-line": "cli",
+    "docs": "documentation",
+    "a11y": "accessibility",
+    "ecommerce": "e-commerce",
+    "data-viz": "data-science",
+    "datascience": "data-science",
+    "ml": "data-science",
+    "machine-learning": "data-science"
+  },
+  "topics": {
+    "astro": {
+      "title": "Astro",
+      "kind": "framework",
+      "detectable": true,
+      "description": "Projects built with the Astro web framework.",
+      "seo": "TechZeph projects built with Astro - static-first sites, content pipelines, and component work.",
+      "group": "framework"
+    },
+    "tailwind-css": {
+      "title": "Tailwind CSS",
+      "kind": "framework",
+      "detectable": true,
+      "description": "Interface work styled with Tailwind CSS.",
+      "seo": "TechZeph interface work styled with Tailwind CSS.",
+      "group": "framework"
+    },
+    "typescript": {
+      "title": "TypeScript",
+      "kind": "language",
+      "detectable": true,
+      "description": "Projects written in TypeScript.",
+      "group": "language"
+    },
+    "javascript": {
+      "title": "JavaScript",
+      "kind": "language",
+      "detectable": true,
+      "description": "Projects written in JavaScript.",
+      "group": "language"
+    },
+    "node-js": {
+      "title": "Node.js",
+      "kind": "framework",
+      "detectable": true,
+      "description": "Build-time scripts and tooling that run on Node.js.",
+      "group": "framework"
+    },
+    "css": {
+      "title": "CSS",
+      "kind": "language",
+      "detectable": true,
+      "description": "Projects with significant hand-authored CSS.",
+      "group": "language"
+    },
+    "html": {
+      "title": "HTML",
+      "kind": "language",
+      "detectable": true,
+      "description": "Projects with significant hand-authored HTML.",
+      "group": "language"
+    },
+    "python": {
+      "title": "Python",
+      "kind": "language",
+      "detectable": true,
+      "description": "Projects written in Python.",
+      "group": "language"
+    },
+    "go": {
+      "title": "Go",
+      "kind": "language",
+      "detectable": true,
+      "description": "Projects written in Go.",
+      "group": "language"
+    },
+    "rust": {
+      "title": "Rust",
+      "kind": "language",
+      "detectable": true,
+      "description": "Projects written in Rust.",
+      "group": "language"
+    },
+    "docker": {
+      "title": "Docker",
+      "kind": "infra",
+      "detectable": true,
+      "description": "Containerised projects with a Docker build.",
+      "group": "infra"
+    },
+    "web-development": {
+      "title": "Web development",
+      "kind": "domain",
+      "detectable": false,
+      "description": "General web development work across the portfolio.",
+      "group": "domain"
+    },
+    "portfolio": {
+      "title": "Portfolio systems",
+      "kind": "domain",
+      "detectable": true,
+      "description": "Work on the portfolio platform itself - data pipelines and presentation.",
+      "seo": "TechZeph portfolio-platform work: the GitHub sync pipeline, project data model, and presentation layer.",
+      "group": "domain"
+    },
+    "static-sites": {
+      "title": "Static sites",
+      "kind": "practice",
+      "detectable": true,
+      "description": "Statically generated sites and the tooling around them.",
+      "group": "practice"
+    },
+    "automation": {
+      "title": "Automation",
+      "kind": "practice",
+      "detectable": true,
+      "description": "Build-time scripts, scheduled syncs, and developer-workflow automation.",
+      "seo": "TechZeph automation work: build-time scripts, scheduled syncs, and developer-workflow tooling.",
+      "group": "practice"
+    },
+    "documentation": {
+      "title": "Documentation",
+      "kind": "practice",
+      "detectable": true,
+      "description": "Projects with a strong documentation or technical-writing component.",
+      "group": "practice"
+    },
+    "ui-components": {
+      "title": "UI components",
+      "kind": "practice",
+      "detectable": true,
+      "description": "Reusable interface components and responsive layout work.",
+      "group": "practice"
+    },
+    "accessibility": {
+      "title": "Accessibility",
+      "kind": "practice",
+      "detectable": true,
+      "description": "Work focused on accessible, inclusive interfaces.",
+      "group": "practice"
+    },
+    "github": {
+      "title": "GitHub",
+      "kind": "domain",
+      "detectable": true,
+      "description": "Work that integrates with the GitHub API or GitHub-native workflows.",
+      "group": "domain"
+    },
+    "cli": {
+      "title": "CLI tools",
+      "kind": "domain",
+      "detectable": false,
+      "description": "Command-line tools and scriptable developer utilities.",
+      "group": "domain"
+    },
+    "automation-agent": {
+      "title": "Agents",
+      "kind": "domain",
+      "detectable": false,
+      "description": "Autonomous or AI-assisted agent workflows.",
+      "group": "domain"
+    },
+    "game": {
+      "title": "Games",
+      "kind": "domain",
+      "detectable": false,
+      "description": "Games and interactive entertainment.",
+      "group": "domain"
+    },
+    "finance": {
+      "title": "Finance",
+      "kind": "domain",
+      "detectable": false,
+      "description": "Finance, fintech, and money tooling.",
+      "group": "domain"
+    },
+    "e-commerce": {
+      "title": "E-commerce",
+      "kind": "domain",
+      "detectable": false,
+      "description": "Storefronts, carts, and commerce systems.",
+      "group": "domain"
+    },
+    "data-science": {
+      "title": "Data science",
+      "kind": "domain",
+      "detectable": false,
+      "description": "Data analysis, visualisation, and machine learning.",
+      "group": "domain"
+    }
+  }
+}

@@ -121,6 +121,71 @@ async function fetchCommits(repo) {
 	return Array.isArray(commits) ? commits : [];
 }
 
+async function fetchLatestRelease(repo) {
+	const url = `https://api.github.com/repos/${repo.owner.login}/${repo.name}/releases/latest`;
+	const release = await fetchJson(url); // null on 404 (no releases) - no throw
+
+	if (!release) {
+		return undefined;
+	}
+
+	return {
+		tag: release.tag_name,
+		name: release.name || release.tag_name,
+		url: release.html_url,
+		publishedAt: release.published_at,
+	};
+}
+
+// license + open issues need NO extra request: both ride the repo list payload.
+function licenseFrom(repo) {
+	const license = repo.license;
+
+	if (!license || !license.spdx_id || license.spdx_id === "NOASSERTION") {
+		return undefined;
+	}
+
+	return { spdxId: license.spdx_id, name: license.name, url: license.url || undefined };
+}
+
+// GitHub auto-generates a social card for EVERY repo (no auth, no API call).
+function socialImageFor(repo) {
+	return `https://opengraph.githubassets.com/1/${repo.owner.login}/${repo.name}`;
+}
+
+// Trim a free-text field; undefined when empty so the renderer can skip it.
+function cleanText(value) {
+	const text = String(value ?? "").trim();
+	return text.length > 0 ? text : undefined;
+}
+
+function normalizeCaseStudy(caseStudy) {
+	if (!caseStudy || typeof caseStudy !== "object") {
+		return undefined;
+	}
+
+	const problem = cleanText(caseStudy.problem);
+	const approach = cleanText(caseStudy.approach);
+	const outcome = cleanText(caseStudy.outcome);
+
+	if (!problem && !approach && !outcome) {
+		return undefined;
+	}
+
+	return { problem, approach, outcome };
+}
+
+// Short list helper for the new arrays (dedupe + cap). Mirrors normalizeList's
+// discipline but with a configurable cap and no fallback.
+function compactStrings(value, max) {
+	if (!Array.isArray(value) || value.length === 0) {
+		return undefined;
+	}
+
+	const items = [...new Set(value.map((item) => String(item).trim()).filter(Boolean))].slice(0, max);
+	return items.length > 0 ? items : undefined;
+}
+
 function slugify(value) {
 	return value
 		.toLowerCase()
@@ -276,14 +341,30 @@ function normalizeProject(repo, metadata = {}, progress = {}, languages = {}, co
 		currentState:
 			metadata.currentState ||
 			`Public GitHub repository. Last pushed ${updatedLabel}.`,
-		done: normalizeList(doneFromCommits(commits, [
-			metadata.currentState || `Public GitHub repository. Last pushed ${updatedLabel}.`,
-		]), [
-			metadata.currentState || `Public GitHub repository. Last pushed ${updatedLabel}.`,
-		]),
+		// done: an explicit doneOverride wins; otherwise stay commit-derived.
+		done: Array.isArray(metadata.doneOverride) && metadata.doneOverride.length > 0
+			? normalizeList(metadata.doneOverride, [])
+			: normalizeList(doneFromCommits(commits, [
+				metadata.currentState || `Public GitHub repository. Last pushed ${updatedLabel}.`,
+			]), [
+				metadata.currentState || `Public GitHub repository. Last pushed ${updatedLabel}.`,
+			]),
 		nextSteps: normalizeList(progress.next ?? progress.nextSteps ?? metadata.nextSteps ?? metadata.next, [
 			"Add project-specific progress notes in `.portfolio/progress.json` inside the source repository.",
 		]),
+		caseStudy: normalizeCaseStudy(metadata.caseStudy),
+		highlights: compactStrings(metadata.highlights, 5),
+		learned: compactStrings(metadata.learned, 5),
+		related: Array.isArray(metadata.related) && metadata.related.length > 0
+			? [...new Set(metadata.related.map((value) => slugify(String(value))).filter(Boolean))].slice(0, 6)
+			: undefined,
+		featured: metadata.featured === true,
+		order: Number.isFinite(Number(metadata.order)) ? Number(metadata.order) : 9999,
+		category: cleanText(metadata.category),
+		demoUrl: cleanText(metadata.demoUrl),
+		started: cleanText(metadata.started),
+		shipped: cleanText(metadata.shipped),
+		ogImage: cleanText(metadata.ogImage), // override; renderer falls back to github.socialImage
 		repositoryUrl: repo.html_url,
 		homepageUrl: repo.homepage || undefined,
 		github: {
@@ -300,6 +381,10 @@ function normalizeProject(repo, metadata = {}, progress = {}, languages = {}, co
 			pushedAt: repo.pushed_at,
 			private: repo.private,
 			archived: repo.archived,
+			license: licenseFrom(repo), // free, from the repo list payload
+			openIssues: repo.open_issues_count, // NOTE: GitHub counts PRs as issues
+			socialImage: socialImageFor(repo), // free, always resolves
+			latestRelease: undefined, // set in main() from fetchLatestRelease
 		},
 	};
 }
@@ -331,9 +416,18 @@ async function readExistingOutput() {
 
 async function writeProjects(projects) {
 	const sortedProjects = projects.sort((a, b) => {
-		const priorityA = Number(a.github?.stars || 0);
-		const priorityB = Number(b.github?.stars || 0);
-		return priorityB - priorityA || a.title.localeCompare(b.title);
+		if (Boolean(a.featured) !== Boolean(b.featured)) {
+			return a.featured ? -1 : 1; // featured first
+		}
+
+		const orderA = Number.isFinite(a.order) ? a.order : 9999;
+		const orderB = Number.isFinite(b.order) ? b.order : 9999;
+		if (orderA !== orderB) {
+			return orderA - orderB; // manual order asc
+		}
+
+		const starDiff = Number(b.github?.stars || 0) - Number(a.github?.stars || 0);
+		return starDiff || a.title.localeCompare(b.title); // existing tiebreak
 	});
 
 	const contents = [
@@ -382,8 +476,14 @@ async function main() {
 
 			const languages = await fetchLanguages(repo);
 			const commits = await fetchCommits(repo);
+			const latestRelease = await fetchLatestRelease(repo);
 
-			projects.push(normalizeProject(repo, metadata || {}, progress || {}, languages, commits));
+			const project = normalizeProject(repo, metadata || {}, progress || {}, languages, commits);
+			if (latestRelease) {
+				project.github.latestRelease = latestRelease;
+			}
+
+			projects.push(project);
 		}
 
 		await writeProjects(projects);
