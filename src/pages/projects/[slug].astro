@@ -30,11 +30,29 @@ const repositorySignals = [
 	project.github ? `${project.github.forks} fork${project.github.forks === 1 ? "" : "s"}` : "",
 	project.github?.pushedAt ? `Last pushed ${new Date(project.github.pushedAt).toISOString().slice(0, 10)}` : "",
 ].filter(Boolean);
+
+const caseStudy = project.caseStudy;
+const highlights = project.highlights ?? [];
+const learned = project.learned ?? [];
+const license = project.github?.license;
+const latestRelease = project.github?.latestRelease;
+const socialImage = project.ogImage ?? project.github?.socialImage;
+const timeline = [project.started, project.shipped].filter(Boolean).join(" → ");
+const relatedProjects = (project.related ?? [])
+	.map((slug) => projects.find((candidate) => candidate.slug === slug))
+	.filter((candidate): candidate is typeof project => Boolean(candidate));
+const releaseSignals = [
+	license ? `License: ${license.spdxId}` : "",
+	latestRelease ? `Latest release: ${latestRelease.name}` : "",
+	typeof project.github?.openIssues === "number" ? `${project.github.openIssues} open issues / PRs` : "",
+	timeline ? `Timeline: ${timeline}` : "",
+].filter(Boolean);
 ---
 
 <Layout
 	title={`${project.title} | TechZeph`}
 	description={project.summary}
+	image={socialImage}
 >
 	<PageIntro
 		kicker={`/projects/${project.slug}`}
@@ -61,6 +79,8 @@ const repositorySignals = [
 						<ButtonLink href="/projects" variant="secondary">Back to projects</ButtonLink>
 						{project.repositoryUrl && <ButtonLink href={project.repositoryUrl} variant="secondary">GitHub repo</ButtonLink>}
 						{project.homepageUrl && <ButtonLink href={project.homepageUrl} variant="secondary">Live site</ButtonLink>}
+						{project.demoUrl && <ButtonLink href={project.demoUrl} variant="secondary">Live demo</ButtonLink>}
+						{latestRelease && <ButtonLink href={latestRelease.url} variant="secondary">Latest release</ButtonLink>}
 					</div>
 				</div>
 			</aside>
@@ -82,6 +102,41 @@ const repositorySignals = [
 					skills.length > 0 && (
 						<InfoCard title="Skills and tooling">
 							<TagList tags={skills} />
+						</InfoCard>
+					)
+				}
+				{
+					highlights.length > 0 && (
+						<InfoCard title="Highlights">
+							<ul class="list-disc space-y-1 pl-5">
+								{highlights.map((item) => <li>{item}</li>)}
+							</ul>
+						</InfoCard>
+					)
+				}
+				{
+					caseStudy && (
+						<InfoCard title="Case study">
+							<div class="space-y-4">
+								{caseStudy.problem && (
+									<div>
+										<h3 class="font-display text-xs uppercase text-[var(--text-muted)]">Problem</h3>
+										<p class="mt-1">{caseStudy.problem}</p>
+									</div>
+								)}
+								{caseStudy.approach && (
+									<div>
+										<h3 class="font-display text-xs uppercase text-[var(--text-muted)]">Approach</h3>
+										<p class="mt-1">{caseStudy.approach}</p>
+									</div>
+								)}
+								{caseStudy.outcome && (
+									<div>
+										<h3 class="font-display text-xs uppercase text-[var(--text-muted)]">Outcome</h3>
+										<p class="mt-1">{caseStudy.outcome}</p>
+									</div>
+								)}
+							</div>
 						</InfoCard>
 					)
 				}
@@ -115,6 +170,15 @@ const repositorySignals = [
 						</InfoCard>
 					)
 				}
+				{
+					releaseSignals.length > 0 && (
+						<InfoCard title="Release & license">
+							<ul class="list-disc space-y-1 pl-5">
+								{releaseSignals.map((signal) => <li>{signal}</li>)}
+							</ul>
+						</InfoCard>
+					)
+				}
 				<InfoCard title="What has been done">
 					<div class="space-y-5">
 						<ul class="list-disc space-y-1 pl-5">
@@ -139,6 +203,33 @@ const repositorySignals = [
 						{project.nextSteps.map((item) => <li>{item}</li>)}
 					</ul>
 				</InfoCard>
+				{
+					learned.length > 0 && (
+						<InfoCard title="What I learned">
+							<ul class="list-disc space-y-1 pl-5">
+								{learned.map((item) => <li>{item}</li>)}
+							</ul>
+						</InfoCard>
+					)
+				}
+				{
+					relatedProjects.length > 0 && (
+						<InfoCard title="Related projects">
+							<ul class="space-y-1">
+								{relatedProjects.map((related) => (
+									<li>
+										<a
+											href={`/projects/${related.slug}`}
+											class="font-semibold text-[var(--accent-primary)] transition hover:text-[var(--accent-primary-hover)]"
+										>
+											{related.title}
+										</a>
+									</li>
+								))}
+							</ul>
+						</InfoCard>
+					)
+				}
 			</div>
 		</div>
 	</SectionBand>

@@ -20,6 +20,21 @@ export interface Project {
 	currentState: string;
 	done: readonly string[];
 	nextSteps: readonly string[];
+	caseStudy?: {
+		problem?: string;
+		approach?: string;
+		outcome?: string;
+	};
+	highlights?: readonly string[];
+	learned?: readonly string[];
+	related?: readonly string[]; // slugs of other projects
+	featured?: boolean;
+	order?: number;
+	category?: string;
+	demoUrl?: string;
+	started?: string;
+	shipped?: string;
+	ogImage?: string; // explicit social-image override
 	repositoryUrl?: string;
 	homepageUrl?: string;
 	github?: {
@@ -40,6 +55,19 @@ export interface Project {
 		pushedAt: string;
 		private: boolean;
 		archived: boolean;
+		license?: {
+			spdxId: string;
+			name: string;
+			url?: string;
+		};
+		openIssues?: number; // includes PRs
+		socialImage?: string; // opengraph.githubassets.com fallback, always present
+		latestRelease?: {
+			tag: string;
+			name: string;
+			url: string;
+			publishedAt: string;
+		};
 	};
 }
 
@@ -85,3 +113,10 @@ export const projects = githubProjects
 
 		return 0;
 	}) satisfies readonly Project[];
+
+// Convenience re-export so callers can reach the topic aggregation from the
+// projects module. The canonical logic + vocabulary live in ./topics and
+// ./topics.taxonomy.json (the single source of truth shared with
+// scripts/derive-topics.mjs).
+export { getAllTopics, getTopic, getRelatedTopics, canonicalTopicSlug } from "./topics";
+export type { Topic } from "./topics";
