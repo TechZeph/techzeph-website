@@ -7,13 +7,20 @@ import "../styles/global.css";
 interface Props {
 	title?: string;
 	description?: string;
+	canonical?: string;
+	image?: string;
+	ogType?: string;
 }
 
 const {
 	title = "TechZeph | Portfolio",
 	description = "A portfolio for projects, experiments, case studies, and interface work.",
+	canonical,
+	image,
+	ogType = "website",
 } = Astro.props;
 
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <!doctype html>
@@ -28,6 +35,14 @@ const {
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 		<link rel="manifest" href="/site.webmanifest" />
 		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalUrl} />
+		<meta property="og:type" content={ogType} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalUrl} />
+		{image && <meta property="og:image" content={image} />}
+		<meta name="twitter:card" content={image ? "summary_large_image" : "summary"} />
+		{image && <meta name="twitter:image" content={image} />}
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<script define:vars={{ defaultDarkTheme, defaultLightTheme }}>

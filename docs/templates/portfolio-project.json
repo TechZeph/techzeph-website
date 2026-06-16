@@ -8,5 +8,26 @@
   "skills": ["Skill or tool", "Workflow area", "Technical concept"],
   "complexityNotes": "Optional short note about what makes the project simple, moderate, or complex.",
   "currentState": "Describe what currently exists, what is shipped, or what is still a prototype.",
+  "caseStudy": {
+    "problem": "What problem or itch made this worth building. Keep it factual and verifiable from the repo.",
+    "approach": "How you tackled it: the key decisions, tools, and structure.",
+    "outcome": "What now works as a result. No hype, no invented metrics."
+  },
+  "highlights": [
+    "Short, factual proof point a visitor can scan in one line.",
+    "Another concrete thing this project does well."
+  ],
+  "learned": [
+    "One thing you took away from building this."
+  ],
+  "featured": false,
+  "order": 9999,
+  "category": "Web",
+  "demoUrl": "https://example.com/live-demo",
+  "started": "2025-01",
+  "shipped": "2025-06",
+  "ogImage": "https://example.com/social-card.png",
+  "related": ["another-project-slug"],
+  "doneOverride": [],
   "include": true
 }

@@ -1,0 +1,57 @@
+---
+import ButtonLink from "../../components/ButtonLink.astro";
+import PageIntro from "../../components/PageIntro.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import SectionBand from "../../components/SectionBand.astro";
+import Layout from "../../layouts/Layout.astro";
+import { getAllTopics, getRelatedTopics } from "../../data/topics";
+
+export function getStaticPaths() {
+	return getAllTopics().map((topic) => ({
+		params: { topic: topic.slug },
+		props: { topic },
+	}));
+}
+
+const { topic } = Astro.props;
+const related = getRelatedTopics(topic);
+---
+
+<Layout
+	title={`${topic.title} projects | TechZeph`}
+	description={topic.seo}
+>
+	<PageIntro
+		kicker={`/topics/${topic.slug}`}
+		title={`${topic.title} projects`}
+		description={topic.description}
+	/>
+
+	<SectionBand>
+		<div class="mx-auto grid max-w-6xl gap-4 px-4 sm:px-6 md:grid-cols-3 lg:px-8">
+			{topic.projects.map((project) => <ProjectCard project={project} />)}
+		</div>
+
+		{
+			related.length > 0 && (
+				<div class="mx-auto mt-12 max-w-6xl px-4 sm:px-6 lg:px-8">
+					<h2 class="font-display text-sm uppercase text-[var(--text-muted)]">Related topics</h2>
+					<div class="mt-4 flex flex-wrap gap-2">
+						{related.map((other) => (
+							<a
+								href={`/topics/${other.slug}`}
+								class="tz-chip px-2.5 py-1 text-xs font-semibold transition hover:-translate-y-0.5 hover:text-[var(--text-primary)]"
+							>
+								{other.title} ({other.count})
+							</a>
+						))}
+					</div>
+				</div>
+			)
+		}
+
+		<div class="mx-auto mt-10 max-w-6xl px-4 sm:px-6 lg:px-8">
+			<ButtonLink href="/topics" variant="secondary">All topics</ButtonLink>
+		</div>
+	</SectionBand>
+</Layout>
