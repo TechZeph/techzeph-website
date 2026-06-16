@@ -1,19 +1,32 @@
 {
   "title": "TechZeph Portfolio",
-  "status": "Built",
-  "type": "Personal portfolio",
-  "summary": "A static Astro portfolio that pulls project metadata from GitHub and presents repos as lightweight project pages.",
+  "status": "Active",
+  "type": "Static Astro portfolio",
+  "summary": "A static Astro portfolio for TechZeph that presents project work, lightweight case studies, contact details, and GitHub-synced project metadata.",
   "role": "Solo build with AI-assisted iteration",
-  "tags": ["Astro", "Tailwind CSS", "GitHub API", "Static site", "Portfolio"],
+  "tags": [
+    "Astro",
+    "Tailwind CSS",
+    "TypeScript",
+    "GitHub API",
+    "Static site",
+    "Portfolio",
+    "Theme system",
+    "Responsive UI"
+  ],
   "skills": [
     "Astro routing",
     "Static site generation",
     "Tailwind CSS",
+    "TypeScript",
     "GitHub API integration",
     "Generated project data",
-    "Responsive UI components"
+    "Responsive component design",
+    "Theme tokens",
+    "Node.js scripting",
+    "Portfolio metadata modeling"
   ],
-  "complexityNotes": "The project combines static Astro routes, generated GitHub data, theme state, reusable components, and documentation for future agent workflows.",
-  "currentState": "The site has core routes, theme controls, shared layout components, GitHub-synced project data, and documentation templates in place.",
+  "complexityNotes": "Layered static site with file-based routes, reusable Astro components, semantic light/dark theme tokens, GitHub-generated project data, favicon/web manifest assets, and documentation templates for future portfolio and theme-system work.",
+  "currentState": "Core public routes, shared layout components, project index/detail pages, theme controls, GitHub project sync, and documentation are in place. TODO notes show ongoing refinement of UI, copy, project cards, and future customer-site starter extraction.",
   "include": true
 }
