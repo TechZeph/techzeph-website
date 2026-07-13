@@ -4,8 +4,6 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-  schedule:
-    - cron: "15 3 * * *"
 
 permissions:
   contents: read
@@ -41,12 +39,6 @@ jobs:
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
-
-      - name: Sync GitHub project data
-        if: github.event_name == 'schedule'
-        run: pnpm sync:github-projects
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
 
       - name: Build site
         run: pnpm build

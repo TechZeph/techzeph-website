@@ -1,90 +1,31 @@
 ---
-import { Menu } from "@lucide/astro";
-
 const hubPages = [
-	{
-		href: "/about",
-		label: "About",
-		description: "Background and current focus",
-	},
-	{
-		href: "/projects",
-		label: "Projects",
-		description: "Case studies and prototypes",
-	},
-	{
-		href: "/contact",
-		label: "Contact",
-		description: "Public contact route",
-	},
+  { href: "/ai-ops", label: "AI Ops", description: "Small business workflow audit" },
+  { href: "/about", label: "About", description: "Background and current focus" },
+  { href: "/portfolio", label: "Portfolio", description: "Public work and current direction" },
+  { href: "/contact", label: "Contact", description: "Public contact route" },
 ];
 ---
-
-<div class="relative" data-site-menu>
-	<button
-		type="button"
-		data-site-menu-trigger
-		class="tz-control inline-flex min-h-10 items-center gap-2 px-3 text-xs font-semibold transition hover:-translate-y-0.5"
-		aria-haspopup="menu"
-		aria-expanded="false"
-	>
-		<Menu size={15} stroke-width="2.2" aria-hidden="true" />
-		<span>Menu</span>
-		<span aria-hidden="true" class="hidden text-[var(--accent-primary)] sm:inline">/</span>
-		<span class="hidden md:inline">Hubs</span>
-	</button>
-
-	<div
-		data-site-menu-options
-		class="tz-dropdown absolute right-0 top-12 z-50 hidden w-64 max-w-[calc(100vw-2rem)] p-1"
-		role="menu"
-	>
-		{
-			hubPages.map((item, index) => (
-				<a
-					href={item.href}
-					class:list={[
-						"tz-dropdown-item block px-3 py-2 transition",
-						index > 0 && "mt-1",
-					]}
-					role="menuitem"
-				>
-					<span class="block text-sm font-semibold text-[var(--dropdown-text)]">{item.label}</span>
-					<span class="mt-0.5 block text-xs text-[var(--dropdown-text-muted)]">{item.description}</span>
-				</a>
-			))
-		}
-	</div>
+<div data-site-menu>
+  <button type="button" data-site-menu-trigger class="tz-menu-trigger" aria-haspopup="menu" aria-expanded="false">Menu / Hubs</button>
+  <div data-site-menu-options class="tz-menu-popover hidden" role="menu">
+    {hubPages.map((item, index) => (
+      <a href={item.href} role="menuitem"><strong>0{index + 1} / {item.label}</strong><span>{item.description}</span></a>
+    ))}
+  </div>
 </div>
-
 <script>
-	const siteMenu = document.querySelector("[data-site-menu]");
-	const siteMenuTrigger = document.querySelector("[data-site-menu-trigger]");
-	const siteMenuOptions = document.querySelector("[data-site-menu-options]");
-
-	function closeSiteMenu() {
-		siteMenuOptions?.classList.add("hidden");
-		siteMenuTrigger?.setAttribute("aria-expanded", "false");
-	}
-
-	function toggleSiteMenu() {
-		const isOpen = siteMenuTrigger?.getAttribute("aria-expanded") === "true";
-		siteMenuOptions?.classList.toggle("hidden", isOpen);
-		siteMenuTrigger?.setAttribute("aria-expanded", String(!isOpen));
-	}
-
-	siteMenuTrigger?.addEventListener("click", toggleSiteMenu);
-
-	document.addEventListener("click", (event) => {
-		if (siteMenu && event.target instanceof Node && !siteMenu.contains(event.target)) {
-			closeSiteMenu();
-		}
-	});
-
-	document.addEventListener("keydown", (event) => {
-		if (event.key === "Escape") {
-			closeSiteMenu();
-			siteMenuTrigger?.focus();
-		}
-	});
+  const menus = document.querySelectorAll("[data-site-menu]");
+  menus.forEach((menu) => {
+    const trigger = menu.querySelector("[data-site-menu-trigger]");
+    const options = menu.querySelector("[data-site-menu-options]");
+    const close = () => { options?.classList.add("hidden"); trigger?.setAttribute("aria-expanded", "false"); };
+    trigger?.addEventListener("click", () => {
+      const open = trigger.getAttribute("aria-expanded") === "true";
+      options?.classList.toggle("hidden", open);
+      trigger.setAttribute("aria-expanded", String(!open));
+    });
+    document.addEventListener("click", (event) => { if (event.target instanceof Node && !menu.contains(event.target)) close(); });
+    document.addEventListener("keydown", (event) => { if (event.key === "Escape") { close(); if (trigger instanceof HTMLElement) trigger.focus(); } });
+  });
 </script>

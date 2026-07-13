@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageIntro from "../components/PageIntro.astro";
+import PortfolioLinks from "../components/PortfolioLinks.astro";
+import SectionBand from "../components/SectionBand.astro";
+---
+<Layout title="Portfolio | TechZeph" description="TechZeph portfolio links, professional profile, public code, and current website work.">
+  <PageIntro kicker="/portfolio" title="A focused portfolio of work, profiles, and current direction." description="A cleaner starting point for seeing what I am building, where I share technical work, and how to connect with me professionally." />
+  <div class="tz-running-rule" aria-hidden="true"></div>
+  <SectionBand>
+    <div class="tz-container">
+      <div class="tz-section-header">
+        <div><h2>Three useful places to start.</h2></div>
+        <p>This page is intentionally simple. It points directly to my public code, professional profile, and a website project currently in active development.</p>
+      </div>
+      <PortfolioLinks />
+    </div>
+  </SectionBand>
+</Layout>

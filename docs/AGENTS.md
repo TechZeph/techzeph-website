@@ -136,13 +136,13 @@ Target pages:
 
 - `/` — Home
 - `/about` — About
-- `/projects` — Projects index
-- `/projects/[slug]` — Individual project case studies
+- `/portfolio` — Focused portfolio links
 - `/contact` — Contact
+- `/ai-ops` — AI workflow service page
 - `/blog` — Later
 - `/youtube` — Later
-- `/github` — Optional GitHub-focused page or external link
-- `/components` or `/ui` — UI/UX component showcase
+
+The previous generated `/projects` collection has been retired and no project routes remain. Do not reintroduce repository syncing or generated project detail routes unless the user explicitly changes direction.
 
 Do not build the blog or YouTube section deeply until there is actual content or an explicit task.
 
@@ -213,90 +213,17 @@ Future projects may include cyber, dev, AI, creative, product, field-ops, video,
 
 ---
 
-## 8. GitHub project sync
+## 8. Portfolio content
 
-The projects index can be enriched from GitHub at build time.
+The portfolio is deliberately hand-written and small. It currently links directly to:
 
-This is not browser-live data. The bridge is:
+- `https://github.com/TechZeph`
+- `https://www.linkedin.com/in/elliot-harrison-1211413a3/`
+- `https://dukespoboys.com`
 
-```text
-GitHub repos
-  repo topics
-  optional .portfolio/project.json
-  optional .portfolio/progress.json
-  recent default-branch commits
-        ↓
-scripts/sync-github-projects.mjs
-        ↓
-src/data/github-projects.generated.ts
-        ↓
-src/data/projects.ts
-        ↓
-/projects and /projects/[slug]
-```
+These links and their public descriptions live in `src/components/PortfolioLinks.astro` and are used on both the homepage and `/portfolio`.
 
-Use `pnpm sync:github-projects` to refresh generated GitHub project data manually. Normal local and deployment builds use the existing generated data; the deploy workflow refreshes GitHub project data only on the scheduled cron run.
-
-The sync script reads these environment variables:
-
-- `GITHUB_USERNAME` - GitHub username to scan, defaults to `techzeph`
-- `GH_PROJECTS_TOKEN` - optional GitHub token for higher rate limits or private repos
-- `GITHUB_PROJECT_TOPICS` - comma-separated inclusion topics, defaults to `portfolio,case-study,featured`
-- `GITHUB_INCLUDE_PRIVATE` - set to `true` to use authenticated owned repos
-- `GITHUB_PROJECT_SYNC_REQUIRED` - set to `true` if build should fail when sync fails
-
-Do not put tokens in source control. Use `.env` locally and GitHub Actions secrets in CI.
-
-By default, existing repos can opt into the portfolio by adding a topic such as `portfolio`, `case-study`, or `featured`. A separate projects repo is not required.
-
-For richer portfolio copy, add this optional file to the source repo:
-
-```text
-.portfolio/project.json
-```
-
-Example:
-
-```json
-{
-  "title": "Portfolio Foundation",
-  "status": "Built",
-  "type": "Personal site",
-  "summary": "A fast Astro portfolio for projects, case studies, UI experiments, and writing.",
-  "role": "Solo build with AI-assisted iteration",
-  "tags": ["Astro", "Tailwind", "Static site"],
-  "skills": ["Astro routing", "Static site generation", "Tailwind CSS"],
-  "complexityNotes": "Uses static Astro routes, generated GitHub data, and reusable UI components.",
-  "currentState": "Homepage, theme system, layout, and project routes are in place."
-}
-```
-
-Completed-work notes are generated from recent default-branch commit subjects. Use clear, factual commit messages because they may appear as `done` items on the portfolio.
-
-For editable future-work lists, add this optional file to the source repo:
-
-```text
-.portfolio/progress.json
-```
-
-Example:
-
-```json
-{
-  "next": [
-    "Add screenshots to project detail pages.",
-    "Refine public copy across the project pages."
-  ]
-}
-```
-
-Set `"include": true` in `.portfolio/project.json` to include a repo even if it does not have one of the configured topics.
-
-Generated files are owned by the sync script. Do not hand-edit `src/data/github-projects.generated.ts`; edit GitHub repo topics, `.portfolio/project.json`, `.portfolio/progress.json`, or commit history instead.
-
-Project entries should come from GitHub-synced data only. Do not add manual placeholder or planned project entries to `src/data/projects.ts`; add GitHub topics, `.portfolio/project.json`, or `.portfolio/progress.json` metadata to the source repo instead.
-
-Pages and components should consume the normalized `Project` type from `src/data/projects.ts`.
+Do not fetch, import, or generate portfolio content from the GitHub API. The old sync script, generated data, scheduled workflow, and dynamic project routes were intentionally removed. Add future portfolio entries by hand when there is real work worth presenting.
 
 ---
 

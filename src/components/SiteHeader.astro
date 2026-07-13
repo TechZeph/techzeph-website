@@ -1,27 +1,23 @@
 ---
-import { Home } from "@lucide/astro";
+const path = Astro.url.pathname;
+const links = [
+  { href: "/ai-ops", label: "AI Ops" },
+  { href: "/about", label: "About" },
+  { href: "/portfolio", label: "Portfolio" },
+  { href: "/contact", label: "Contact" },
+];
 import SiteMenu from "./SiteMenu.astro";
-import ThemeMenu from "./ThemeMenu.astro";
 ---
-
-<header class="tz-site-header sticky top-0 z-40 backdrop-blur-xl">
-	<nav
-		class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8"
-		aria-label="Primary navigation"
-	>
-		<a
-			href="/"
-			class="tz-control group inline-flex min-h-10 items-center gap-2 px-3 text-sm font-semibold tracking-normal transition hover:-translate-y-0.5"
-		>
-			<span class="grid size-6 place-items-center text-[var(--accent-primary)] transition group-hover:text-[var(--accent-primary-hover)]">
-				<Home size={15} stroke-width="2.2" aria-hidden="true" />
-			</span>
-			<span class="text-[var(--text-muted)] transition group-hover:text-[var(--text-primary)]">TechZeph</span>
-		</a>
-
-		<div class="flex items-center gap-2">
-			<SiteMenu />
-			<ThemeMenu />
-		</div>
-	</nav>
+<header class="tz-site-header">
+  <nav class="tz-site-nav" aria-label="Primary navigation">
+    <a class="tz-wordmark" href="/">TechZeph</a>
+    <div class="tz-desktop-nav">
+      {links.map((link, index) => (
+        <a class="tz-nav-link" aria-current={path === link.href || path.startsWith(`${link.href}/`) ? "page" : undefined} href={link.href}>
+          0{index + 1} {link.label}
+        </a>
+      ))}
+    </div>
+    <div class="tz-mobile-menu"><SiteMenu /></div>
+  </nav>
 </header>

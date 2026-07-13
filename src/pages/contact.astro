@@ -1,32 +1,17 @@
 ---
 import ButtonLink from "../components/ButtonLink.astro";
 import PageIntro from "../components/PageIntro.astro";
-import Panel from "../components/Panel.astro";
 import SectionBand from "../components/SectionBand.astro";
 import Layout from "../layouts/Layout.astro";
 ---
-
-<Layout
-	title="Contact | TechZeph"
-	description="Contact page for the TechZeph portfolio."
->
-	<PageIntro
-		kicker="/contact"
-		title="A simple contact page for now."
-		description="This page keeps contact options clear while the rest of the portfolio content is still being shaped."
-	/>
-
-	<SectionBand>
-		<div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-			<Panel class="max-w-xl">
-				<h2 class="text-xl font-semibold">Contact details</h2>
-				<p class="mt-3 text-[var(--text-muted)]">
-					Replace this with the preferred public contact route when ready.
-				</p>
-				<div class="mt-6">
-					<ButtonLink href="mailto:hello@techzeph.co.uk">hello@techzeph.co.uk</ButtonLink>
-				</div>
-			</Panel>
-		</div>
-	</SectionBand>
+<Layout title="Contact | TechZeph" description="Contact page for the TechZeph portfolio.">
+  <PageIntro kicker="/contact" title="A simple contact page for now." description="This page keeps contact options clear while the rest of the portfolio content is still being shaped." />
+  <SectionBand>
+    <div class="tz-container">
+      <div class="tz-contact-card">
+        <article class="tz-contact-copy"><p class="tz-kicker">01 / Contact details</p><h2>Start with a simple message.</h2></article>
+        <aside class="tz-contact-side"><p class="tz-kicker !text-[var(--accent-soft)]">Open channel</p><p class="my-7 text-[var(--text-inverse-muted)]">Replace this with the preferred public contact route when ready.</p><ButtonLink href="mailto:hello@techzeph.co.uk" variant="inverse">hello@techzeph.co.uk</ButtonLink></aside>
+      </div>
+    </div>
+  </SectionBand>
 </Layout>

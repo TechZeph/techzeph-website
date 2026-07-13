@@ -1,63 +1,28 @@
 ---
-import { defaultDarkTheme, defaultLightTheme } from "../data/themes";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import "../styles/global.css";
-
-interface Props {
-	title?: string;
-	description?: string;
-}
-
-const {
-	title = "TechZeph | Portfolio",
-	description = "A portfolio for projects, experiments, case studies, and interface work.",
-} = Astro.props;
-
+interface Props { title?: string; description?: string; }
+const { title = "TechZeph | Portfolio", description = "A portfolio for projects, experiments, case studies, and interface work." } = Astro.props;
 ---
-
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-		<link rel="manifest" href="/site.webmanifest" />
-		<meta name="description" content={description} />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-		<script define:vars={{ defaultDarkTheme, defaultLightTheme }}>
-			const storedTheme = localStorage.getItem("theme");
-			const initialTheme =
-				storedTheme === "dark"
-					? defaultDarkTheme
-					: storedTheme === "light"
-						? defaultLightTheme
-						: storedTheme;
-
-			if (initialTheme) {
-				document.documentElement.dataset.theme = initialTheme;
-			}
-		</script>
-	</head>
-	<body class="antialiased">
-		<a
-			href="#main-content"
-			class="tz-skip-link sr-only text-sm font-semibold"
-		>
-			Skip to content
-		</a>
-
-		<SiteHeader />
-
-		<main id="main-content">
-			<slot />
-		</main>
-
-		<SiteFooter />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a href="#main-content" class="tz-skip-link sr-only">Skip to content</a>
+    <SiteHeader />
+    <main id="main-content"><slot /></main>
+    <SiteFooter />
+  </body>
 </html>

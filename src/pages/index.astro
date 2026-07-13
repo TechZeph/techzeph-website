@@ -1,65 +1,30 @@
 ---
 import ButtonLink from "../components/ButtonLink.astro";
 import Layout from "../layouts/Layout.astro";
-import ProjectCard from "../components/ProjectCard.astro";
+import PortfolioLinks from "../components/PortfolioLinks.astro";
 import SectionBand from "../components/SectionBand.astro";
 import SectionHeader from "../components/SectionHeader.astro";
-import { projects } from "../data/projects";
 ---
+<Layout title="TechZeph | Websites, Automations & Practical AI" description="High-trust websites, local AI workflows, and useful automations for small teams who want their online presence to work harder.">
+  <section class="tz-home-hero">
+    <p class="tz-kicker">Independent studio</p>
+    <div class="tz-home-hero-main">
+      <h1>Websites with <em>signal.</em> Systems with momentum.</h1>
+      <p class="tz-home-lede">TechZeph builds sharp service pages, practical automations, and local-first AI workflows for people who want their online presence to feel alive, credible, and useful.</p>
+      <div class="tz-home-actions"><ButtonLink href="/contact">Start a project</ButtonLink><ButtonLink href="/portfolio" variant="secondary">View the portfolio</ButtonLink></div>
+    </div>
+  </section>
+  <SectionBand tone="muted">
+    <div class="tz-container">
+      <SectionHeader kicker="Portfolio" title="Websites, code and professional experience." description="View my GitHub projects, LinkedIn profile and the website I’m building for Duke’s Po-Boys." />
+      <PortfolioLinks />
+    </div>
+  </SectionBand>
 
-<Layout
-	title="TechZeph | Project Portfolio"
-	description="Clean, fast websites and useful automations for people who want a stronger online presence."
->
-	<section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-		<div class="flex max-w-4xl flex-col justify-center">
-			<p class="font-display mb-5 text-sm uppercase text-[var(--accent-primary)]">/Home</p>
-			<h1 class="text-2xl font-semibold leading-tight tracking-normal text-[var(--text-primary)] sm:text-4xl lg:text-5xl">
-				Clean, fast websites and custom automations for people who want their online presence to work harder.
-			</h1>
-			<p class="mt-5 max-w-2xl text-base text-[var(--text-muted)] sm:mt-6 sm:text-lg">
-				TechZeph is my portfolio and service space for practical website design, simple digital systems, and custom workflow automation.
-				I build sites that look good, load quickly, and are easier to keep updated.
-				<br><br>
-				That means less manual editing, fewer repeated tasks, and a website that can grow with your work.
-				If you need a polished site, a better project showcase, or a custom automation for your business, get in touch.
-			</p>
-			<div class="mt-8 flex flex-col gap-3 sm:flex-row">
-				<ButtonLink href="/projects" variant="secondary">View current work</ButtonLink>
-				<ButtonLink href="/contact" variant="secondary">Contact</ButtonLink>
-			</div>
-		</div>
-	</section>
-
-	<SectionBand>
-		<div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-			<SectionHeader
-				kicker="/work"
-				title="Current project map"
-				description="A simple look at current work, examples, and ideas in progress. Each card is labelled so you can quickly see what is finished and what is still being improved."
-			/>
-
-			<div class="mt-8 grid gap-4 md:grid-cols-3">
-				{projects.map((project) => <ProjectCard project={project} />)}
-			</div>
-		</div>
-	</SectionBand>
-
-	<SectionBand id="contact" tone="inverse">
-		<div class="mx-auto flex max-w-6xl flex-col gap-6 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-			<div class="max-w-2xl">
-				<p class="font-display text-sm uppercase text-[var(--accent-soft)]">/contact</p>
-				<h2 class="mt-3 text-2xl font-semibold tracking-normal sm:text-3xl">Start with a simple message.</h2>
-				<p class="mt-4 text-[var(--text-inverse-muted)]">
-					Email me about website design, custom automations, local AI setup, or practical workflow improvements for your business.
-				</p>
-			</div>
-			<a
-				href="mailto:hello@techzeph.co.uk"
-				class="tz-hard-control inline-flex items-center justify-center bg-[var(--button-inverse-bg)] px-5 py-3 text-sm font-semibold text-[var(--button-inverse-text)] transition hover:-translate-y-0.5 hover:bg-[var(--button-inverse-bg-hover)] sm:w-auto"
-			>
-				hello@techzeph.co.uk
-			</a>
-		</div>
-	</SectionBand>
+  <SectionBand tone="inverse">
+    <div class="tz-container grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+      <div><p class="tz-kicker !text-[var(--accent-soft)]">/contact</p><h2 class="tz-serif mt-4 max-w-4xl text-5xl leading-[.9] tracking-[-.05em] sm:text-7xl">Bring the messy workflow. I’ll turn it into a sharper system.</h2><p class="mt-6 max-w-2xl text-[var(--text-inverse-muted)]">Email me about website design, custom automations, local AI setup, or practical workflow improvements for your business.</p></div>
+      <ButtonLink href="mailto:hello@techzeph.co.uk" variant="inverse">hello@techzeph.co.uk</ButtonLink>
+    </div>
+  </SectionBand>
 </Layout>

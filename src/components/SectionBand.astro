@@ -1,19 +1,6 @@
 ---
-interface Props {
-	tone?: "default" | "muted" | "inverse";
-	class?: string;
-	[key: string]: unknown;
-}
-
-const { tone = "muted", class: className = "", ...attrs } = Astro.props;
-
-const tones = {
-	default: "",
-	muted: "tz-divider-y bg-[var(--surface-page-muted)]",
-	inverse: "bg-[var(--surface-inverse)] text-[var(--text-inverse)]",
-};
+interface Props { tone?: "default" | "muted" | "inverse"; class?: string; [key: string]: unknown; }
+const { tone = "default", class: className = "", ...attrs } = Astro.props;
+const tones = { default: "", muted: "tz-section-band-muted", inverse: "tz-section-band-inverse" };
 ---
-
-<section {...attrs} class:list={[tones[tone], "py-12 sm:py-16", className]}>
-	<slot />
-</section>
+<section {...attrs} class:list={["tz-section-band", tones[tone], className]}><slot /></section>

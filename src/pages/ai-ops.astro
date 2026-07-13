@@ -1,0 +1,40 @@
+---
+import ButtonLink from "../components/ButtonLink.astro";
+import Layout from "../layouts/Layout.astro";
+import PageIntro from "../components/PageIntro.astro";
+import SectionBand from "../components/SectionBand.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+const auditChecks = [
+  "Website clarity: can a first-time visitor understand what you do, who it is for, and how to contact or buy?",
+  "Repeated questions: the replies, FAQs, service details, pricing explanations, and booking steps you type over and over.",
+  "Admin flow: enquiry replies, content planning, document organisation, handover notes, and repeated internal workflows.",
+  "Safe AI use: reviewed drafts, reusable prompts, clear boundaries, and no sensitive data dumped into tools.",
+];
+const starterSystem = [
+  "A simple knowledge base for services, FAQs, policies, customer instructions, internal notes, and useful source material.",
+  "Reusable prompt pack for human-reviewed admin, content, website, and customer-reply drafts.",
+  "FAQ/reply helper library for repeated customer questions, follow-ups, and service explanations.",
+  "SOP and handover docs so the workflow can be repeated without everything living in someone's head.",
+];
+---
+<Layout title="AI Ops Starter System | TechZeph" description="Practical AI, website, admin, content, and documentation systems for small businesses.">
+  <PageIntro kicker="/AI Ops Starter System" title="Practical AI and website systems for small businesses." description="I help small businesses organise their admin, content, customer replies, and internal documentation so AI-assisted workflows are useful, safe, and easy to review." />
+  <div class="tz-running-rule"><span><strong>Service first</strong> / No hype</span><span>Human-reviewed outputs only</span><span>Clear, fixed scope</span></div>
+  <SectionBand>
+    <div class="tz-container">
+      <div class="tz-principle">
+        <article class="tz-principle-main"><p class="tz-kicker">Start here</p><div class="tz-principle-quote">Start with a clear, <em>fixed-scope audit.</em></div><p class="max-w-xl text-[var(--text-muted)]">I review the public website and visible workflow, then send a plain-English action plan: quick website fixes, repeated admin tasks that could use reviewed AI drafts, and documentation gaps that make handover harder.</p></article>
+        <aside class="tz-principle-side"><h3>Useful boundaries.</h3><ol><li><span>Human-reviewed outputs only.</span></li><li><span>No spammy outbound automation.</span></li><li><span>No regulated legal, medical, or financial advice workflows.</span></li></ol><div class="mt-8 flex flex-col gap-3"><ButtonLink href="mailto:hello@techzeph.co.uk?subject=AI%20workflow%20audit" variant="inverse">Ask about an audit</ButtonLink><ButtonLink href="#starter-system" variant="inverse">See the starter system</ButtonLink></div></aside>
+      </div>
+    </div>
+  </SectionBand>
+  <SectionBand tone="muted">
+    <div class="tz-container"><SectionHeader kicker="01 / Audit" title="AI Workflow Audit" description="A focused review of your website, admin flow, customer questions, content workflow, internal docs, and repeated tasks." /><div class="tz-audit-grid">{auditChecks.map((item, index) => <article class="tz-audit-item"><span class="tz-audit-item-index">0{index + 1}</span><p>{item}</p></article>)}</div></div>
+  </SectionBand>
+  <SectionBand id="starter-system">
+    <div class="tz-container"><SectionHeader kicker="02 / Starter system" title="AI Ops Starter System" description="A fixed-scope setup for small businesses: knowledge base, reusable prompts, customer-reply helpers, content workflow, SOPs, docs organisation, and a handover guide." /><div class="tz-audit-grid">{starterSystem.map((item, index) => <article class="tz-audit-item"><span class="tz-audit-item-index">0{index + 1}</span><p>{item}</p></article>)}</div></div>
+  </SectionBand>
+  <SectionBand tone="inverse">
+    <div class="tz-container grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end"><div><p class="tz-kicker !text-[var(--accent-soft)]">/next-step</p><h2 class="tz-serif mt-4 max-w-4xl text-5xl leading-[.9] tracking-[-.05em] sm:text-7xl">Start with a practical workflow audit.</h2><p class="mt-6 max-w-2xl text-[var(--text-inverse-muted)]">Send a website and a few notes about what repeats in your admin, content, customer replies, or internal documentation.</p></div><ButtonLink href="mailto:hello@techzeph.co.uk?subject=AI%20workflow%20audit" variant="inverse">hello@techzeph.co.uk</ButtonLink></div>
+  </SectionBand>
+</Layout>

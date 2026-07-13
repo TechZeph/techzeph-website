@@ -12,12 +12,9 @@ Use this as the living checklist for site work. Add, remove, and reorder items f
 
 ## Later
 
-- [ ] Add more public repos with `.portfolio/project.json` metadata.
-- [ ] Refresh project metadata with `pnpm sync:github-projects` when checking local changes.
 - [ ] Expand customer theme templates with a completed example theme.
 - [ ] Consider a dedicated template repo for customer sites.
-- [ ] Add more public repos with `.portfolio/project.json` and `.portfolio/progress.json` metadata.
-- [ ] Improve project cards once more real project data is available.
+- [ ] Add fuller hand-written case studies when the portfolio needs them.
 
 ## Done
 

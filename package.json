@@ -10,7 +10,6 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "sync:github-projects": "node scripts/sync-github-projects.mjs",
     "astro": "astro"
   },
   "dependencies": {

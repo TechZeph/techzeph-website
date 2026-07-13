@@ -1,0 +1,32 @@
+---
+const links = [
+  {
+    eyebrow: "Code and experiments",
+    title: "GitHub",
+    href: "https://github.com/TechZeph",
+    description: "Websites, automation scripts and coding projects I’ve built while developing my skills.",
+  },
+  {
+    eyebrow: "Professional profile",
+    title: "LinkedIn",
+    href: "https://www.linkedin.com/in/elliot-harrison-1211413a3/",
+    description: "My work history, technical skills and professional experience.",
+  },
+  {
+    eyebrow: "Client website",
+    title: "Duke’s Po-Boys",
+    href: "https://dukespoboys.com",
+    description: "A live website for a UK street-food business, with weekly updates showing where they’re trading.",
+  },
+];
+---
+<div class="tz-portfolio-links">
+  {links.map((link, index) => (
+    <a class="tz-portfolio-link" href={link.href} target="_blank" rel="noopener noreferrer">
+      <span class="tz-portfolio-index">0{index + 1}</span>
+      <div><p class="tz-kicker">{link.eyebrow}</p><h3>{link.title}</h3></div>
+      <p class="tz-portfolio-description">{link.description}</p>
+      <span class="tz-portfolio-arrow" aria-hidden="true">↗</span>
+    </a>
+  ))}
+</div>

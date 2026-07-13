@@ -1,27 +1,6 @@
 ---
-interface Props {
-	href: string;
-	variant?: "primary" | "secondary" | "inverse";
-}
-
+interface Props { href: string; variant?: "primary" | "secondary" | "inverse"; }
 const { href, variant = "primary" } = Astro.props;
-
-const variants = {
-	primary:
-		"bg-[var(--button-primary-bg)] text-[var(--button-primary-text)] hover:bg-[var(--button-primary-bg-hover)]",
-	secondary:
-		"bg-[var(--button-secondary-bg)] text-[var(--button-secondary-text)] hover:bg-[var(--button-secondary-bg-hover)]",
-	inverse:
-		"bg-[var(--button-inverse-bg)] text-[var(--button-inverse-text)] hover:bg-[var(--button-inverse-bg-hover)]",
-};
+const variants = { primary: "tz-button-primary", secondary: "tz-button-secondary", inverse: "tz-button-inverse" };
 ---
-
-<a
-	href={href}
-	class:list={[
-		"tz-hard-control inline-flex items-center justify-center px-5 py-3 text-sm font-semibold transition hover:-translate-y-0.5",
-		variants[variant],
-	]}
->
-	<slot />
-</a>
+<a href={href} class:list={["tz-button", variants[variant]]}><slot /></a>
