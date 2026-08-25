@@ -140,14 +140,14 @@ const faqs = [
   <SectionBand tone="muted" id="packages">
     <div class="tz-container">
       <SectionHeader
-        kicker="01 / Packages"
+        kicker="Packages"
         title="Three packages. One system."
         description="Every package includes the structured-data approach: change a price once and the website, digital menu, QR menu and allergen matrix all stay in step."
       />
       <div class="tz-audit-grid">
         {packages.map((pkg, index) => (
           <article class="tz-audit-item" style={pkg.featured ? "outline: 2px solid var(--accent-primary);" : undefined}>
-            <span class="tz-audit-item-index">0{index + 1}</span>
+            
             <h3 class="text-xl font-semibold">{pkg.name}</h3>
             <p class="tz-kicker !mt-2">{pkg.price}</p>
             <p class="mt-3 text-[var(--text-muted)]">{pkg.tagline}</p>
@@ -171,14 +171,14 @@ const faqs = [
   <SectionBand>
     <div class="tz-container">
       <SectionHeader
-        kicker="02 / How it works"
+        kicker="How it works"
         title="From your details to live in days."
         description="The clock starts when your complete details arrive — so there are no surprises about what 'complete' means."
       />
       <div class="tz-audit-grid">
         {steps.map((step, index) => (
           <article class="tz-audit-item">
-            <span class="tz-audit-item-index">0{index + 1}</span>
+            
             <h3 class="text-xl font-semibold">{step.title}</h3>
             <p class="mt-3 text-[var(--text-muted)]">{step.copy}</p>
           </article>
@@ -190,21 +190,21 @@ const faqs = [
   <SectionBand tone="muted">
     <div class="tz-container">
       <SectionHeader
-        kicker="03 / Allergens"
+        kicker="Allergens"
         title="Allergen information done properly."
         description="Natasha's Law made manageable — without pretending software is a compliance guarantee."
       />
       <div class="tz-audit-grid">
         <article class="tz-audit-item">
-          <span class="tz-audit-item-index">01</span>
+          
           <p>All 14 UK-regulated allergens tracked per dish, with the source of each allergen noted — not just a tick.</p>
         </article>
         <article class="tz-audit-item">
-          <span class="tz-audit-item-index">02</span>
+          
           <p>Customer-facing allergen page plus a printable matrix PDF for the counter, the table or environmental health visits.</p>
         </article>
         <article class="tz-audit-item">
-          <span class="tz-audit-item-index">03</span>
+          
           <p>You verify your allergen data in writing before launch. The service manages and presents the information; your business stays responsible for its accuracy.</p>
         </article>
       </div>
@@ -213,11 +213,11 @@ const faqs = [
 
   <SectionBand>
     <div class="tz-container">
-      <SectionHeader kicker="04 / Questions" title="Straight answers." />
+      <SectionHeader kicker="Questions" title="Straight answers." />
       <div class="tz-audit-grid">
         {faqs.map((faq, index) => (
           <article class="tz-audit-item">
-            <span class="tz-audit-item-index">0{index + 1}</span>
+            
             <h3 class="text-lg font-semibold">{faq.q}</h3>
             <p class="mt-3 text-[var(--text-muted)]">{faq.a}</p>
           </article>

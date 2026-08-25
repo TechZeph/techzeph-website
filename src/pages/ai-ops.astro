@@ -29,10 +29,10 @@ const starterSystem = [
     </div>
   </SectionBand>
   <SectionBand tone="muted">
-    <div class="tz-container"><SectionHeader kicker="01 / Audit" title="AI Workflow Audit" description="A focused review of your website, admin flow, customer questions, content workflow, internal docs, and repeated tasks." /><div class="tz-audit-grid">{auditChecks.map((item, index) => <article class="tz-audit-item"><span class="tz-audit-item-index">0{index + 1}</span><p>{item}</p></article>)}</div></div>
+    <div class="tz-container"><SectionHeader kicker="Audit" title="AI Workflow Audit" description="A focused review of your website, admin flow, customer questions, content workflow, internal docs, and repeated tasks." /><div class="tz-audit-grid">{auditChecks.map((item, index) => <article class="tz-audit-item"><p>{item}</p></article>)}</div></div>
   </SectionBand>
   <SectionBand id="starter-system">
-    <div class="tz-container"><SectionHeader kicker="02 / Starter system" title="AI Ops Starter System" description="A fixed-scope setup for small businesses: knowledge base, reusable prompts, customer-reply helpers, content workflow, SOPs, docs organisation, and a handover guide." /><div class="tz-audit-grid">{starterSystem.map((item, index) => <article class="tz-audit-item"><span class="tz-audit-item-index">0{index + 1}</span><p>{item}</p></article>)}</div></div>
+    <div class="tz-container"><SectionHeader kicker="Starter system" title="AI Ops Starter System" description="A fixed-scope setup for small businesses: knowledge base, reusable prompts, customer-reply helpers, content workflow, SOPs, docs organisation, and a handover guide." /><div class="tz-audit-grid">{starterSystem.map((item, index) => <article class="tz-audit-item"><p>{item}</p></article>)}</div></div>
   </SectionBand>
   <SectionBand tone="inverse">
     <div class="tz-container grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end"><div><p class="tz-kicker !text-[var(--accent-soft)]">/next-step</p><h2 class="tz-serif mt-4 max-w-4xl text-5xl leading-[.9] tracking-[-.05em] sm:text-7xl">Start with a practical workflow audit.</h2><p class="mt-6 max-w-2xl text-[var(--text-inverse-muted)]">Send a website and a few notes about what repeats in your admin, content, customer replies, or internal documentation.</p></div><ButtonLink href="mailto:hello@techzeph.co.uk?subject=AI%20workflow%20audit" variant="inverse">hello@techzeph.co.uk</ButtonLink></div>
