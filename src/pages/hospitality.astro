@@ -1,0 +1,243 @@
+---
+import ButtonLink from "../components/ButtonLink.astro";
+import Layout from "../layouts/Layout.astro";
+import PageIntro from "../components/PageIntro.astro";
+import SectionBand from "../components/SectionBand.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+
+const included = [
+  "Website — mobile-first, fast, built to be found on Google.",
+  "Digital menu — send us the change and it's live in minutes, on every page at once.",
+  "Allergen information — full 14-allergen matrix, page and printable PDF.",
+  "QR codes — branded codes that take customers straight to your menu or allergens.",
+  "Ongoing management — hosting, domain and updates handled for you. You run the kitchen; we run the website.",
+];
+
+const packages = [
+  {
+    name: "Starter",
+    price: "£49/month",
+    tagline: "One sharp page that does everything a food business needs.",
+    features: [
+      "One-page responsive website",
+      "Menu section with prices",
+      "Allergen information page",
+      "Photo gallery",
+      "Contact, location and opening hours",
+      "Branded QR code to your menu",
+      "Social links and basic SEO",
+      "Updates handled for you",
+    ],
+    cta: "Ask about Starter",
+    featured: false,
+  },
+  {
+    name: "Professional",
+    price: "£79/month",
+    tagline: "The complete digital front-of-house for your business.",
+    features: [
+      "4–5 page website",
+      "Structured digital menu",
+      "Full allergen matrix (all 14 allergens)",
+      "Printable allergen matrix PDF",
+      "QR menu + branded QR codes",
+      "Gallery",
+      "Locations and opening hours",
+      "Google and social integration",
+      "Basic SEO and analytics",
+      "Hosting, domain and setup included",
+    ],
+    cta: "Ask about Professional",
+    featured: true,
+  },
+  {
+    name: "Complete",
+    price: "from £1,000 build + £99/month",
+    tagline: "Launch with photography, marketing and everything done for you.",
+    features: [
+      "Everything in Professional",
+      "Food photography coordination",
+      "Marketing campaign assets",
+      "Google Business Profile optimisation",
+      "Social media launch assets",
+      "Launch campaign and extended SEO/content",
+    ],
+    cta: "Ask about Complete",
+    featured: false,
+  },
+];
+
+const steps = [
+  {
+    title: "Send your details",
+    copy: "Menu, allergen chart, logo, colours, photos and opening hours — a checklist tells you exactly what we need.",
+  },
+  {
+    title: "We build",
+    copy: "Your site, digital menu, allergen matrix and QR codes are built and checked — you review one clean preview.",
+  },
+  {
+    title: "You go live",
+    copy: "Live within 10 working days of receiving your complete details (Starter: 7). Most are live much sooner — and every menu change after that is one message to us.",
+  },
+];
+
+const faqs = [
+  {
+    q: "Who provides the allergen information?",
+    a: "You do. We transcribe your allergen chart into a clear matrix and you verify it in writing before anything goes live. The software and service manage and present the information — the business always owns and confirms its own allergen data.",
+  },
+  {
+    q: "What happens when my menu changes?",
+    a: "Send the change — new prices, a new dish, a seasonal special — and the website, digital menu, QR menu and allergen matrix all update together. It is one update, handled for you, usually live within minutes.",
+  },
+  {
+    q: "Do I own the website?",
+    a: "Yes. Sites are managed under an ongoing care plan for as long as you want the service, and can be handed over to you at any point — hosting is standard Cloudflare infrastructure, not a proprietary lock-in. Your domain is registered in your name from day one.",
+  },
+  {
+    q: "Can customers order or book through the site?",
+    a: "Not through us — and we won't pretend otherwise. The site sends customers to whatever ordering or booking system you already use (phone, socials, a third-party app). What it does brilliantly is make sure everything they see — menu, prices, allergens — is current.",
+  },
+];
+---
+
+<Layout
+  title="Hospitality Digital Packages | TechZeph"
+  description="Complete digital presence for independent food businesses: website, digital menu, allergen information, QR codes and ongoing management from one system."
+>
+  <PageIntro
+    kicker="/Hospitality"
+    title="A complete digital presence for independent food businesses."
+    description="Website, digital menu, allergen information, QR codes and ongoing management — one system, one update, everything consistent."
+  />
+  <div class="tz-running-rule"
+    ><span><strong>Restaurants</strong> / Cafes / Pubs</span><span>Street food & markets</span><span>Caterers</span></div
+  >
+
+  <SectionBand>
+    <div class="tz-container">
+      <div class="tz-principle">
+        <article class="tz-principle-main">
+          <p class="tz-kicker">The problem</p>
+          <div class="tz-principle-quote">
+            Your menu changes. Your website doesn't.
+          </div>
+          <p class="max-w-xl text-[var(--text-muted)]">
+            Prices drift out of date, the allergen PDF lives on a laptop somewhere, and the QR code on the table points at a page nobody has touched since last summer. Change should happen once — and every customer-facing thing should update together.
+          </p>
+        </article>
+        <aside class="tz-principle-side">
+          <h3>What you get.</h3>
+          <ol>
+            {included.map((item) => <li><span>{item}</span></li>)}
+          </ol>
+        </aside>
+      </div>
+    </div>
+  </SectionBand>
+
+  <SectionBand tone="muted" id="packages">
+    <div class="tz-container">
+      <SectionHeader
+        kicker="01 / Packages"
+        title="Three packages. One system."
+        description="Every package includes the structured-data approach: change a price once and the website, digital menu, QR menu and allergen matrix all stay in step."
+      />
+      <div class="tz-audit-grid">
+        {packages.map((pkg, index) => (
+          <article class="tz-audit-item" style={pkg.featured ? "outline: 2px solid var(--accent-primary);" : undefined}>
+            <span class="tz-audit-item-index">0{index + 1}</span>
+            <h3 class="text-xl font-semibold">{pkg.name}</h3>
+            <p class="tz-kicker !mt-2">{pkg.price}</p>
+            <p class="mt-3 text-[var(--text-muted)]">{pkg.tagline}</p>
+            <ul class="mt-5 list-none space-y-2 p-0 text-sm">
+              {pkg.features.map((f) => (
+                <li class="flex gap-2"><span aria-hidden="true" class="text-[var(--accent-primary)]">+</span><span>{f}</span></li>
+              ))}
+            </ul>
+            <div class="mt-6">
+              <ButtonLink href={`mailto:hello@techzeph.co.uk?subject=Hospitality%20package%20—%20${encodeURIComponent(pkg.name)}`}>{pkg.cta}</ButtonLink>
+            </div>
+          </article>
+        ))}
+      </div>
+      <p class="mt-6 text-sm text-[var(--text-muted)]">
+        Monthly packages include hosting, domain and unlimited menu/allergen updates. Final quote depends on menu size and content. Every package includes one correction round (Professional and Complete: two).
+      </p>
+    </div>
+  </SectionBand>
+
+  <SectionBand>
+    <div class="tz-container">
+      <SectionHeader
+        kicker="02 / How it works"
+        title="From your details to live in days."
+        description="The clock starts when your complete details arrive — so there are no surprises about what 'complete' means."
+      />
+      <div class="tz-audit-grid">
+        {steps.map((step, index) => (
+          <article class="tz-audit-item">
+            <span class="tz-audit-item-index">0{index + 1}</span>
+            <h3 class="text-xl font-semibold">{step.title}</h3>
+            <p class="mt-3 text-[var(--text-muted)]">{step.copy}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </SectionBand>
+
+  <SectionBand tone="muted">
+    <div class="tz-container">
+      <SectionHeader
+        kicker="03 / Allergens"
+        title="Allergen information done properly."
+        description="Natasha's Law made manageable — without pretending software is a compliance guarantee."
+      />
+      <div class="tz-audit-grid">
+        <article class="tz-audit-item">
+          <span class="tz-audit-item-index">01</span>
+          <p>All 14 UK-regulated allergens tracked per dish, with the source of each allergen noted — not just a tick.</p>
+        </article>
+        <article class="tz-audit-item">
+          <span class="tz-audit-item-index">02</span>
+          <p>Customer-facing allergen page plus a printable matrix PDF for the counter, the table or environmental health visits.</p>
+        </article>
+        <article class="tz-audit-item">
+          <span class="tz-audit-item-index">03</span>
+          <p>You verify your allergen data in writing before launch. The service manages and presents the information; your business stays responsible for its accuracy.</p>
+        </article>
+      </div>
+    </div>
+  </SectionBand>
+
+  <SectionBand>
+    <div class="tz-container">
+      <SectionHeader kicker="04 / Questions" title="Straight answers." />
+      <div class="tz-audit-grid">
+        {faqs.map((faq, index) => (
+          <article class="tz-audit-item">
+            <span class="tz-audit-item-index">0{index + 1}</span>
+            <h3 class="text-lg font-semibold">{faq.q}</h3>
+            <p class="mt-3 text-[var(--text-muted)]">{faq.a}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </SectionBand>
+
+  <SectionBand tone="inverse">
+    <div class="tz-container grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+      <div>
+        <p class="tz-kicker !text-[var(--accent-soft)]">/next-step</p>
+        <h2 class="tz-serif mt-4 max-w-4xl text-5xl leading-[.9] tracking-[-.05em] sm:text-7xl">
+          Send your menu. Get your digital presence.
+        </h2>
+        <p class="mt-6 max-w-2xl text-[var(--text-inverse-muted)]">
+          Tell us about your business and which package fits. We will reply with the intake checklist and a fixed quote.
+        </p>
+      </div>
+      <ButtonLink href="mailto:hello@techzeph.co.uk?subject=Hospitality%20package%20enquiry" variant="inverse">hello@techzeph.co.uk</ButtonLink>
+    </div>
+  </SectionBand>
+</Layout>
