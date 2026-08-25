@@ -13,9 +13,9 @@ import SiteMenu from "./SiteMenu.astro";
   <nav class="tz-site-nav" aria-label="Primary navigation">
     <a class="tz-wordmark" href="/">TechZeph</a>
     <div class="tz-desktop-nav">
-      {links.map((link, index) => (
+      {links.map((link) => (
         <a class="tz-nav-link" aria-current={path === link.href || path.startsWith(`${link.href}/`) ? "page" : undefined} href={link.href}>
-          0{index + 1} {link.label}
+          {link.label}
         </a>
       ))}
     </div>
