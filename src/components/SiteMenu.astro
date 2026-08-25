@@ -11,7 +11,7 @@ const hubPages = [
   <button type="button" data-site-menu-trigger class="tz-menu-trigger" aria-haspopup="menu" aria-expanded="false">Menu / Hubs</button>
   <div data-site-menu-options class="tz-menu-popover hidden" role="menu">
     {hubPages.map((item, index) => (
-      <a href={item.href} role="menuitem"><strong>0{index + 1} / {item.label}</strong><span>{item.description}</span></a>
+      <a href={item.href} role="menuitem"><strong>{item.label}</strong><span>{item.description}</span></a>
     ))}
   </div>
 </div>
